@@ -707,7 +707,6 @@ svg {
   text-align: left;
   position: relative;
   overflow: hidden;
-  min-height: 316px;
 }
 
 .mega-promo::before {

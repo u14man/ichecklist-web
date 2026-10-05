@@ -262,13 +262,13 @@ test("resources filter, help search, FAQ, and unknown routes", async ({
     .getByRole("textbox", { name: "Search help center" })
     .fill("zzzznotfound");
   await expect(
-    page.getByRole("heading", { name: "No matches just yet." }),
+    page.getByRole("heading", { name: "No chapters match that search." }),
   ).toBeVisible();
-  await page.getByRole("button", { name: "Clear search & filters" }).click();
+  await page.getByRole("button", { name: "Clear search" }).click();
   await page
     .getByRole("textbox", { name: "Search help center" })
     .fill("Personal");
-  await expect(page.locator(".doc-article").first()).toBeVisible();
+  await expect(page.locator(".guide-chapter").first()).toBeVisible();
   await page.goto("/");
   const question = page.getByRole("button", {
     name: "Can teammates see my Personal Checklist?",

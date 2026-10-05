@@ -1,4 +1,4 @@
-import { useMemo, useState, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import {
   ArrowDown,
@@ -10,14 +10,12 @@ import {
   Flower2,
   Check,
   CheckCheck,
-  ChevronDown,
   ChevronRight,
   CircleCheck,
   CircleHelp,
   Clock3,
   Copy,
   Download,
-  FileText,
   HeartHandshake,
   Layers,
   LifeBuoy,
@@ -40,6 +38,7 @@ import {
   SectionHeading,
 } from "./components";
 import { features, solutions, guides, faqs } from "./content";
+import { guideSections, type GuideSection } from "./docs-guide";
 import ProductDemo from "./ProductDemo";
 import { WorkflowPrinciples } from "./Home";
 
@@ -1250,64 +1249,57 @@ export function ArticlePage() {
   );
 }
 
+function guideText(section: GuideSection) {
+  return [
+    section.title,
+    section.summary,
+    ...section.blocks.flatMap((block) => {
+      if (block.type === "p" || block.type === "note") {
+        return [block.type === "note" ? block.title : "", block.text];
+      }
+      if (block.type === "table") return block.rows.flat();
+      return block.items;
+    }),
+  ]
+    .join(" ")
+    .toLowerCase();
+}
+
 export function DocsPage() {
   const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("All topics");
-  const documents = useMemo(
-    () => [
-      {
-        title: "Getting started with the interactive demo",
-        text: "Open the interactive demo to explore a sample issue. Check an item, switch between List and Tab views, or click an item name to edit it. No account or Jira connection is needed. Reset demo restores the original sample.",
-        category: "Getting started",
-        href: "/demo",
-      },
-      ...features.map((feature) => ({
-        title: feature.title,
-        text: `${feature.body} ${feature.detail}`,
-        category: [
-          "personal-checklists",
-          "completion-locking",
-          "mandatory-items",
-        ].includes(feature.slug)
-          ? "Privacy & completion"
-          : "Working with checklists",
-        href: `/features/${feature.slug}`,
-      })),
-      ...faqs
-        .slice(0, 5)
-        .map((faq) => ({
-          title: faq.question,
-          text: faq.answer,
-          category: "Common questions",
-          href: "/features",
-        })),
-    ],
-    [],
+  const [activeId, setActiveId] = useState(guideSections[0].id);
+  const query = search.trim().toLowerCase();
+  const results = guideSections.filter(
+    (section) => !query || guideText(section).includes(query),
   );
-  const results = documents.filter(
-    (doc) =>
-      (category === "All topics" || doc.category === category) &&
-      `${doc.title} ${doc.text}`.toLowerCase().includes(search.toLowerCase()),
-  );
+
+  function openSection(id: string) {
+    setActiveId(id);
+    document.getElementById(id)?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+
   return (
     <>
       <PageHero
-        eyebrow="A LITTLE GUIDANCE GOES A LONG WAY"
+        eyebrow="JIRA CHECKLIST USER GUIDE"
         title={
           <>
-            Let’s clear
+            Every click,
             <br />
-            <span>things up.</span>
+            <span>in order.</span>
           </>
         }
-        description="Find an answer, understand a feature, and get back to the good work."
+        description="Twenty short chapters for the checklist panel: create, edit, complete, and the paths that are not in the product."
       >
         <label className="help-search">
           <Search size={21} />
           <input
             value={search}
             onChange={(event) => setSearch(event.target.value)}
-            placeholder="Search checklists, progress, personal…"
+            placeholder="Search rename, mandatory, personal…"
             aria-label="Search help center"
           />
           {search && (
@@ -1319,30 +1311,33 @@ export function DocsPage() {
         </label>
       </PageHero>
       <section className="container docs-layout">
-        <aside>
-          <span className="eyebrow">BROWSE TOPICS</span>
-          {[
-            "All topics",
-            "Getting started",
-            "Working with checklists",
-            "Privacy & completion",
-            "Common questions",
-          ].map((value) => (
-            <button
-              className={category === value ? "active" : ""}
-              aria-pressed={category === value}
-              key={value}
-              onClick={() => setCategory(value)}
-            >
-              <FileText size={15} />
-              {value}
-              <ChevronRight size={13} />
-            </button>
-          ))}
+        <aside className="docs-toc">
+          <span className="eyebrow">20 CHAPTERS</span>
+          <nav aria-label="Guide chapters">
+            {guideSections.map((section) => {
+              const visible = results.some((item) => item.id === section.id);
+              return (
+                <a
+                  key={section.id}
+                  href={`#${section.id}`}
+                  className={activeId === section.id ? "active" : ""}
+                  aria-current={activeId === section.id ? "true" : undefined}
+                  hidden={!visible}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    openSection(section.id);
+                  }}
+                >
+                  <span>{section.number}</span>
+                  {section.title}
+                </a>
+              );
+            })}
+          </nav>
           <div className="docs-contact">
             <LifeBuoy size={23} />
             <h3>Still a little stuck?</h3>
-            <p>Prepare a question for the team.</p>
+            <p>Send feedback from the top ⋯ menu, or write to the team.</p>
             <Link className="text-link" to="/contact">
               Let’s talk
               <ArrowRight size={14} />
@@ -1351,44 +1346,86 @@ export function DocsPage() {
         </aside>
         <div className="docs-results">
           <div className="docs-result-heading">
-            <h2>{search ? `Results for “${search}”` : category}</h2>
-            <span aria-live="polite">{results.length} articles</span>
+            <h2>{query ? `Results for “${search.trim()}”` : "User guide"}</h2>
+            <span aria-live="polite">
+              {results.length} {results.length === 1 ? "chapter" : "chapters"}
+            </span>
           </div>
           {results.length ? (
-            results.map((doc) => (
-              <details key={doc.title} className="doc-article">
-                <summary>
-                  <span className="doc-icon">
-                    <BookOpen size={19} />
-                  </span>
-                  <span>
-                    <small>{doc.category}</small>
-                    <strong>{doc.title}</strong>
-                  </span>
-                  <ChevronDown size={18} />
-                </summary>
-                <div>
-                  <p>{doc.text}</p>
-                  <Link className="text-link" to={doc.href}>
-                    Take a closer look
-                    <ArrowRight size={15} />
-                  </Link>
-                </div>
-              </details>
+            results.map((section) => (
+              <article
+                key={section.id}
+                id={section.id}
+                className="guide-chapter"
+              >
+                <header>
+                  <span>{section.number}</span>
+                  <div>
+                    <h3>{section.title}</h3>
+                    <p>{section.summary}</p>
+                  </div>
+                </header>
+                {section.blocks.map((block, index) => {
+                  if (block.type === "p") return <p key={index}>{block.text}</p>;
+                  if (block.type === "steps") {
+                    return (
+                      <ol key={index}>
+                        {block.items.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ol>
+                    );
+                  }
+                  if (block.type === "list") {
+                    return (
+                      <ul key={index}>
+                        {block.items.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    );
+                  }
+                  if (block.type === "note") {
+                    return (
+                      <aside key={index}>
+                        <strong>{block.title}</strong>
+                        <p>{block.text}</p>
+                      </aside>
+                    );
+                  }
+                  return (
+                    <div key={index} className="guide-table-wrap">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th scope="col">{block.headers[0]}</th>
+                            <th scope="col">{block.headers[1]}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {block.rows.map((row) => (
+                            <tr key={row[0]}>
+                              <th scope="row">{row[0]}</th>
+                              <td>{row[1]}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  );
+                })}
+              </article>
             ))
           ) : (
             <div className="docs-empty">
               <Search size={28} />
-              <h3>No matches just yet.</h3>
-              <p>Try “progress”, “mandatory”, or “personal”.</p>
+              <h3>No chapters match that search.</h3>
+              <p>Try “rename”, “mandatory”, or “personal”.</p>
               <button
                 className="button button-outline"
-                onClick={() => {
-                  setSearch("");
-                  setCategory("All topics");
-                }}
+                onClick={() => setSearch("")}
               >
-                Clear search & filters
+                Clear search
               </button>
             </div>
           )}

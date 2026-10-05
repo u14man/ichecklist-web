@@ -687,9 +687,12 @@ svg {
 }
 
 .mega-dropdown {
+  left: 50%;
+  right: auto;
   display: flex;
   gap: 8px;
   padding: 12px;
+  translate: -50% 0;
 }
 
 .mega-promo {
@@ -7058,7 +7061,9 @@ svg {
   }
 
   .mega-dropdown {
+    left: auto;
     flex-direction: column;
+    translate: none;
   }
 
   .mega-promo {

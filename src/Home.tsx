@@ -10,7 +10,6 @@ import {
   GitBranch,
   LockKeyhole,
   ShieldCheck,
-  Sparkles,
   Star,
 } from "lucide-react";
 import {
@@ -23,29 +22,21 @@ import {
 } from "./components";
 import { features, guides, solutions } from "./content";
 
-const faces = [
-  "/avatars/team-1.png",
-  "/avatars/team-2.png",
-  "/avatars/team-3.png",
-  "/avatars/team-4.png",
-  "/avatars/team-5.png",
-];
-
 const quotes = [
   {
-    src: "/avatars/team-1.png",
-    text: "The little steps stay on the issue, not buried in the comments.",
-    role: "Developers",
+    src: "/hero/quote-1.jpg",
+    name: "Jackson Schaal",
+    text: "I love how simple Supahub makes it for our users and for admins to manage user feedback and changelog.",
   },
   {
-    src: "/avatars/team-5.png",
-    text: "Every test point has an owner, a status, and a clear outcome.",
-    role: "QA teams",
+    src: "/hero/quote-2.jpg",
+    name: "Anant Dubey",
+    text: "I dig this concept - Supahub helped us out a ton with prioritizing customer feedback!",
   },
   {
-    src: "/avatars/team-2.png",
-    text: "Release day starts from a list, not from memory.",
-    role: "Release teams",
+    src: "/hero/quote-3.jpg",
+    name: "Emily Studer",
+    text: "Our Support team loves having a place to direct customers where they can feel like their voice is heard.",
   },
 ];
 
@@ -59,36 +50,14 @@ function GoldStars({ size = 16 }: { size?: number }) {
   );
 }
 
-function MiniStars({ value }: { value: number }) {
+function Sparkle() {
   return (
-    <span className="hub-mini-stars" aria-hidden="true">
-      {Array.from({ length: 5 }, (_, index) => (
-        <Star
-          key={index}
-          size={11}
-          className={index < value ? "on" : ""}
-          fill={index < value ? "currentColor" : "none"}
-          strokeWidth={index < value ? 0 : 1.5}
-        />
-      ))}
-    </span>
-  );
-}
-
-function WindowDots() {
-  return (
-    <span className="hub-dots" aria-hidden="true">
-      <i />
-      <i />
-      <i />
-    </span>
-  );
-}
-
-function Spark({ className }: { className: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12 1.2 13.7 10.3 22.8 12 13.7 13.7 12 22.8 10.3 13.7 1.2 12 10.3 10.3Z" />
+    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M12 1.6 13.55 8.9 20.8 10.45 13.55 12 12 19.3 10.45 12 3.2 10.45 10.45 8.9Z"
+      />
+      <circle cx="18.6" cy="5.2" r="1.35" fill="currentColor" />
     </svg>
   );
 }
@@ -98,148 +67,51 @@ export default function Home() {
   const selected = solutions[role];
   return (
     <>
-      <section className="hero-gradient hub-hero">
-        <div className="container">
-          <div className="home-hero">
-            <p className="hub-kicker">CHECKLISTS FOR EVERY JIRA ISSUE</p>
-            <h1>
-              A home for every
-              <br />
-              detail, right on
-              <br />
-              the issue.
-            </h1>
-            <p>
-              Organize the little steps, keep the team aligned, and know what
-              done looks like — without leaving Jira.
-            </p>
-            <div className="button-row">
-              <Button to="/demo" variant="dark">
-                <Sparkles size={16} />
-                Try the demo
-              </Button>
-              <Button to="/features" variant="outline">
-                See how it works
-              </Button>
-            </div>
-            <div className="hub-proof">
-              <div className="hub-faces">
-                {faces.map((src) => (
-                  <img key={src} src={src} alt="" />
-                ))}
-              </div>
-              <div>
-                <GoldStars />
-                <p>Made for the people who finish the details.</p>
-              </div>
+      <section className="supa-hero">
+        <div className="supa-copy">
+          <p className="supa-kicker">Customer Feedback & Feature Request Tool</p>
+          <h1>Central hub to collect feedback & announce product updates</h1>
+          <p>
+            Supahub your all-in-one solution for customer feedback management
+            and feature request prioritization.
+          </p>
+          <div className="supa-actions">
+            <Link className="supa-btn supa-btn-dark" to="/demo">
+              <Sparkle />
+              Sign up for free
+            </Link>
+            <Link className="supa-btn supa-btn-light" to="/demo">
+              See Supahub Demo
+            </Link>
+          </div>
+          <div className="supa-proof">
+            <img src="/hero/faces.png" alt="" />
+            <div>
+              <GoldStars />
+              <p>loved by 300+ customers</p>
             </div>
           </div>
         </div>
-        <div className="hub-stage" aria-hidden="true">
-          <div className="hub-orb-glow" />
-          <div className="hub-orb" />
-          <Spark className="hub-spark hub-spark-left" />
-          <Spark className="hub-spark hub-spark-right" />
-          <article className="hub-board hub-board-left">
-            <WindowDots />
-            <h3>Checklists</h3>
-            <div className="hub-log">
-              <span>MAY 12</span>
-              <strong>Release readiness</strong>
-              <i />
-            </div>
-            <div className="hub-log faded">
-              <span>APR 28</span>
-              <strong>QA sign-off</strong>
-              <i />
-            </div>
-          </article>
-          <article className="hub-board hub-board-center">
-            <WindowDots />
-            <h3>Checklist</h3>
-            <div className="hub-item">
-              <span className="hub-count on">
-                <Check size={13} />
-                4/5
-              </span>
-              <div>
-                <strong>Confirm acceptance criteria</strong>
-                <span className="hub-bar" />
-                <img src="/avatars/team-4.png" alt="" />
-              </div>
-              <span className="hub-mark">QA</span>
-            </div>
-            <div className="hub-item">
-              <span className="hub-count">
-                1/4
-              </span>
-              <div>
-                <strong>Write the rollout note</strong>
-                <span className="hub-bar short" />
-                <img src="/avatars/team-3.png" alt="" />
-              </div>
-              <span className="hub-mark soft">Dev</span>
-            </div>
-          </article>
-          <article className="hub-board hub-board-right">
-            <WindowDots />
-            <h3>Progress</h3>
-            <table>
-              <thead>
-                <tr>
-                  <th>Item</th>
-                  <th>Done</th>
-                  <th>Owner</th>
-                  <th>Left</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Acceptance</td>
-                  <td>4</td>
-                  <td>
-                    <MiniStars value={5} />
-                  </td>
-                  <td>
-                    <span>1</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Rollout note</td>
-                  <td>1</td>
-                  <td>
-                    <MiniStars value={2} />
-                  </td>
-                  <td>
-                    <span>3</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Sign-off</td>
-                  <td>2</td>
-                  <td>
-                    <MiniStars value={4} />
-                  </td>
-                  <td>
-                    <span>2</span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </article>
+        <div className="supa-stage">
+          <img className="supa-orb" src="/hero/orb.jpg" alt="" />
+          <img
+            className="supa-modules"
+            src="/hero/modules.png"
+            alt="Feedback portal, changelog, and roadmap"
+          />
         </div>
-        <div className="container hub-quotes">
-          {quotes.map((quote) => (
-            <figure key={quote.role}>
-              <img src={quote.src} alt="" />
-              <blockquote>
-                <p>{quote.text}</p>
-              </blockquote>
-              <GoldStars size={15} />
-              <figcaption>{quote.role}</figcaption>
-            </figure>
-          ))}
-        </div>
+      </section>
+      <section className="supa-quotes">
+        {quotes.map((quote) => (
+          <figure key={quote.name}>
+            <img src={quote.src} alt="" />
+            <blockquote>
+              <p>&ldquo;{quote.text}&rdquo;</p>
+            </blockquote>
+            <GoldStars size={18} />
+            <figcaption>{quote.name}</figcaption>
+          </figure>
+        ))}
       </section>
       <section className="team-strip container">
         <p>FOR THE PEOPLE WHO BRING GREAT WORK TO LIFE</p>

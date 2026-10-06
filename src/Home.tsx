@@ -5,13 +5,13 @@ import {
   ArrowUpRight,
   Check,
   CheckCheck,
-  CircleCheck,
   Code2,
   FileText,
   GitBranch,
   LockKeyhole,
-  Play,
   ShieldCheck,
+  Sparkles,
+  Star,
 } from "lucide-react";
 import {
   Button,
@@ -22,113 +22,223 @@ import {
   SectionHeading,
 } from "./components";
 import { features, guides, solutions } from "./content";
-import ProductDemo from "./ProductDemo";
+
+const faces = [
+  "/avatars/team-1.png",
+  "/avatars/team-2.png",
+  "/avatars/team-3.png",
+  "/avatars/team-4.png",
+  "/avatars/team-5.png",
+];
+
+const quotes = [
+  {
+    src: "/avatars/team-1.png",
+    text: "The little steps stay on the issue, not buried in the comments.",
+    role: "Developers",
+  },
+  {
+    src: "/avatars/team-5.png",
+    text: "Every test point has an owner, a status, and a clear outcome.",
+    role: "QA teams",
+  },
+  {
+    src: "/avatars/team-2.png",
+    text: "Release day starts from a list, not from memory.",
+    role: "Release teams",
+  },
+];
+
+function GoldStars({ size = 16 }: { size?: number }) {
+  return (
+    <span className="hub-stars" aria-hidden="true">
+      {Array.from({ length: 5 }, (_, index) => (
+        <Star key={index} size={size} fill="currentColor" strokeWidth={0} />
+      ))}
+    </span>
+  );
+}
+
+function MiniStars({ value }: { value: number }) {
+  return (
+    <span className="hub-mini-stars" aria-hidden="true">
+      {Array.from({ length: 5 }, (_, index) => (
+        <Star
+          key={index}
+          size={11}
+          className={index < value ? "on" : ""}
+          fill={index < value ? "currentColor" : "none"}
+          strokeWidth={index < value ? 0 : 1.5}
+        />
+      ))}
+    </span>
+  );
+}
+
+function WindowDots() {
+  return (
+    <span className="hub-dots" aria-hidden="true">
+      <i />
+      <i />
+      <i />
+    </span>
+  );
+}
+
+function Spark({ className }: { className: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 1.2 13.7 10.3 22.8 12 13.7 13.7 12 22.8 10.3 13.7 1.2 12 10.3 10.3Z" />
+    </svg>
+  );
+}
 
 export default function Home() {
   const [role, setRole] = useState(0);
   const selected = solutions[role];
   return (
     <>
-      <section className="hero-gradient bg-gradient-pink">
+      <section className="hero-gradient hub-hero">
         <div className="container">
           <div className="home-hero">
-            <div className="hero-badge">
-              <span className="jira-diamond" />
-              MADE FOR JIRA. BUILT FOR THE DETAILS.
-              <span className="badge-dot" />
-            </div>
+            <p className="hub-kicker">CHECKLISTS FOR EVERY JIRA ISSUE</p>
             <h1>
-              Great work is in
+              A home for every
               <br />
-              <span className="highlight-word">
-                the details.
-                <svg
-                  viewBox="0 0 430 20"
-                  preserveAspectRatio="none"
-                  aria-hidden="true"
-                >
-                  <path d="M4 13C100 1 285 0 424 10M70 17C180 7 302 8 370 13" />
-                </svg>
-              </span>
+              detail, right on
+              <br />
+              the issue.
             </h1>
             <p>
-              Turn the little steps into work well done. Organize checklists,
-              <br className="desktop-break" /> keep your team aligned, and ship
-              with confidence — right inside Jira.
+              Organize the little steps, keep the team aligned, and know what
+              done looks like — without leaving Jira.
             </p>
             <div className="button-row">
-              <Button to="/demo">
-                Try the interactive demo
-                <ArrowUpRight size={18} />
+              <Button to="/demo" variant="dark">
+                <Sparkles size={16} />
+                Try the demo
               </Button>
               <Button to="/features" variant="outline">
-                <Play size={15} />
-                Meet your new checklist
+                See how it works
               </Button>
             </div>
-            <div className="hero-reassurance">
-              <span>
-                <Check size={14} />
-                Less sub-task clutter
-              </span>
-              <span>
-                <Check size={14} />
-                Every detail accountable
-              </span>
-              <span>
-                <Check size={14} />
-                Right where you work
-              </span>
+            <div className="hub-proof">
+              <div className="hub-faces">
+                {faces.map((src) => (
+                  <img key={src} src={src} alt="" />
+                ))}
+              </div>
+              <div>
+                <GoldStars />
+                <p>Made for the people who finish the details.</p>
+              </div>
             </div>
           </div>
         </div>
-      </section>
-      <section
-        className="product-stage container"
-        aria-label="Interactive Jira Checklist preview"
-      >
-        <div className="stage-orb orb-violet" />
-        <div className="stage-orb orb-pink" />
-        <div className="stage-orb orb-amber" />
-        <div className="preview-caption">
-          <CheckCheck className="caption-spark" size={19} aria-hidden="true" />{" "}
-          A familiar home for the little things.
-          <svg width="57" height="36" viewBox="0 0 57 36" aria-hidden="true">
-            <path d="M4 5c24 0 41 7 39 23m-9-7 9 9 9-9" />
-          </svg>
+        <div className="hub-stage" aria-hidden="true">
+          <div className="hub-orb-glow" />
+          <div className="hub-orb" />
+          <Spark className="hub-spark hub-spark-left" />
+          <Spark className="hub-spark hub-spark-right" />
+          <article className="hub-board hub-board-left">
+            <WindowDots />
+            <h3>Checklists</h3>
+            <div className="hub-log">
+              <span>MAY 12</span>
+              <strong>Release readiness</strong>
+              <i />
+            </div>
+            <div className="hub-log faded">
+              <span>APR 28</span>
+              <strong>QA sign-off</strong>
+              <i />
+            </div>
+          </article>
+          <article className="hub-board hub-board-center">
+            <WindowDots />
+            <h3>Checklist</h3>
+            <div className="hub-item">
+              <span className="hub-count on">
+                <Check size={13} />
+                4/5
+              </span>
+              <div>
+                <strong>Confirm acceptance criteria</strong>
+                <span className="hub-bar" />
+                <img src="/avatars/team-4.png" alt="" />
+              </div>
+              <span className="hub-mark">QA</span>
+            </div>
+            <div className="hub-item">
+              <span className="hub-count">
+                1/4
+              </span>
+              <div>
+                <strong>Write the rollout note</strong>
+                <span className="hub-bar short" />
+                <img src="/avatars/team-3.png" alt="" />
+              </div>
+              <span className="hub-mark soft">Dev</span>
+            </div>
+          </article>
+          <article className="hub-board hub-board-right">
+            <WindowDots />
+            <h3>Progress</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Done</th>
+                  <th>Owner</th>
+                  <th>Left</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Acceptance</td>
+                  <td>4</td>
+                  <td>
+                    <MiniStars value={5} />
+                  </td>
+                  <td>
+                    <span>1</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Rollout note</td>
+                  <td>1</td>
+                  <td>
+                    <MiniStars value={2} />
+                  </td>
+                  <td>
+                    <span>3</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Sign-off</td>
+                  <td>2</td>
+                  <td>
+                    <MiniStars value={4} />
+                  </td>
+                  <td>
+                    <span>2</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
         </div>
-        <div className="hero-product">
-          <ProductDemo />
-        </div>
-        <div className="floating-card floating-personal">
-          <div>
-            <span className="floating-icon">
-              <LockKeyhole size={16} />
-            </span>
-            <strong>Your own little space.</strong>
-            <span className="private-tag">Only you</span>
-          </div>
-          <p>Personal reminders. Shared peace of mind.</p>
-          <div className="floating-check">
-            <span className="mini-checkbox checked">
-              <Check size={10} />
-            </span>
-            Save that idea for later<span className="tiny-avatar">JD</span>
-          </div>
-        </div>
-        <div className="floating-card floating-gate">
-          <span className="floating-icon mint">
-            <ShieldCheck size={21} />
-          </span>
-          <div>
-            <strong>Ready means ready.</strong>
-            <p>Must-do checks. No loose ends.</p>
-          </div>
-          <CircleCheck size={17} />
-        </div>
-        <div className="preview-interaction">
-          <span className="pulse-dot" />
-          Not just a pretty picture. Try checking something off.
+        <div className="container hub-quotes">
+          {quotes.map((quote) => (
+            <figure key={quote.role}>
+              <img src={quote.src} alt="" />
+              <blockquote>
+                <p>{quote.text}</p>
+              </blockquote>
+              <GoldStars size={15} />
+              <figcaption>{quote.role}</figcaption>
+            </figure>
+          ))}
         </div>
       </section>
       <section className="team-strip container">

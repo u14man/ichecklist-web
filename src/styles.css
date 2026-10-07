@@ -10400,27 +10400,46 @@ svg {
 }
 
 .supa-quotes {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: flex;
+  justify-content: center;
   gap: 32px;
-  max-width: 1080px;
+  width: min(1200px, calc(100% - 48px));
   margin: 0 auto;
   padding: 64px 24px;
+}
+
+.supa-quotes figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 320px;
+  width: 320px;
+  max-width: 320px;
+  min-width: 0;
+  margin: 0;
   text-align: center;
 }
 
+.supa-quotes blockquote {
+  width: 100%;
+  margin: 0;
+}
+
 .supa-quotes img {
-  width: 80px;
-  height: 80px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   object-fit: cover;
 }
 
 .supa-quotes p {
-  margin: 16px 0;
-  color: var(--muted);
+  width: 100%;
+  margin: 0;
+  color: #6b7589;
   font-size: 16px;
-  line-height: 1.6;
+  font-weight: 400;
+  line-height: 25.6px;
 }
 
 .supa-quotes .hub-stars {
@@ -10428,11 +10447,11 @@ svg {
 }
 
 .supa-quotes figcaption {
-  display: block;
-  margin-top: 8px;
-  color: var(--ink);
-  font-size: 16px;
+  margin: 0;
+  color: #495060;
+  font-size: 14px;
   font-weight: 500;
+  line-height: 22.4px;
 }
 
 @media (max-width: 700px) {
@@ -10456,8 +10475,9 @@ svg {
   }
 
   .supa-quotes {
-    grid-template-columns: 1fr;
-    max-width: 420px;
+    flex-direction: column;
+    align-items: center;
+    width: min(420px, calc(100% - 40px));
   }
 }
 

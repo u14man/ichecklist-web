@@ -25,18 +25,18 @@ import { features, guides, solutions } from "./content";
 const quotes = [
   {
     src: "/hero/quote-1.jpg",
-    name: "Jackson Schaal",
-    text: "I love how simple Supahub makes it for our users and for admins to manage user feedback and changelog.",
+    name: "Developers",
+    text: "The little steps stay on the issue, not buried in the comments.",
   },
   {
     src: "/hero/quote-2.jpg",
-    name: "Anant Dubey",
-    text: "I dig this concept - Supahub helped us out a ton with prioritizing customer feedback!",
+    name: "QA teams",
+    text: "Every test point has an owner, a status, and a clear outcome.",
   },
   {
     src: "/hero/quote-3.jpg",
-    name: "Emily Studer",
-    text: "Our Support team loves having a place to direct customers where they can feel like their voice is heard.",
+    name: "Release teams",
+    text: "Release day starts from a list, not from memory.",
   },
 ];
 
@@ -69,26 +69,26 @@ export default function Home() {
     <>
       <section className="supa-hero">
         <div className="supa-copy">
-          <p className="supa-kicker">Customer Feedback & Feature Request Tool</p>
-          <h1>Central hub to collect feedback & announce product updates</h1>
+          <p className="supa-kicker">Checklists for every Jira issue</p>
+          <h1>A home for every detail, right on the issue.</h1>
           <p>
-            Supahub your all-in-one solution for customer feedback management
-            and feature request prioritization.
+            Organize the little steps, keep the team aligned, and know what done
+            looks like — without leaving Jira.
           </p>
           <div className="supa-actions">
             <Link className="supa-btn supa-btn-dark" to="/demo">
               <Sparkle />
-              Sign up for free
+              Try the demo
             </Link>
-            <Link className="supa-btn supa-btn-light" to="/demo">
-              See Supahub Demo
+            <Link className="supa-btn supa-btn-light" to="/features">
+              See how it works
             </Link>
           </div>
           <div className="supa-proof">
             <img src="/hero/faces.png" alt="" />
             <div>
               <GoldStars />
-              <p>loved by 300+ customers</p>
+              <p>Made for the people who finish the details.</p>
             </div>
           </div>
         </div>
@@ -97,7 +97,7 @@ export default function Home() {
           <img
             className="supa-modules"
             src="/hero/modules.png"
-            alt="Feedback portal, changelog, and roadmap"
+            alt="Named checklists, progress, and ownership on a Jira issue"
           />
         </div>
       </section>

@@ -10,6 +10,8 @@ import {
   CircleCheck,
   CircleHelp,
   FileText,
+  Instagram,
+  Linkedin,
   LayoutList,
   LockKeyhole,
   Menu,
@@ -263,79 +265,127 @@ export function Header() {
   );
 }
 
-export function Footer() {
-  const columns = [
-    {
-      title: "Product",
-      links: [
-        ["All features", "/features"],
-        ["Interactive demo", "/demo"],
-        ["Pricing", "/pricing"],
-        ["Product notes", "/changelog"],
-      ],
-    },
-    {
-      title: "Features",
-      links: [
-        ["Organized checklists", "/features/organized-checklists"],
-        ["Mandatory items", "/features/mandatory-items"],
-        ["Personal checklists", "/features/personal-checklists"],
-        ["Bulk actions", "/features/bulk-actions"],
-      ],
-    },
-    {
-      title: "Resources",
-      links: [
-        ["Help center", "/docs"],
-        ["Guides & insights", "/resources"],
-        ["For developers", "/solutions/developers"],
-        ["For QA teams", "/solutions/qa-teams"],
-      ],
-    },
-    {
-      title: "Company",
-      links: [
-        ["About us", "/about"],
-        ["Contact us", "/contact"],
-        ["Privacy", "/privacy"],
-        ["Terms", "/terms"],
-      ],
-    },
-  ];
+const footerPhrases = [
+  "Organize Checklists",
+  "Track Progress",
+  "Lock Completion",
+];
+
+const footerColumns = [
+  {
+    title: "Product",
+    links: [
+      ["Pricing", "/pricing"],
+      ["View Demo", "/demo"],
+      ["Changelog", "/changelog"],
+      ["About Us", "/about"],
+    ],
+  },
+  {
+    title: "Features",
+    links: [
+      ["Organized Checklists", "/features/organized-checklists"],
+      ["Mandatory Items", "/features/mandatory-items"],
+      ["Progress Tracking", "/features/progress-tracking"],
+      ["All Features", "/features"],
+    ],
+  },
+  {
+    title: "Resources",
+    links: [
+      ["Guides & Insights", "/resources"],
+      ["Help Center", "/docs"],
+      ["Contact Us", "/contact"],
+      ["For Developers", "/solutions/developers"],
+    ],
+  },
+  {
+    title: "Policies",
+    links: [
+      ["Privacy Policy", "/privacy"],
+      ["Terms of Service", "/terms"],
+    ],
+  },
+  {
+    title: "Compare",
+    links: [
+      ["Checklists vs Sub-tasks", "/resources/checklists-vs-subtasks"],
+      ["Definition of Done", "/resources/definition-of-done"],
+      ["Release Readiness", "/resources/release-readiness"],
+      ["For QA Teams", "/solutions/qa-teams"],
+      ["For Release Teams", "/solutions/release-teams"],
+    ],
+  },
+];
+
+function FooterMarquee() {
   return (
-    <footer className="site-footer">
-      <div className="container footer-top">
-        <div className="footer-brand">
-          <Brand />
-          <p>
-            A little structure.
-            <br />A lot more peace of mind.
-          </p>
-          <span className="made-for">
-            <span className="jira-diamond" /> Thoughtfully made for Jira.
-          </span>
-        </div>
-        {columns.map((col) => (
-          <div className="footer-column" key={col.title}>
-            <h3>{col.title}</h3>
-            {col.links.map(([label, href]) => (
-              <Link key={href} to={href}>
-                {label}
-              </Link>
+    <div className="footer-marquee" aria-hidden="true">
+      <div className="footer-marquee-track">
+        {[0, 1].map((copy) => (
+          <p className="footer-marquee-line" key={copy}>
+            {footerPhrases.map((phrase) => (
+              <span key={phrase}>
+                {phrase}
+                <i>✦</i>
+              </span>
             ))}
-          </div>
+          </p>
         ))}
       </div>
-      <div className="container footer-bottom">
-        <span>
-          © {new Date().getFullYear()} Jira Checklist. Every detail matters.
-        </span>
-        <span>
-          Jira is a trademark of Atlassian. We are an independent product.
-        </span>
-        <a href="#top" aria-label="Back to top">
-          Back to top ↑
-        </a>
+    </div>
+  );
+}
+
+export function Footer() {
+  return (
+    <footer className="footer-supa">
+      <div className="container footer-supa-inner">
+        <FooterMarquee />
+        <hr className="footer-rule" />
+        <div className="footer-intro">
+          <div className="footer-intro-copy">
+            <Link to="/" aria-label="iChecklist home">
+              <img src="/logo.svg" alt="" />
+            </Link>
+            <p>
+              iChecklist is a checklist for Jira that keeps the little steps on
+              the issue, so the team can see what done looks like.
+            </p>
+          </div>
+          <Link className="footer-cta" to="/demo">
+            Try the demo
+          </Link>
+        </div>
+        <hr className="footer-rule" />
+        <nav className="footer-cols" aria-label="Footer">
+          {footerColumns.map((column) => (
+            <div className="footer-col" key={column.title}>
+              <span className="footer-label">{column.title}</span>
+              <ul>
+                {column.links.map(([label, href]) => (
+                  <li key={href}>
+                    <Link to={href}>{label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </nav>
+        <div className="footer-legal">
+          <p>
+            <span aria-hidden="true">✦</span>
+            Copyright © {new Date().getFullYear()} iChecklist. All rights
+            reserved. Jira is a trademark of Atlassian.
+          </p>
+          <div className="footer-social" aria-hidden="true">
+            <X size={18} />
+            <span aria-hidden="true">/</span>
+            <Instagram size={18} />
+            <span aria-hidden="true">/</span>
+            <Linkedin size={18} />
+          </div>
+        </div>
       </div>
     </footer>
   );

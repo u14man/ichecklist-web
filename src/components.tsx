@@ -446,33 +446,49 @@ export function PageHero({
   );
 }
 
+function CtaSparkle() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M12 1.6 13.55 8.9 20.8 10.45 13.55 12 12 19.3 10.45 12 3.2 10.45 10.45 8.9Z"
+      />
+      <circle cx="18.6" cy="5.2" r="1.35" fill="currentColor" opacity="0.45" />
+    </svg>
+  );
+}
+
 export function FinalCTA() {
   return (
-    <section className="final-cta">
-      <div className="container cta-inner">
-        <div className="cta-symbol">
-          <CheckCheck size={32} />
+    <section className="cta-banner">
+      <div className="cta-banner-card">
+        <img src="/cta/banner-bg.png" alt="" />
+        <div className="cta-banner-copy">
+          <span className="cta-banner-kicker">
+            Small checks. Big peace of mind.
+          </span>
+          <h2>
+            Make room for great work.
+            <br />
+            We’ll help with the details.
+          </h2>
+          <p>Your next release deserves a little less guesswork.</p>
         </div>
-        <span className="eyebrow">SMALL CHECKS. BIG PEACE OF MIND.</span>
-        <h2>
-          Make room for great work.
-          <br />
-          We’ll help with the details.
-        </h2>
-        <p>Your next release deserves a little less guesswork.</p>
-        <div className="button-row">
-          <Button to="/demo" variant="dark">
-            Give it a try
-            <ArrowRight size={18} />
-          </Button>
-          <Button to="/contact" variant="white">
-            Let’s talk
-            <ArrowUpRight size={17} />
-          </Button>
+        <div className="cta-banner-actions">
+          <div className="cta-banner-buttons">
+            <Link className="cta-banner-btn cta-banner-btn-solid" to="/demo">
+              <CtaSparkle />
+              Give it a try
+            </Link>
+            <Link className="cta-banner-btn cta-banner-btn-outline" to="/contact">
+              Let’s talk
+            </Link>
+          </div>
+          <p className="cta-banner-note">
+            <Check size={16} />
+            Interactive demo. No account needed.
+          </p>
         </div>
-        <span className="cta-footnote">
-          <Check size={14} /> Interactive demo. No account needed.
-        </span>
       </div>
     </section>
   );

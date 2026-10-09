@@ -320,7 +320,7 @@ const footerColumns = [
 
 function FooterMarquee() {
   return (
-    <div className="footer-marquee" aria-hidden="true">
+    <div className="footer-marquee masked-overflow" aria-hidden="true">
       <div className="footer-marquee-track">
         {[0, 1].map((copy) => (
           <p className="footer-marquee-line" key={copy}>

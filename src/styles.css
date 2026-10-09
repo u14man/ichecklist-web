@@ -10514,6 +10514,23 @@ svg {
   height: 48px;
 }
 
+.masked-overflow {
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 4%,
+    #000 96%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 4%,
+    #000 96%,
+    transparent
+  );
+}
+
 .footer-marquee-track {
   display: flex;
   width: max-content;

@@ -192,9 +192,6 @@ export function Header() {
                 )}
               </div>
             ))}
-            <NavLink className="nav-link" to="/pricing">
-              Pricing
-            </NavLink>
             <div className="nav-item">
               <button
                 className={`nav-link ${menu === "Resources" ? "active" : ""}`}
@@ -251,6 +248,12 @@ export function Header() {
                 </div>
               )}
             </div>
+            <NavLink className="nav-link" to="/demo">
+              Demo
+            </NavLink>
+            <NavLink className="nav-link" to="/pricing">
+              Pricing
+            </NavLink>
             <Link className="mobile-contact nav-link" to="/contact">
               Contact us
             </Link>
@@ -259,10 +262,15 @@ export function Header() {
             <Link className="contact-nav" to="/contact">
               Contact sales
             </Link>
-            <Button to="/demo" className="nav-cta">
-              Try the demo
+            <a
+              className="button button-primary nav-cta"
+              href="https://marketplace.atlassian.com/apps/1361881358"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Install from Marketplace
               <ArrowUpRight size={16} />
-            </Button>
+            </a>
           </div>
           <button
             className="mobile-toggle"

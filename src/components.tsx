@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import {
   ArrowRight,
   ArrowUpRight,
+  Bell,
   Check,
   CheckCheck,
   ChevronDown,
@@ -95,18 +96,30 @@ export function Header() {
     <>
       {announcement && (
         <div className="announcement">
-          <Link to="/features/mandatory-items">
-            <span className="announcement-new">
-              A little more peace of mind
-            </span>
-            <span>Every must-do. Actually done.</span>
-            <ArrowRight size={14} />
-          </Link>
+          <div className="announcement-inner">
+            <p>
+              <Bell
+                className="announcement-bell"
+                size={16}
+                aria-hidden="true"
+              />
+              Mandatory gates are live: an open mandatory item cannot mark the
+              checklist complete.
+              <Link
+                className="announcement-cta"
+                to="/features/mandatory-items"
+              >
+                See the gate
+              </Link>
+            </p>
+          </div>
           <button
+            className="announcement-dismiss"
+            type="button"
             aria-label="Dismiss announcement"
             onClick={() => setAnnouncement(false)}
           >
-            <X size={15} />
+            <X size={16} aria-hidden="true" />
           </button>
         </div>
       )}

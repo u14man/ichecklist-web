@@ -10797,6 +10797,10 @@ svg {
     align-items: flex-start;
   }
 
+  .footer-social {
+    align-self: center;
+  }
+
   .footer-marquee {
     height: 36px;
   }

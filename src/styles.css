@@ -10546,12 +10546,12 @@ svg {
   font-size: 48px;
   font-weight: 600;
   letter-spacing: -1.2px;
-  line-height: 48px;
+  line-height: 42px;
   white-space: nowrap;
 }
 
 .footer-marquee-line i {
-  margin: 0 12px;
+  margin: 0 24px;
   color: #6b7589;
   font-style: normal;
   font-size: 32px;

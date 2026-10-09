@@ -379,7 +379,7 @@ export function Footer() {
           <p>
             <span aria-hidden="true">✦</span>
             Copyright © {new Date().getFullYear()} iChecklist. All rights
-            reserved. Jira is a trademark of Atlassian.
+            reserved.
           </p>
           <div className="footer-social" aria-hidden="true">
             <X size={18} />

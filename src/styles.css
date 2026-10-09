@@ -10534,7 +10534,7 @@ svg {
 .footer-marquee-track {
   display: flex;
   width: max-content;
-  animation: footer-marquee 32s linear infinite;
+  animation: footer-marquee 60s linear infinite;
 }
 
 .footer-marquee-line {

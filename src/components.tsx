@@ -206,45 +206,58 @@ export function Header() {
               </button>
               {menu === "Resources" && (
                 <div
-                  className="nav-dropdown resource-dropdown"
+                  className="nav-dropdown mega-dropdown resource-dropdown"
                   id="menu-resources"
                 >
-                  {[
-                    {
-                      title: "Guides & insights",
-                      text: "Make the little things work better.",
-                      href: "/resources",
-                      icon: FileText,
-                    },
-                    {
-                      title: "Help center",
-                      text: "A clearer answer, a little faster.",
-                      href: "/docs",
-                      icon: CircleHelp,
-                    },
-                    {
-                      title: "Product notes",
-                      text: "A closer look at the capabilities.",
-                      href: "/changelog",
-                      icon: Sparkles,
-                    },
-                    {
-                      title: "About us",
-                      text: "Why we care about the details.",
-                      href: "/about",
-                      icon: CheckCheck,
-                    },
-                  ].map((item) => (
-                    <Link key={item.href} to={item.href}>
-                      <span className="dropdown-icon">
-                        <item.icon size={19} />
-                      </span>
-                      <span>
-                        <strong>{item.title}</strong>
-                        <small>{item.text}</small>
-                      </span>
-                    </Link>
-                  ))}
+                  <Link
+                    className="mega-promo bg-gradient-purple"
+                    to="/resources"
+                  >
+                    <strong>All Resources</strong>
+                    <p>Helpful ideas and answers for smoother work.</p>
+                  </Link>
+                  <div className="mega-list">
+                    {[
+                      {
+                        title: "Guides & insights",
+                        text: "Make the little things work better.",
+                        href: "/resources",
+                        icon: FileText,
+                        color: "lavender",
+                      },
+                      {
+                        title: "Help center",
+                        text: "A clearer answer, a little faster.",
+                        href: "/docs",
+                        icon: CircleHelp,
+                        color: "mint",
+                      },
+                      {
+                        title: "Product notes",
+                        text: "A closer look at the capabilities.",
+                        href: "/changelog",
+                        icon: Sparkles,
+                        color: "peach",
+                      },
+                      {
+                        title: "About us",
+                        text: "Why we care about the details.",
+                        href: "/about",
+                        icon: CheckCheck,
+                        color: "lavender",
+                      },
+                    ].map((item) => (
+                      <Link key={item.href} to={item.href}>
+                        <span className={`mega-icon ${item.color}`}>
+                          <item.icon size={18} />
+                        </span>
+                        <span>
+                          <strong>{item.title}</strong>
+                          <small>{item.text}</small>
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>

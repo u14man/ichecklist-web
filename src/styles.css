@@ -705,12 +705,7 @@ svg {
 }
 
 .resource-dropdown {
-  width: 325px;
-  padding: 13px;
-}
-
-.resource-dropdown a {
-  margin-bottom: 4px;
+  width: 550px;
 }
 
 .solution-dropdown {
@@ -6192,10 +6187,6 @@ svg {
     width: 600px;
   }
 
-  .resource-dropdown {
-    width: 310px;
-  }
-
   .mega-dropdown {
     width: 640px;
   }
@@ -7158,10 +7149,6 @@ svg {
     font-size: 11px;
     padding-top: 14px;
     margin-top: 10px;
-  }
-
-  .resource-dropdown a {
-    margin-bottom: 6px;
   }
 
   .home-hero {

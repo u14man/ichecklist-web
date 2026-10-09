@@ -613,10 +613,11 @@ svg {
 }
 
 .nav-cta {
-  min-height: 39px;
+  min-height: 30px;
   font-size: 12px;
-  padding: 11px 16px;
-  gap: 11px;
+  padding: 8px 10px;
+  gap: 5px;
+  border-radius: 8px;
 }
 
 .mobile-toggle,

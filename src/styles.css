@@ -10535,6 +10535,11 @@ svg {
     align-items: center;
     width: min(420px, calc(100% - 40px));
   }
+
+  .supa-quotes figure {
+    flex: 0 1 auto;
+    width: 100%;
+  }
 }
 
 @media (max-width: 640px) {

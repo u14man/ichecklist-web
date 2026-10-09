@@ -621,7 +621,9 @@ svg {
 }
 
 .mobile-toggle,
-.mobile-contact {
+.mobile-contact,
+.mobile-nav-parent,
+.mobile-menu-cta {
   display: none;
 }
 
@@ -7018,8 +7020,7 @@ svg {
   }
 
   .nav-actions {
-    margin-left: auto;
-    gap: 0;
+    display: none;
   }
 
   .nav-cta {
@@ -7072,8 +7073,28 @@ svg {
     width: 100%;
   }
 
+  .desktop-nav-trigger {
+    display: none;
+  }
+
+  .mobile-nav-parent {
+    display: flex;
+  }
+
+  .main-nav .nav-dropdown {
+    display: none;
+  }
+
   .mobile-contact {
     display: flex;
+  }
+
+  .mobile-menu-cta {
+    display: inline-flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 18px;
+    padding: 14px 18px;
   }
 
   .nav-item {

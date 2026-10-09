@@ -132,7 +132,13 @@ export function Header() {
           >
             {["Features", "Solutions"].map((label) => (
               <div className="nav-item" key={label}>
-                <button
+                <NavLink
+                  className="nav-link mobile-nav-parent"
+                  to={label === "Features" ? "/features" : "/solutions"}
+                >
+                  {label}
+                </NavLink>
+                <button className="nav-link desktop-nav-trigger"
                   className={`nav-link ${menu === label || location.pathname.startsWith(label === "Features" ? "/features" : "/solutions") ? "active" : ""}`}
                   aria-expanded={menu === label}
                   aria-controls={`menu-${label}`}
@@ -193,8 +199,11 @@ export function Header() {
               </div>
             ))}
             <div className="nav-item">
+              <NavLink className="nav-link mobile-nav-parent" to="/resources">
+                Resources
+              </NavLink>
               <button
-                className={`nav-link ${menu === "Resources" ? "active" : ""}`}
+                className={`nav-link desktop-nav-trigger ${menu === "Resources" ? "active" : ""}`}
                 aria-expanded={menu === "Resources"}
                 aria-controls="menu-resources"
                 onClick={() =>
@@ -270,6 +279,15 @@ export function Header() {
             <Link className="mobile-contact nav-link" to="/contact">
               Contact us
             </Link>
+            <a
+              className="button button-primary mobile-menu-cta"
+              href="https://marketplace.atlassian.com/apps/1361881358"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Install from Marketplace
+              <ArrowUpRight size={16} />
+            </a>
           </nav>
           <div className="nav-actions">
             <Link className="contact-nav" to="/contact">

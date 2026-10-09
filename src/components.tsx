@@ -138,8 +138,8 @@ export function Header() {
                 >
                   {label}
                 </NavLink>
-                <button className="nav-link desktop-nav-trigger"
-                  className={`nav-link ${menu === label || location.pathname.startsWith(label === "Features" ? "/features" : "/solutions") ? "active" : ""}`}
+                <button
+                  className={`nav-link desktop-nav-trigger ${menu === label || location.pathname.startsWith(label === "Features" ? "/features" : "/solutions") ? "active" : ""}`}
                   aria-expanded={menu === label}
                   aria-controls={`menu-${label}`}
                   onClick={() => setMenu(menu === label ? null : label)}

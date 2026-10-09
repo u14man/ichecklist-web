@@ -269,6 +269,9 @@ const footerPhrases = [
   "Organize Checklists",
   "Track Progress",
   "Lock Completion",
+  "Personal checklists",
+  "Bulk actions",
+  "Views & filters",
 ];
 
 const footerColumns = [

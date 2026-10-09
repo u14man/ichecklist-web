@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import {
   ArrowRight,
   ArrowUpRight,
+  Bell,
   Check,
   CheckCheck,
   ChevronDown,
@@ -64,7 +65,6 @@ export function Button({
 }
 
 export function Header() {
-  const [announcement, setAnnouncement] = useState(true);
   const [menu, setMenu] = useState<string | null>(null);
   const [mobile, setMobile] = useState(false);
   const location = useLocation();
@@ -93,23 +93,16 @@ export function Header() {
   }, []);
   return (
     <>
-      {announcement && (
-        <div className="announcement">
-          <Link to="/features/mandatory-items">
-            <span className="announcement-new">
-              A little more peace of mind
-            </span>
-            <span>Every must-do. Actually done.</span>
-            <ArrowRight size={14} />
-          </Link>
-          <button
-            aria-label="Dismiss announcement"
-            onClick={() => setAnnouncement(false)}
-          >
-            <X size={15} />
-          </button>
-        </div>
-      )}
+      <div className="announcement">
+        <Bell className="announcement-icon" size={28} strokeWidth={1.8} />
+        <p>
+          Mandatory gates are live: an open mandatory item cannot mark the
+          checklist complete.
+        </p>
+        <Link className="announcement-cta" to="/features/mandatory-items">
+          See the gate
+        </Link>
+      </div>
       <header className="site-header" ref={navRef}>
         <div className="nav-container">
           <Brand />

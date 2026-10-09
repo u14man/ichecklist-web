@@ -117,10 +117,10 @@ export function Header() {
             aria-label="Main navigation"
             className={`main-nav ${mobile ? "is-open" : ""}`}
           >
-            {["Product", "Solutions"].map((label) => (
+            {["Features", "Solutions"].map((label) => (
               <div className="nav-item" key={label}>
                 <button
-                  className={`nav-link ${menu === label || location.pathname.startsWith(label === "Product" ? "/features" : "/solutions") ? "active" : ""}`}
+                  className={`nav-link ${menu === label || location.pathname.startsWith(label === "Features" ? "/features" : "/solutions") ? "active" : ""}`}
                   aria-expanded={menu === label}
                   aria-controls={`menu-${label}`}
                   onClick={() => setMenu(menu === label ? null : label)}
@@ -134,20 +134,20 @@ export function Header() {
                 {menu === label && (
                   <div className="nav-dropdown mega-dropdown" id={`menu-${label}`}>
                     <Link
-                      className={`mega-promo ${label === "Product" ? "bg-gradient-purple" : "bg-gradient-blue"}`}
-                      to={label === "Product" ? "/features" : "/solutions"}
+                      className={`mega-promo ${label === "Features" ? "bg-gradient-purple" : "bg-gradient-blue"}`}
+                      to={label === "Features" ? "/features" : "/solutions"}
                     >
                       <strong>
-                        {label === "Product" ? "All Features" : "All Teams"}
+                        {label === "Features" ? "All Features" : "All Teams"}
                       </strong>
                       <p>
-                        {label === "Product"
+                        {label === "Features"
                           ? "Every detail, organized and accountable — right inside the issue."
                           : "One well-checked finish, whatever your role on the team."}
                       </p>
                     </Link>
                     <div className="mega-list">
-                      {(label === "Product"
+                      {(label === "Features"
                         ? features.filter((feature) =>
                             [
                               "organized-checklists",
@@ -161,7 +161,7 @@ export function Header() {
                       ).map((item) => (
                         <Link
                           key={item.slug}
-                          to={`/${label === "Product" ? "features" : "solutions"}/${item.slug}`}
+                          to={`/${label === "Features" ? "features" : "solutions"}/${item.slug}`}
                         >
                           <span className={`mega-icon ${item.color}`}>
                             <item.icon size={18} />
@@ -269,9 +269,9 @@ const footerPhrases = [
   "Organize Checklists",
   "Track Progress",
   "Lock Completion",
-  "Personal checklists",
-  "Bulk actions",
-  "Views & filters",
+  "Personal Checklists",
+  "Bulk Actions",
+  "Views & Filters",
 ];
 
 const footerColumns = [

@@ -10534,6 +10534,11 @@ svg {
     flex-direction: column;
     align-items: center;
     width: min(420px, calc(100% - 40px));
+    padding-bottom: 16px;
+  }
+
+  .team-strip {
+    padding-top: 16px;
   }
 
   .supa-quotes figure {

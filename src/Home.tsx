@@ -128,7 +128,8 @@ export default function Home() {
           </span>
         </div>
       </section>
-      <section className="section feature-overview container">
+      <div className="home-section-order">
+        <section className="section feature-overview container">
         <SectionHeading
           eyebrow="A SMALL ADDITION. A BIG DIFFERENCE."
           title={
@@ -273,7 +274,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      </div>
       <section className="comparison-section section container">
         <SectionHeading
           eyebrow="THE RIGHT SIZE FOR THE SMALL STUFF"

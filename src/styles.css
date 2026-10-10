@@ -1307,6 +1307,23 @@ svg {
   color: #a096ae;
 }
 
+.home-section-order {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-section-order > .solutions-section {
+  order: 1;
+}
+
+.home-section-order > .progress-band {
+  order: 2;
+}
+
+.home-section-order > .feature-overview {
+  order: 3;
+}
+
 .home-feature-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);

@@ -11011,3 +11011,266 @@ svg {
     width: min(100%, 280px);
   }
 }
+
+.teams-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 680px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 88px 24px 72px;
+  background: #fff;
+}
+
+.teams-hero::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 16% 27%;
+  background: radial-gradient(ellipse, #fff 42%, transparent 74%);
+  pointer-events: none;
+}
+
+.teams-blob,
+.teams-orbit {
+  position: absolute;
+  pointer-events: none;
+}
+
+.teams-blob {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  filter: blur(18px);
+}
+
+.teams-blob-left {
+  top: 36px;
+  left: 7%;
+  background: radial-gradient(circle, #ff7ad9 0%, #ffb067 58%, transparent 74%);
+  opacity: 0.82;
+}
+
+.teams-blob-right {
+  top: 28px;
+  right: 8%;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, #7aa2ff 0%, #67d4ff 56%, transparent 74%);
+  opacity: 0.78;
+}
+
+.teams-orbit {
+  top: 18px;
+  width: 680px;
+  height: 680px;
+}
+
+.teams-orbit-left {
+  left: -150px;
+  color: rgba(244, 114, 182, 0.72);
+}
+
+.teams-orbit-right {
+  right: -150px;
+  color: rgba(96, 165, 250, 0.72);
+}
+
+.teams-rings {
+  width: 100%;
+  height: 100%;
+}
+
+.teams-person {
+  position: absolute;
+  z-index: 2;
+  width: 76px;
+  height: 76px;
+  margin: 0;
+  transform: translate(-50%, -50%);
+}
+
+.teams-person img {
+  width: 76px;
+  height: 76px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 10px 24px rgba(17, 24, 39, 0.14);
+}
+
+.teams-person figcaption {
+  position: absolute;
+  top: 10px;
+  left: calc(100% + 10px);
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: #ff4d8d;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.teams-person figcaption::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -4px;
+  width: 8px;
+  height: 8px;
+  transform: translateY(-50%) rotate(45deg);
+  background: inherit;
+}
+
+.teams-person.side-left figcaption {
+  right: calc(100% + 10px);
+  left: auto;
+}
+
+.teams-person.side-left figcaption::before {
+  right: -4px;
+  left: auto;
+}
+
+.teams-orbit-right .teams-person figcaption {
+  background: #3b82f6;
+}
+
+.teams-hero-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+  text-align: center;
+}
+
+.teams-hero h1 {
+  margin: 0;
+  color: #1f2937;
+  font-size: 68px;
+  font-weight: 700;
+  letter-spacing: -1.8px;
+  line-height: 1.02;
+}
+
+.teams-hero-copy > p {
+  max-width: 560px;
+  margin: 22px auto 28px;
+  color: #4b5563;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.teams-proof {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 18px 0 0;
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.teams-proof span {
+  display: inline-flex;
+  gap: 2px;
+  color: #f5b301;
+}
+
+.teams-proof svg {
+  fill: currentColor;
+}
+
+.teams-group {
+  padding-top: 72px;
+  padding-bottom: 8px;
+}
+
+.teams-card-grid,
+.teams-workflow-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.teams-card-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.teams-workflow-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.teams-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  min-height: 100%;
+  padding: 28px;
+  border: 1px solid #e7e5ea;
+  border-radius: 20px;
+  background: #fff;
+}
+
+.teams-card:hover {
+  border-color: #d8d0e0;
+}
+
+.teams-card h3,
+.teams-card p {
+  margin: 0;
+}
+
+.teams-card h3 {
+  color: #111827;
+  font-size: 24px;
+}
+
+.teams-card .text-link {
+  margin-top: auto;
+}
+
+.teams-start-wrap {
+  padding-top: 64px;
+  padding-bottom: 24px;
+}
+
+.teams-start {
+  padding: 64px 32px;
+  border-radius: 28px;
+  background: #f7f5fb;
+  text-align: center;
+}
+
+.teams-start .button-row {
+  justify-content: center;
+}
+
+@media (max-width: 980px) {
+  .teams-blob,
+  .teams-orbit {
+    display: none;
+  }
+
+  .teams-hero {
+    min-height: 0;
+    padding: 72px 20px 48px;
+  }
+
+  .teams-hero h1 {
+    font-size: 42px;
+    letter-spacing: -1px;
+  }
+
+  .teams-card-grid,
+  .teams-workflow-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .teams-start {
+    padding: 40px 20px;
+  }
+}

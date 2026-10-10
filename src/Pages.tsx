@@ -265,7 +265,7 @@ const orbitPeople = {
       side: "left",
     },
     {
-      src: "/solutions/marketer.png",
+      src: "/hero/quote-1.jpg",
       label: "Marketer",
       top: "70%",
       left: "34%",
@@ -287,7 +287,7 @@ const orbitPeople = {
       side: "left",
     },
     {
-      src: "/hero/quote-1.jpg",
+      src: "/solutions/marketer.png",
       label: "Developer",
       top: "74%",
       left: "58%",

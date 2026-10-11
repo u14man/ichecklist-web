@@ -153,7 +153,7 @@ export function Header() {
                 {menu === label && (
                   <div className="nav-dropdown mega-dropdown" id={`menu-${label}`}>
                     <Link
-                      className={`mega-promo ${label === "Features" ? "bg-gradient-purple" : "bg-gradient-blue"}`}
+                      className={`mega-promo ${label === "Features" ? "bg-gradient-blue" : "bg-gradient-purple"}`}
                       to={label === "Features" ? "/features" : "/solutions"}
                     >
                       <strong>

@@ -11016,24 +11016,14 @@ svg {
   position: relative;
   overflow: hidden;
   min-height: 680px;
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(480px, 640px) minmax(0, 1fr);
   align-items: center;
-  justify-content: center;
-  padding: 88px 24px 72px;
+  padding: 72px 12px 64px;
   background: #fff;
 }
 
-.teams-hero::before {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  inset: 16% 27%;
-  background: radial-gradient(ellipse, #fff 42%, transparent 74%);
-  pointer-events: none;
-}
-
-.teams-blob,
-.teams-orbit {
+.teams-blob {
   position: absolute;
   pointer-events: none;
 }
@@ -11062,18 +11052,22 @@ svg {
 }
 
 .teams-orbit {
-  top: 18px;
-  width: 680px;
-  height: 680px;
+  position: relative;
+  grid-row: 1;
+  align-self: center;
+  width: 100%;
+  height: 640px;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 .teams-orbit-left {
-  left: -150px;
+  grid-column: 1;
   color: rgba(244, 114, 182, 0.72);
 }
 
 .teams-orbit-right {
-  right: -150px;
+  grid-column: 3;
   color: rgba(96, 165, 250, 0.72);
 }
 
@@ -11142,7 +11136,9 @@ svg {
 .teams-hero-copy {
   position: relative;
   z-index: 2;
-  max-width: 680px;
+  grid-column: 2;
+  grid-row: 1;
+  width: 100%;
   text-align: center;
 }
 
@@ -11249,6 +11245,22 @@ svg {
   justify-content: center;
 }
 
+@media (max-width: 1180px) {
+  .teams-hero {
+    grid-template-columns: minmax(0, 1fr) minmax(420px, 520px) minmax(0, 1fr);
+  }
+
+  .teams-hero h1 {
+    font-size: 52px;
+  }
+
+  .teams-person,
+  .teams-person img {
+    width: 64px;
+    height: 64px;
+  }
+}
+
 @media (max-width: 980px) {
   .teams-blob,
   .teams-orbit {
@@ -11256,6 +11268,7 @@ svg {
   }
 
   .teams-hero {
+    display: flex;
     min-height: 0;
     padding: 72px 20px 48px;
   }

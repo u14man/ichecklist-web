@@ -219,7 +219,7 @@ export function Header() {
                   id="menu-resources"
                 >
                   <Link
-                    className="mega-promo bg-gradient-purple"
+                    className="mega-promo bg-gradient-orange"
                     to="/resources"
                   >
                     <strong>All Resources</strong>

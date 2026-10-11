@@ -88,7 +88,7 @@ export default function Home() {
             <img src="/hero/faces.png" alt="" />
             <div>
               <GoldStars />
-              <p>Made for the people who finish the details.</p>
+              <p>loved by 30+ customers</p>
             </div>
           </div>
         </div>

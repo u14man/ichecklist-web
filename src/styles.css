@@ -11020,14 +11020,17 @@ svg {
   align-items: center;
   justify-content: center;
   padding: 88px 24px 72px;
-  background-color: #fff;
-  background-image: url("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BG_CUI_Teams-YXoF34AUQVDlrmyjvfJuBPyxlwnbj9.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100% auto;
+  background: #fff;
 }
 
-
+.teams-hero::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 16% 27%;
+  background: radial-gradient(ellipse, #fff 42%, transparent 74%);
+  pointer-events: none;
+}
 
 .teams-blob,
 .teams-orbit {

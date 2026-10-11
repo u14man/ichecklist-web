@@ -312,7 +312,7 @@ export function FeaturesPage() {
 
   return (
     <div className="feat-page">
-      <section className="feat-hero" aria-labelledby="features-title">
+      <section className="feat-hero bg-gradient-blue" aria-labelledby="features-title">
         <div className="container feat-hero-copy">
           <span className="feat-eyebrow">CHECKLISTS, INSIDE THE ISSUE</span>
           <h1 id="features-title">Every little step, clearly in place.</h1>

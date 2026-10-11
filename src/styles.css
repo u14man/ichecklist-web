@@ -1262,13 +1262,13 @@ svg {
 }
 
 .team-strip {
-  padding: 34px 0 45px;
+  padding: 0 0 45px 0;
   border-bottom: 1px solid #edeaf1;
   text-align: center;
 }
 
 .team-strip>p {
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.15em;
   font-weight: 500;
   color: #94939d;

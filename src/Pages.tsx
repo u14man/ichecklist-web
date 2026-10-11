@@ -226,107 +226,10 @@ export function FeatureDetailPage() {
   );
 }
 
-function TeamRings() {
-  return (
-    <svg className="teams-rings" viewBox="0 0 640 640" aria-hidden="true">
-      {[132, 206, 280].map((radius) => (
-        <circle
-          key={radius}
-          cx="320"
-          cy="320"
-          r={radius}
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.4"
-          strokeDasharray="1.4 8"
-        />
-      ))}
-      <circle cx="486" cy="168" r="5" fill="currentColor" />
-      <circle cx="168" cy="214" r="8" fill="#fff" stroke="currentColor" />
-      <circle cx="214" cy="486" r="4" fill="currentColor" />
-      <circle cx="470" cy="438" r="7" fill="#fff" stroke="currentColor" />
-    </svg>
-  );
-}
-
-const orbitPeople = {
-  left: [
-    {
-      src: "/solutions/designer.png",
-      label: "Designer",
-      top: "24%",
-      left: "62%",
-    },
-    {
-      src: "/hero/quote-2.jpg",
-      label: "Product",
-      top: "48%",
-      left: "76%",
-      side: "left",
-    },
-    {
-      src: "/hero/quote-1.jpg",
-      label: "Marketer",
-      top: "70%",
-      left: "34%",
-    },
-  ],
-  right: [
-    {
-      src: "/solutions/sales.png",
-      label: "QA",
-      top: "22%",
-      left: "28%",
-      side: "left",
-    },
-    {
-      src: "/hero/quote-3.jpg",
-      label: "Release",
-      top: "52%",
-      left: "16%",
-      side: "left",
-    },
-    {
-      src: "/solutions/marketer.png",
-      label: "Developer",
-      top: "74%",
-      left: "58%",
-    },
-  ],
-};
-
 export function SolutionsPage() {
   return (
     <>
       <section className="teams-hero">
-        <div className="teams-blob teams-blob-left" aria-hidden="true" />
-        <div className="teams-blob teams-blob-right" aria-hidden="true" />
-        <div className="teams-orbit teams-orbit-left" aria-hidden="true">
-          <TeamRings />
-          {orbitPeople.left.map((person) => (
-            <figure
-              className={`teams-person${person.side ? " side-left" : ""}`}
-              style={{ top: person.top, left: person.left }}
-              key={person.label}
-            >
-              <img src={person.src} alt="" />
-              <figcaption>{person.label}</figcaption>
-            </figure>
-          ))}
-        </div>
-        <div className="teams-orbit teams-orbit-right" aria-hidden="true">
-          <TeamRings />
-          {orbitPeople.right.map((person) => (
-            <figure
-              className={`teams-person${person.side ? " side-left" : ""}`}
-              style={{ top: person.top, left: person.left }}
-              key={person.label}
-            >
-              <img src={person.src} alt="" />
-              <figcaption>{person.label}</figcaption>
-            </figure>
-          ))}
-        </div>
         <div className="teams-hero-copy">
           <h1>
             A checklist

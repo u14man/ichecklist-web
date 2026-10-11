@@ -43,134 +43,52 @@ import { guideSections, type GuideSection } from "./docs-guide";
 import ProductDemo from "./ProductDemo";
 
 export function FeaturesPage() {
-  const highlightedFeatures = features.slice(0, 3);
-  const additionalFeatures = features.slice(3);
-
   return (
-    <div className="features-page">
-      <section className="features-hero" aria-labelledby="features-hero-title">
-        <div className="features-hero-content container">
-          <span className="features-hero-eyebrow">
-            iCHECKLIST · JIRA CHECKLISTS
-          </span>
-          <h1 id="features-hero-title">
-            让每一个小步骤，
-            <span>都清晰可见。</span>
-          </h1>
-          <p>
-            把验收标准、执行步骤和完成状态放回 Jira issue。团队知道下一步做什么，也知道何时才算真正完成。
-          </p>
-          <div className="button-row features-hero-actions">
-            <Button to="/demo">
-              查看实际演示
-              <ArrowUpRight size={17} />
-            </Button>
-            <a href="#feature-highlights" className="button button-outline">
-              浏览核心功能
-              <ArrowDown size={16} />
-            </a>
-          </div>
-          <span className="features-hero-note">
-            为 Jira 工作流打造 · 无需离开 issue
-          </span>
+    <>
+      <PageHero
+        eyebrow="THE LITTLE THINGS, TAKEN CARE OF"
+        title={
+          <>
+            A checklist.
+            <br />
+            <span>A whole lot of possibility.</span>
+          </>
+        }
+        description="Structure, accountability, and a little more focus. All inside the Jira issue you’re already working in."
+      >
+        <div className="button-row">
+          <Button to="/demo">
+            See it in action
+            <ArrowUpRight size={17} />
+          </Button>
+          <a href="#all-features" className="button button-outline">
+            Find your favorite detail
+            <ArrowDown size={16} />
+          </a>
         </div>
-      </section>
-
+      </PageHero>
       <div className="container features-intro-strip">
         <span>
           <CheckCheck size={18} />
-          轻量融入 Jira
+          Lightweight by design
         </span>
         <span>
           <ShieldCheck size={18} />
-          完成标准清晰可见
+          Intentional about completion
         </span>
         <span>
           <LockKeyhole size={18} />
-          个人与团队清单分明
+          Personal when you need it
         </span>
       </div>
-
       <section
-        className="container features-highlight-section"
-        id="feature-highlights"
-        aria-labelledby="feature-highlights-title"
-      >
-        <header className="features-section-heading">
-          <span className="eyebrow">从更清晰的工作开始</span>
-          <h2 id="feature-highlights-title">细节有序，交付更安心。</h2>
-          <p>从组织清单，到确认每一项关键工作都已完成。</p>
-        </header>
-        <div className="features-highlight-grid">
-          {highlightedFeatures.map((feature, index) => {
-            const Icon = feature.icon;
-
-            return (
-              <Link
-                className="features-highlight-card"
-                to={`/features/${feature.slug}`}
-                key={feature.slug}
-              >
-                <div className="features-highlight-card-top">
-                  <span className="features-highlight-number">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <span className="features-highlight-icon">
-                    <Icon size={22} strokeWidth={1.8} aria-hidden="true" />
-                  </span>
-                </div>
-                <h3>{feature.title}</h3>
-                <p>{feature.short}</p>
-                <span className="features-highlight-link">
-                  了解功能
-                  <ArrowUpRight size={16} aria-hidden="true" />
-                </span>
-              </Link>
-            );
-          })}
-        </div>
-      </section>
-
-      <section
-        className="features-additional-section"
+        className="container section all-features-grid"
         id="all-features"
-        aria-labelledby="all-features-title"
       >
-        <div className="container">
-          <header className="features-section-heading">
-            <span className="eyebrow">为每种工作节奏准备</span>
-            <h2 id="all-features-title">还有更多，恰到好处的掌控。</h2>
-            <p>从个人提醒到团队进度，让清单适应你的工作方式。</p>
-          </header>
-          <div className="features-additional-grid">
-            {additionalFeatures.map((feature) => {
-              const Icon = feature.icon;
-
-              return (
-                <Link
-                  className="features-additional-card"
-                  to={`/features/${feature.slug}`}
-                  key={feature.slug}
-                >
-                  <span className="features-additional-icon">
-                    <Icon size={21} strokeWidth={1.8} aria-hidden="true" />
-                  </span>
-                  <div>
-                    <h3>{feature.title}</h3>
-                    <p>{feature.short}</p>
-                  </div>
-                  <ArrowUpRight
-                    className="features-additional-arrow"
-                    size={18}
-                    aria-hidden="true"
-                  />
-                </Link>
-              );
-            })}
-          </div>
-        </div>
+        {features.map((feature) => (
+          <FeatureCard key={feature.slug} feature={feature} visual />
+        ))}
       </section>
-
       <section className="container details-band">
         <SectionHeading
           eyebrow="IT’S THE LITTLE TOUCHES"
@@ -200,7 +118,7 @@ export function FeaturesPage() {
       </section>
       <FAQ />
       <FinalCTA />
-    </div>
+    </>
   );
 }
 

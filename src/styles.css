@@ -10936,7 +10936,10 @@
   
   .ichecklist-orb {
     z-index: 0;
+    width: 100vw;
+    max-width: none;
     height: min(600px, 41.7vw);
+    object-fit: cover;
   }
   
   .ichecklist-modules {

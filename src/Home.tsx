@@ -58,7 +58,7 @@ export default function Home() {
     <>
       <section className="ichecklist-hero">
         <div className="ichecklist-hero-container">
-          <p className="ichecklist-kicker">Checklists for every Jira issue</p>
+          <p className="ichecklist-kicker">Checklists for every Jira Work Items</p>
           <h1>Put delivery standards into every step that ships.</h1>
           <p>
             Organize the little steps, keep the team aligned, and know what done
@@ -95,7 +95,7 @@ export default function Home() {
           <figure key={quote.name}>
             <img src={quote.src} alt="" />
             <blockquote>
-              <p>&ldquo;{quote.text}&rdquo;</p>
+              <p>{quote.text}</p>
             </blockquote>
             <GoldStars size={18} />
             <figcaption>{quote.name}</figcaption>

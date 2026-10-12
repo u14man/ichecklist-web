@@ -10918,7 +10918,7 @@
   
   .ichecklist-stage {
     position: relative;
-    height: 640px;
+    height: min(640px, 41.6667vw);
     margin-top: -10vw;
   }
   
@@ -11023,7 +11023,6 @@
     }
   
     .ichecklist-stage {
-      height: min(360px, 30vw);
       margin-top: 56px;
     }
 

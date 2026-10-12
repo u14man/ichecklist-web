@@ -394,8 +394,8 @@ function FooterMarquee() {
 
 export function Footer() {
   return (
-    <footer className="footer-supa">
-      <div className="container footer-supa-inner">
+    <footer className="footer-ichecklist">
+      <div className="container footer-ichecklist-inner">
         <FooterMarquee />
         <hr className="footer-rule" />
         <div className="footer-intro">

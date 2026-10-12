@@ -11,6 +11,7 @@ import {
   LockKeyhole,
   ShieldCheck,
   Star,
+  Sparkles,
 } from "lucide-react";
 import {
   Button,
@@ -50,41 +51,29 @@ function GoldStars({ size = 16 }: { size?: number }) {
   );
 }
 
-function Sparkle() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-      <path
-        fill="currentColor"
-        d="M12 1.6 13.55 8.9 20.8 10.45 13.55 12 12 19.3 10.45 12 3.2 10.45 10.45 8.9Z"
-      />
-      <circle cx="18.6" cy="5.2" r="1.35" fill="currentColor" />
-    </svg>
-  );
-}
-
 export default function Home() {
   const [role, setRole] = useState(0);
   const selected = solutions[role];
   return (
     <>
-      <section className="supa-hero">
-        <div className="supa-copy">
-          <p className="supa-kicker">Checklists for every Jira issue</p>
-          <h1>A home for every detail, right on the issue.</h1>
+      <section className="ichecklist-hero">
+        <div className="ichecklist-hero-container">
+          <p className="ichecklist-kicker">Checklists for every Jira issue</p>
+          <h1>Put delivery standards into every step that ships.</h1>
           <p>
             Organize the little steps, keep the team aligned, and know what done
             looks like — without leaving Jira.
           </p>
-          <div className="supa-actions">
-            <Link className="supa-btn supa-btn-dark" to="/demo">
-              <Sparkle />
+          <div className="ichecklist-actions">
+            <Link className="ichecklist-btn ichecklist-btn-dark" to="/demo">
+              <Sparkles size={20} />
               Try the demo
             </Link>
-            <Link className="supa-btn supa-btn-light" to="/features">
+            <Link className="ichecklist-btn ichecklist-btn-light" to="/features">
               See how it works
             </Link>
           </div>
-          <div className="supa-proof">
+          <div className="ichecklist-proof">
             <img src="/hero/faces.png" alt="" />
             <div>
               <GoldStars />
@@ -92,16 +81,16 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="supa-stage">
-          <img className="supa-orb" src="/hero/orb.jpg" alt="" />
+        <div className="ichecklist-stage">
+          <img className="ichecklist-orb" src="/hero/orb.jpg" alt="" />
           <img
-            className="supa-modules"
+            className="ichecklist-modules"
             src="/hero/modules.png"
             alt="Named checklists, progress, and ownership on a Jira issue"
           />
         </div>
       </section>
-      <section className="supa-quotes">
+      <section className="ichecklist-quotes">
         {quotes.map((quote) => (
           <figure key={quote.name}>
             <img src={quote.src} alt="" />

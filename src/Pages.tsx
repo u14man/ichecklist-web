@@ -582,8 +582,8 @@ export function SolutionsPage() {
             QA, product, and release teams each get a clear place for their
             part.
           </p>
-          <Button to="/demo" variant="dark">
-            Try the demo
+          <Button to="/demo" className="ichecklist-btn ichecklist-btn-dark" variant="dark">
+            Start for free
             <ArrowRight size={18} />
           </Button>
           <p className="teams-proof">

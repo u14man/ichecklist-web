@@ -11042,6 +11042,21 @@ svg {
   display: flex;
   flex-direction: column;
   gap: 40px;
+  width: calc(100% - 64px);
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+@media (min-width: 1500px) {
+  .footer-supa-inner {
+    max-width: 1260px;
+  }
+}
+
+@media (max-width: 1150px) {
+  .footer-supa-inner {
+    width: calc(100% - 44px);
+  }
 }
 
 .footer-marquee {
@@ -11244,6 +11259,7 @@ svg {
   }
 
   .footer-supa-inner {
+    width: calc(100% - 36px);
     gap: 28px;
   }
 

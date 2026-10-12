@@ -10841,17 +10841,45 @@
     font-size: 18px;
     font-weight: 600;
     line-height: 1;
+    transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
   }
-  
+
+  .ichecklist-btn:focus-visible {
+    outline: 3px solid rgba(112, 59, 209, 0.45);
+    outline-offset: 3px;
+  }
+
   .ichecklist-btn-dark {
     background: #0e1320;
     color: #fff;
   }
-  
+
+  .ichecklist-btn-dark:hover {
+    transform: translateY(-2px);
+    background: #20283a;
+    box-shadow: 0 10px 24px rgba(14, 19, 32, 0.2);
+  }
+
   .ichecklist-btn-light {
     background: #fff;
     color: #3f4654;
     box-shadow: inset 0 0 0 1px rgba(11, 61, 121, 0.16);
+  }
+
+  .ichecklist-btn-light:hover {
+    transform: translateY(-2px);
+    background: #f7f5fb;
+    box-shadow: inset 0 0 0 1px rgba(112, 59, 209, 0.28), 0 10px 24px rgba(14, 19, 32, 0.08);
+  }
+
+  .ichecklist-btn:active {
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ichecklist-btn {
+      transition: none;
+    }
   }
   
   .ichecklist-proof {

@@ -10918,8 +10918,8 @@
   
   .ichecklist-stage {
     position: relative;
-    height: min(360px, 30vw);
-    margin-top: 96px;
+    height: 640px;
+    margin-top: -10vw;
   }
   
   .ichecklist-orb,
@@ -10936,10 +10936,14 @@
   
   .ichecklist-orb {
     z-index: 0;
-    width: 100vw;
+    top: 0;
+    bottom: auto;
+    width: 100%;
     max-width: none;
-    height: min(600px, 41.7vw);
-    object-fit: cover;
+    height: auto;
+    aspect-ratio: 12 / 5;
+    object-fit: contain;
+    object-position: center top;
   }
   
   .ichecklist-modules {
@@ -11019,7 +11023,14 @@
     }
   
     .ichecklist-stage {
+      height: min(360px, 30vw);
       margin-top: 56px;
+    }
+
+    .ichecklist-orb {
+      top: auto;
+      bottom: 0;
+      object-position: center bottom;
     }
   
     .ichecklist-quotes {

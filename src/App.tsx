@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { Header, Footer } from "./components";
 import Home from "./Home";
+import DashboardsPage from "./Dashboards";
 import {
   AboutPage,
   ArticlePage,
@@ -29,6 +30,7 @@ function PageContext() {
     const pageTitles: Record<string, string> = {
       "/": "Great work is in the details.",
       "/features": "Features for the little things",
+      "/features/dashboards": "See every checklist in one view",
       "/solutions": "A workflow for every team",
       "/pricing": "Simple pricing for every team size",
       "/about": "Why the little things matter",
@@ -72,6 +74,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/features" element={<FeaturesPage />} />
+          <Route path="/features/dashboards" element={<DashboardsPage />} />
           <Route path="/features/:slug" element={<FeatureDetailPage />} />
           <Route path="/solutions" element={<SolutionsPage />} />
           <Route path="/solutions/:slug" element={<SolutionDetailPage />} />

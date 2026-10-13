@@ -169,6 +169,7 @@ export function Header() {
                       {(label === "Features"
                         ? features.filter((feature) =>
                             [
+                              "dashboards",
                               "organized-checklists",
                               "mandatory-items",
                               "personal-checklists",
@@ -339,6 +340,7 @@ const footerColumns = [
   {
     title: "Features",
     links: [
+      ["Dashboards", "/features/dashboards"],
       ["Organized Checklists", "/features/organized-checklists"],
       ["Mandatory Items", "/features/mandatory-items"],
       ["Progress Tracking", "/features/progress-tracking"],

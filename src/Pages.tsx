@@ -7,6 +7,7 @@ import {
   BookOpen,
   Flower,
   Flower2,
+  ChartNoAxesCombined,
   Check,
   CheckCheck,
   ChevronRight,
@@ -191,6 +192,17 @@ const featureCatalog = [
         title: "Out of team progress",
         text: "Personal items never change Overall Progress.",
         icon: ShieldCheck,
+      },
+    ],
+  },
+  {
+    title: "Reporting",
+    items: [
+      {
+        slug: "dashboards",
+        title: "Dashboards",
+        text: "Checklist progress, owners, and open gates in one view.",
+        icon: ChartNoAxesCombined,
       },
     ],
   },

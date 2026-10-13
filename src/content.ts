@@ -278,6 +278,39 @@ export const features = [
       },
     ],
   },
+  {
+    slug: "dashboards",
+    title: "Dashboards",
+    short: "One view of checklist progress.",
+    icon: ChartNoAxesCombined,
+    color: "lavender",
+    headline: "See every checklist\nbefore the release meeting.",
+    description:
+      "Bring owners, open mandatory items, and completion into one view, without moving the checks off the issue.",
+    body: "Dashboards read the checklists your team already keeps in Jira. Filter the view, share a read-only status, and jump back to the item that needs attention.",
+    points: [
+      "See completion, owners, and open mandatory items together",
+      "Filter by team, project, or customer without rewriting the total",
+      "Share a read-only view that leaves Personal Checklists private",
+    ],
+    detailTitle: "The picture, without another tool.",
+    detail:
+      "A dashboard does not replace the checklist. It shows how the named checks are moving, then links back to the issue where the work still happens.",
+    extras: [
+      {
+        title: "Act from the view",
+        text: "Assign or update an open item without rebuilding the status in a spreadsheet.",
+      },
+      {
+        title: "A total you can trust",
+        text: "Done and Skipped count. Personal items do not, and filters do not change that rule.",
+      },
+      {
+        title: "Status without the scramble",
+        text: "A scheduled report can collect the same totals your team already uses.",
+      },
+    ],
+  },
 ];
 
 export const solutions = [

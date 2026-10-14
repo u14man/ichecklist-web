@@ -214,7 +214,7 @@ export default function DashboardsPage() {
         </div>
       </section>
 
-      <section className="dashboards-stories" aria-labelledby="dashboard-stories-title">
+      <section className="container dashboards-stories" aria-labelledby="dashboard-stories-title">
         <header className="dashboards-stories-heading">
           <h2 id="dashboard-stories-title">
             Reporting that works the way your team works.

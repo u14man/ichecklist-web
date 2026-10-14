@@ -215,16 +215,19 @@ export default function DashboardsPage() {
       </section>
 
       {stories.map((story, index) => (
-        <section
-          className={`container dashboards-story ${index % 2 ? "is-reverse" : ""}`}
-          key={story.title}
-        >
-          <div className="dashboards-story-copy">
+        <section className="dashboards-story-block" key={story.title}>
+          <header className="dashboards-story-heading">
             <p className="dashboards-kicker">{story.eyebrow}</p>
             <h2>{story.title}</h2>
-            <p>{story.text}</p>
+          </header>
+          <div className={`dashboards-story ${index % 2 ? "is-reverse" : ""}`}>
+            <div className="dashboards-story-copy">
+              <p>{story.text}</p>
+            </div>
+            <div className="dashboards-story-visual">
+              <img src={story.image} alt={story.alt} />
+            </div>
           </div>
-          <img src={story.image} alt={story.alt} />
         </section>
       ))}
 

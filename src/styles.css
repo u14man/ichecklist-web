@@ -11791,24 +11791,67 @@
     margin: 14px 0 0;
   }
 
+  .dashboards-compare-block {
+    padding: 96px 0 72px;
+  }
+
+  .dashboards-compare-block h2 {
+    max-width: 860px;
+    margin: 0 auto 64px;
+    color: #2b3038;
+    font-size: clamp(40px, 4.8vw, 64px);
+    font-weight: 700;
+    letter-spacing: -1.8px;
+    line-height: 1.05;
+    text-align: center;
+  }
+
   .dashboards-compare {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    overflow: hidden;
+    border: 1px solid #e7e9ee;
+    border-radius: 8px;
+    background: #fff;
+    text-align: left;
   }
 
-  .dashboards-compare article,
+  .dashboards-compare article {
+    padding: 56px 48px 64px;
+    background: #fff;
+  }
+
+  .dashboards-compare article + article {
+    border-left: 1px solid #e7e9ee;
+  }
+
   .dashboards-capabilities article {
     padding: 28px;
     border-radius: 24px;
     background: #f7f5fb;
   }
 
-  .dashboards-compare .is-with {
-    background: var(--lavender);
+  .dashboards-compare h3 {
+    margin: 0 0 28px;
+    font-size: 28px;
+    font-weight: 650;
+    letter-spacing: -0.4px;
+    line-height: 1.2;
   }
 
-  .dashboards-compare h3,
+  .dashboards-compare article:first-child h3,
+  .dashboards-compare article:first-child li {
+    color: #8d939c;
+  }
+
+  .dashboards-compare .is-with h3 {
+    color: #1c2128;
+  }
+
+  .dashboards-compare .is-with li {
+    color: #5c6370;
+  }
+
   .dashboards-capabilities h3 {
     margin: 0 0 12px;
     font-size: 22px;
@@ -11817,15 +11860,31 @@
   .dashboards-compare ul {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 22px;
     margin: 0;
     padding: 0;
     list-style: none;
   }
 
   .dashboards-compare li {
-    color: var(--ink);
-    line-height: 1.5;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+  .dashboards-compare svg {
+    flex: none;
+    margin-top: 3px;
+  }
+
+  .dashboards-compare article:first-child svg {
+    color: #ef4444;
+  }
+
+  .dashboards-compare .is-with svg {
+    color: #17b26a;
   }
 
   .dashboards-story {
@@ -11966,12 +12025,29 @@
       width: calc(100% - 40px);
     }
 
+    .dashboards-compare-block {
+      padding: 64px 0 40px;
+    }
+
+    .dashboards-compare-block h2 {
+      margin-bottom: 32px;
+    }
+
     .dashboards-compare,
     .dashboards-story,
     .dashboards-capabilities,
     .dashboards-related,
     .dashboards-security {
       grid-template-columns: 1fr;
+    }
+
+    .dashboards-compare article {
+      padding: 32px 24px;
+    }
+
+    .dashboards-compare article + article {
+      border-top: 1px solid #e7e9ee;
+      border-left: 0;
     }
 
     .dashboards-story.is-reverse .dashboards-story-copy {

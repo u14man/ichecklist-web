@@ -176,12 +176,12 @@ export default function DashboardsPage() {
         <header className="dashboards-heading">
           <p className="dashboards-kicker">THE DIFFERENCE</p>
           <h2 id="dashboard-compare-title">
-            A release should not depend on who remembers the list.
+            Release status should be visible before anyone asks.
           </h2>
         </header>
         <div className="dashboards-compare">
           <article>
-            <h3>Without a dashboard</h3>
+            <h3>Status kept in heads</h3>
             <ul>
               <li>Progress is reconstructed from comments and memory.</li>
               <li>Open gates hide inside individual issues.</li>
@@ -189,7 +189,7 @@ export default function DashboardsPage() {
             </ul>
           </article>
           <article className="is-with">
-            <h3>With Dashboards</h3>
+            <h3>Status on one screen</h3>
             <ul>
               <li>Completion, owners, and open items sit on one screen.</li>
               <li>Cut by team, project, or customer without rewriting the total.</li>

@@ -12006,6 +12006,10 @@
     bottom: 0;
   }
 
+  .dashboards-story:not(:last-child)::after {
+    display: none;
+  }
+
   .dashboards-story-copy,
   .dashboards-story-visual {
     position: relative;

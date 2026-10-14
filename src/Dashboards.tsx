@@ -5,12 +5,10 @@ import {
   LayoutDashboard,
   LockKeyhole,
   MousePointer2,
-  Check,
   Share2,
   ShieldCheck,
   Star,
   TimerReset,
-  X,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button, FAQ } from "./components";
@@ -175,56 +173,44 @@ export default function DashboardsPage() {
       </div>
 
       <section className="dashboards-compare-block" aria-labelledby="dashboard-compare-title">
-        <div className="container">
+        <div className="dashboards-compare-title">
           <h2 id="dashboard-compare-title">
             See the open work,
             <br />
             then move it from the same screen.
           </h2>
-          <div className="dashboards-compare">
-            <article>
-              <h3>Without Dashboards</h3>
+        </div>
+        <div className="dashboards-compare">
+          <article>
+            <h3>Without Dashboards</h3>
+            <div className="dashboards-compare-list is-before">
               <ul>
-                <li>
-                  <X size={16} strokeWidth={2.5} aria-hidden="true" />
-                  <span>Status is rebuilt from comments before the meeting.</span>
-                </li>
-                <li>
-                  <X size={16} strokeWidth={2.5} aria-hidden="true" />
-                  <span>One change means leaving the issue for a sheet.</span>
-                </li>
-                <li>
-                  <X size={16} strokeWidth={2.5} aria-hidden="true" />
-                  <span>Totals drift once they leave the checklist.</span>
-                </li>
-                <li>
-                  <X size={16} strokeWidth={2.5} aria-hidden="true" />
-                  <span>The same question returns before every release.</span>
-                </li>
+                <li>Status is rebuilt from comments before the meeting.</li>
+                <li>One change means leaving the issue for a sheet.</li>
+                <li>Totals drift once they leave the checklist.</li>
+                <li>The same question returns before every release.</li>
               </ul>
-            </article>
-            <article className="is-with">
-              <h3>With Dashboards</h3>
+            </div>
+            <span className="dashboards-compare-dot is-tl" aria-hidden="true" />
+            <span className="dashboards-compare-dot is-tr" aria-hidden="true" />
+            <span className="dashboards-compare-dot is-bl" aria-hidden="true" />
+            <span className="dashboards-compare-dot is-br" aria-hidden="true" />
+          </article>
+          <article>
+            <h3>With Dashboards</h3>
+            <div className="dashboards-compare-list is-after">
               <ul>
-                <li>
-                  <Check size={16} strokeWidth={2.5} aria-hidden="true" />
-                  <span>The view changes when a checklist item does.</span>
-                </li>
-                <li>
-                  <Check size={16} strokeWidth={2.5} aria-hidden="true" />
-                  <span>Assign or update an item without leaving the screen.</span>
-                </li>
-                <li>
-                  <Check size={16} strokeWidth={2.5} aria-hidden="true" />
-                  <span>Progress stays on the issue, not in an export.</span>
-                </li>
-                <li>
-                  <Check size={16} strokeWidth={2.5} aria-hidden="true" />
-                  <span>A shared link answers the question in advance.</span>
-                </li>
+                <li>The view changes when a checklist item does.</li>
+                <li>Assign or update an item without leaving the screen.</li>
+                <li>Progress stays on the issue, not in an export.</li>
+                <li>A shared link answers the question in advance.</li>
               </ul>
-            </article>
-          </div>
+            </div>
+            <span className="dashboards-compare-dot is-tl" aria-hidden="true" />
+            <span className="dashboards-compare-dot is-tr" aria-hidden="true" />
+            <span className="dashboards-compare-dot is-bl" aria-hidden="true" />
+            <span className="dashboards-compare-dot is-br" aria-hidden="true" />
+          </article>
         </div>
       </section>
 

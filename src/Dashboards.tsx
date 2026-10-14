@@ -214,22 +214,29 @@ export default function DashboardsPage() {
         </div>
       </section>
 
-      {stories.map((story, index) => (
-        <section className="dashboards-story-block" key={story.title}>
-          <header className="dashboards-story-heading">
-            <p className="dashboards-kicker">{story.eyebrow}</p>
-            <h2>{story.title}</h2>
-          </header>
-          <div className={`dashboards-story ${index % 2 ? "is-reverse" : ""}`}>
+      <section className="dashboards-stories" aria-labelledby="dashboard-stories-title">
+        <header className="dashboards-stories-heading">
+          <h2 id="dashboard-stories-title">
+            Reporting that works the way your team works.
+          </h2>
+          <p>Actionable. Flexible. Shareable.</p>
+        </header>
+        {stories.map((story, index) => (
+          <section
+            className={`dashboards-story ${index % 2 ? "is-reverse" : ""}`}
+            key={story.title}
+          >
             <div className="dashboards-story-copy">
+              <p className="dashboards-kicker">{story.eyebrow}</p>
+              <h2>{story.title}</h2>
               <p>{story.text}</p>
             </div>
             <div className="dashboards-story-visual">
               <img src={story.image} alt={story.alt} />
             </div>
-          </div>
-        </section>
-      ))}
+          </section>
+        ))}
+      </section>
 
       <section className="container dashboards-quote" aria-labelledby="dashboard-quote-title">
         <h2 id="dashboard-quote-title">

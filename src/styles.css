@@ -11981,9 +11981,10 @@
 
   .dashboards-story {
     position: relative;
-    display: flex;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1px;
-    justify-content: center;
     background: #e8e8e8;
   }
 
@@ -12285,7 +12286,7 @@
     }
 
     .dashboards-story {
-      flex-direction: column;
+      grid-template-columns: 1fr;
       gap: 0;
       border: 1px solid #e8e8e8;
     }

@@ -12278,7 +12278,7 @@
     margin: 0 0 16px;
     color: #ffffff !important;
     font-family: var(--font-display), Inter, sans-serif;
-    font-size: clamp(32px, 3.8vw, 44px);
+    font-size: 34px;
     font-weight: 700;
     line-height: 1.14;
     letter-spacing: -1.3px;

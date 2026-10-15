@@ -12344,17 +12344,36 @@
     z-index: 2;
     margin-top: 40px;
     padding: var(--image-padding) 0 0 var(--image-padding);
-    background: rgba(255, 255, 255, 0.25);
-    border-top: 1px solid rgba(255, 255, 255, 0.6);
-    border-left: 1px solid rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.22);
+    border-top: 1px solid rgba(255, 255, 255, 0.55);
+    border-left: 1px solid rgba(255, 255, 255, 0.55);
     border-top-left-radius: 30px;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    mask-image: radial-gradient(650px 520px at 45% 45%, rgb(0, 0, 0) 30%, rgba(0, 0, 0, 0.65) 58%, rgba(0, 0, 0, 0) 78%), linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.4) 12%, rgb(0, 0, 0) 35%);
-    -webkit-mask-image: radial-gradient(650px 520px at 45% 45%, rgb(0, 0, 0) 30%, rgba(0, 0, 0, 0.65) 58%, rgba(0, 0, 0, 0) 78%), linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.4) 12%, rgb(0, 0, 0) 35%);
+    mask-image: radial-gradient(650px 520px at 45% 45%, rgb(0, 0, 0) 25%, rgba(0, 0, 0, 0.6) 55%, rgba(0, 0, 0, 0) 78%), linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.4) 10%, rgb(0, 0, 0) 30%);
+    -webkit-mask-image: radial-gradient(650px 520px at 45% 45%, rgb(0, 0, 0) 25%, rgba(0, 0, 0, 0.6) 55%, rgba(0, 0, 0, 0) 78%), linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.4) 10%, rgb(0, 0, 0) 30%);
+  }
+
+  .dashboards-close-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-top-left-radius: 30px;
+    background: radial-gradient(
+      circle at 85% 40%,
+      rgba(240, 40, 175, 0.42) 0%,
+      rgba(190, 40, 230, 0.28) 28%,
+      rgba(110, 30, 210, 0.14) 52%,
+      transparent 76%
+    );
+    mix-blend-mode: screen;
+    pointer-events: none;
   }
 
   .dashboards-close-frame img {
+    position: relative;
+    z-index: 1;
     border-top-left-radius: 18px;
     display: block;
     width: 100%;

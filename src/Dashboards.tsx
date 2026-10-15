@@ -1,4 +1,5 @@
 import {
+  ArrowRight,
   ArrowUpRight,
   Copy,
   Filter,
@@ -320,19 +321,31 @@ export default function DashboardsPage() {
 
       <FAQ items={dashboardFaqs} />
 
-      <section className="container dashboards-close" aria-labelledby="dashboard-close-title">
-        <h2 id="dashboard-close-title">
-          See every checklist before the release meeting.
-        </h2>
-        <p>Start with the sample checklist, or talk through a reporting view for your team.</p>
-        <div className="button-row dashboards-actions">
-          <Button to="/demo">
-            Try the demo
-            <ArrowUpRight size={16} aria-hidden="true" />
-          </Button>
-          <Button to="/contact" variant="outline">
-            Contact sales
-          </Button>
+      <section className="dashboards-close-wrapper" aria-labelledby="dashboard-close-title">
+        <div className="dashboards-close-card">
+          <div className="dashboards-close-glow dashboards-close-glow-warm" aria-hidden="true" />
+          <div className="dashboards-close-glow dashboards-close-glow-cool" aria-hidden="true" />
+
+          <div className="dashboards-close-content">
+            <div className="dashboards-close-brand">
+              <img src="/logo.svg" alt="" aria-hidden="true" />
+              <span>iChecklist</span>
+            </div>
+            <h2 id="dashboard-close-title">
+              See every checklist before the release meeting.
+            </h2>
+            <p>Everything you need to stay organized and get work done.</p>
+            <Link className="dashboards-close-btn" to="/demo">
+              Try iChecklist free
+              <ArrowRight size={18} aria-hidden="true" />
+            </Link>
+          </div>
+
+          <div className="dashboards-close-media">
+            <div className="dashboards-close-frame">
+              <img src="/features/dashboards/cta-board.png" alt="Board view preview" />
+            </div>
+          </div>
         </div>
       </section>
     </div>

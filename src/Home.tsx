@@ -131,34 +131,32 @@ export default function Home() {
         </div>
       </section>
       <div className="home-section-order">
-        <section className="section feature-overview container">
-        <SectionHeading
-          eyebrow="A SMALL ADDITION. A BIG DIFFERENCE."
-          title={
-            <>
-              Everything you need.
-              <br />
-              Nothing in your way.
-            </>
-          }
-          description="The structure your work deserves, without the overhead it doesn’t."
-        />
-        <div className="home-bento-grid">
-          {[
-            features[0],
-            features[1],
-            features[3],
-            features[4],
-            features[2],
-          ].map((feature) => (
-            <HomeBentoCard feature={feature} key={feature.slug} />
-          ))}
-        </div>
-        <div className="center-link">
-          <Link className="text-link" to="/features">
-            There’s more in the details. Explore all features
-            <ArrowRight size={17} />
-          </Link>
+        <section className="feature-overview">
+        <div className="feature-overview-inner">
+          <p className="feature-overview-eyebrow">A SMALL ADDITION. A BIG DIFFERENCE.</p>
+          <h2 className="feature-overview-title">
+            Everything you need. <span>Nothing in your way.</span>
+          </h2>
+          <p className="feature-overview-desc">
+            The structure your work deserves, without the overhead it doesn’t.
+          </p>
+          <div className="home-bento-grid">
+            {[
+              features[0],
+              features[1],
+              features[3],
+              features[4],
+              features[2],
+            ].map((feature) => (
+              <HomeBentoCard feature={feature} key={feature.slug} />
+            ))}
+          </div>
+          <div className="center-link">
+            <Link className="text-link" to="/features">
+              There’s more in the details. Explore all features
+              <ArrowRight size={17} />
+            </Link>
+          </div>
         </div>
       </section>
       <section className="progress-band">

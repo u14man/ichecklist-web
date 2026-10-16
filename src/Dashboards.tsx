@@ -321,27 +321,27 @@ export default function DashboardsPage() {
 
       <FAQ items={dashboardFaqs} />
 
-      <section className="dashboards-close-wrapper" aria-labelledby="dashboard-close-title">
-        <div className="dashboards-close-card">
-          <div className="dashboards-close-content">
-            <div className="dashboards-close-brand">
+      <section className="dashboards-close-wrapper _wrapper_xi0l5_41" aria-labelledby="dashboard-close-title">
+        <div className="dashboards-close-card _innerWrapper_xi0l5_54">
+          <div className="dashboards-close-content _content_xi0l5_81">
+            <div className="dashboards-close-brand _logo_xi0l5_96">
               <img src="/logo.svg" alt="" aria-hidden="true" />
               <span>iChecklist</span>
             </div>
-            <h2 id="dashboard-close-title" className="dashboards-close-title">
+            <h2 id="dashboard-close-title" className="_title_xi0l5_100">
               See every checklist before the release meeting.
             </h2>
-            <p className="dashboards-close-desc">
+            <p className="_description_xi0l5_105">
               Everything you need to stay organized and get work done.
             </p>
-            <Link className="dashboards-close-btn" to="/demo">
+            <Link className="dashboards-close-btn _button_xi0l5_112" to="/demo">
               Try iChecklist free
               <ArrowRight size={18} aria-hidden="true" />
             </Link>
           </div>
 
-          <div className="dashboards-close-media">
-            <picture className="dashboards-close-accent dashboards-close-accent-desktop">
+          <div className="_imageWrapper_xi0l5_122">
+            <picture className="ui _accent_xi0l5_129 _desktop_xi0l5_134">
               <img
                 src="https://clickup.com/assets/glows/glow-vector.png"
                 height="464"
@@ -351,7 +351,7 @@ export default function DashboardsPage() {
                 decoding="async"
               />
             </picture>
-            <picture className="dashboards-close-accent dashboards-close-accent-desktop">
+            <picture className="ui _accent_xi0l5_129 _desktop_xi0l5_134">
               <img
                 src="https://clickup.com/assets/glows/warm-vector.png"
                 height="464"
@@ -362,14 +362,14 @@ export default function DashboardsPage() {
               />
             </picture>
             <div
-              className="dashboards-close-noise dashboards-close-accent"
+              className="_noise_gfca1_38 ui _accent_xi0l5_129"
               data-testid="ui-noise"
               style={{
                 backgroundImage:
                   'url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Cfilter%20id%3D%22noise%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.5%22%20numOctaves%3D%225%22%20stitchTiles%3D%22stitch%22%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20filter%3D%22url(%23noise)%22%20opacity%3D%220.5%22%2F%3E%3C%2Fsvg%3E")',
               }}
             />
-            <picture className="dashboards-close-accent dashboards-close-accent-mobile">
+            <picture className="ui _accent_xi0l5_129 _mobile_xi0l5_143">
               <img
                 src="https://clickup.com/assets/glows/glow-vector-mobile.png"
                 height="464"
@@ -379,7 +379,7 @@ export default function DashboardsPage() {
                 decoding="async"
               />
             </picture>
-            <picture className="dashboards-close-accent dashboards-close-accent-mobile">
+            <picture className="ui _accent_xi0l5_129 _mobile_xi0l5_143">
               <img
                 src="https://clickup.com/assets/glows/warm-vector-mobile.png"
                 height="464"
@@ -389,7 +389,7 @@ export default function DashboardsPage() {
                 decoding="async"
               />
             </picture>
-            <picture className="dashboards-close-frame">
+            <picture className="ui _image_xi0l5_122">
               <img src="/features/dashboards/cta-board.png" alt="Board view preview" />
             </picture>
           </div>

@@ -12225,6 +12225,12 @@
     z-index: 2;
   }
 
+  ._innerWrapper_xi0l5_54 > ._imageWrapper_xi0l5_122 ~ ._content_xi0l5_81,
+  ._innerWrapper_xi0l5_54 > ._content_xi0l5_81 {
+    position: relative;
+    z-index: 2;
+  }
+
   ._logo_xi0l5_96,
   .dashboards-close-brand {
     margin-bottom: 20px;
@@ -12291,12 +12297,17 @@
 
   ._imageWrapper_xi0l5_122 {
     display: flex;
-    flex: 1 1 0%;
     justify-content: flex-end;
     align-items: flex-end;
-    position: relative;
-    z-index: 2;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
     overflow: hidden;
+    pointer-events: none;
+  }
+
+  ._imageWrapper_xi0l5_122 ._image_xi0l5_122 {
+    pointer-events: auto;
   }
 
   ._accent_xi0l5_129 {
@@ -12527,6 +12538,8 @@
     }
 
     ._imageWrapper_xi0l5_122 {
+      position: relative;
+      inset: auto;
       width: 100%;
       justify-content: flex-end;
       align-items: flex-end;

@@ -16,12 +16,25 @@ import {
 import {
   Button,
   FAQ,
-  FeatureCard,
   FinalCTA,
   MiniVisual,
   SectionHeading,
 } from "./components";
 import { features, guides, solutions } from "./content";
+
+function HomeBentoCard({ feature }: { feature: (typeof features)[number] }) {
+  return (
+    <Link className="home-bento-card" to={`/features/${feature.slug}`}>
+      <div className="home-bento-visual">
+        <MiniVisual kind={feature.slug} />
+      </div>
+      <div className="home-bento-copy">
+        <h3>{feature.title}</h3>
+        <p>{feature.short}</p>
+      </div>
+    </Link>
+  );
+}
 
 const quotes = [
   {
@@ -130,20 +143,15 @@ export default function Home() {
           }
           description="The structure your work deserves, without the overhead it doesn’t."
         />
-        <div className="home-feature-grid">
+        <div className="home-bento-grid">
           {[
             features[0],
             features[1],
             features[3],
             features[4],
             features[2],
-          ].map((feature, index) => (
-            <div
-              className={index < 2 ? "wide-feature" : "small-feature"}
-              key={feature.slug}
-            >
-              <FeatureCard feature={feature} visual />
-            </div>
+          ].map((feature) => (
+            <HomeBentoCard feature={feature} key={feature.slug} />
           ))}
         </div>
         <div className="center-link">

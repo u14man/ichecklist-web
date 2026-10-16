@@ -12550,4 +12550,123 @@
       justify-content: center;
     }
   }
+
+  .home-bento-title {
+    margin: 0 auto 48px;
+    max-width: 14ch;
+    text-align: center;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -1.68px;
+    background: linear-gradient(98deg, #202020 43%, #8f8f8f 92%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .home-bento-rows {
+    display: grid;
+    gap: 20px;
+  }
+
+  .home-bento-row {
+    display: grid;
+    gap: 20px;
+  }
+
+  .home-bento-row.is-60-40 {
+    grid-template-columns: calc(60% - 10px) calc(40% - 10px);
+  }
+
+  .home-bento-row.is-40-60 {
+    grid-template-columns: calc(40% - 10px) calc(60% - 10px);
+  }
+
+  .home-bento-row.is-thirds {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .home-bento-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 433px;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #f8f9fa;
+  }
+
+  .home-bento-row.is-thirds .home-bento-card {
+    min-height: 425px;
+  }
+
+  .home-bento-copy {
+    flex-shrink: 0;
+    padding: 40px 40px 0;
+  }
+
+  .home-bento-copy h3 {
+    margin: 0 0 10px;
+    color: #090c1d;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 26px;
+    letter-spacing: -0.25px;
+  }
+
+  .home-bento-copy p {
+    margin: 0;
+    color: #646464;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.32px;
+  }
+
+  .home-bento-media {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    min-height: 250px;
+    margin-top: 28px;
+    overflow: hidden;
+  }
+
+  .home-bento-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(346deg, rgba(13, 21, 48, 0.05), rgba(118, 18, 250, 0) 52%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .home-bento-card:hover .home-bento-media::after {
+    opacity: 1;
+  }
+
+  .home-bento-media .mini-visual {
+    width: 92%;
+    max-width: none;
+    transform: translateY(22px);
+  }
+
+  @media (max-width: 900px) {
+    .home-bento-title {
+      font-size: 36px;
+      letter-spacing: -1.1px;
+    }
+
+    .home-bento-row.is-60-40,
+    .home-bento-row.is-40-60,
+    .home-bento-row.is-thirds {
+      grid-template-columns: 1fr;
+    }
+
+    .home-bento-copy {
+      padding: 32px 24px 0;
+    }
+  }
   

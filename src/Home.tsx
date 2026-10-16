@@ -16,7 +16,6 @@ import {
 import {
   Button,
   FAQ,
-  FeatureCard,
   FinalCTA,
   MiniVisual,
   SectionHeading,
@@ -48,6 +47,30 @@ function GoldStars({ size = 16 }: { size?: number }) {
         <Star key={index} size={size} fill="currentColor" strokeWidth={0} />
       ))}
     </span>
+  );
+}
+
+const homeBentoRows = [
+  [features[0], features[1]],
+  [features[3], features[4]],
+  [features[2], features[5], features[6]],
+];
+
+function HomeBentoCard({
+  feature,
+}: {
+  feature: (typeof features)[number];
+}) {
+  return (
+    <Link className="home-bento-card" to={`/features/${feature.slug}`}>
+      <div className="home-bento-copy">
+        <h3>{feature.title}</h3>
+        <p>{feature.description}</p>
+      </div>
+      <div className="home-bento-media">
+        <MiniVisual kind={feature.slug} />
+      </div>
+    </Link>
   );
 }
 
@@ -118,31 +141,23 @@ export default function Home() {
         </div>
       </section>
       <div className="home-section-order">
-        <section className="section feature-overview container">
-        <SectionHeading
-          eyebrow="A SMALL ADDITION. A BIG DIFFERENCE."
-          title={
-            <>
-              Everything you need.
-              <br />
-              Nothing in your way.
-            </>
-          }
-          description="The structure your work deserves, without the overhead it doesn’t."
-        />
-        <div className="home-feature-grid">
-          {[
-            features[0],
-            features[1],
-            features[3],
-            features[4],
-            features[2],
-          ].map((feature, index) => (
+        <section className="section home-bento container" aria-labelledby="home-bento-title">
+        <h2 id="home-bento-title" className="home-bento-title">
+          Everything you need.
+          <br />
+          Nothing in your way.
+        </h2>
+        <div className="home-bento-rows">
+          {homeBentoRows.map((row, rowIndex) => (
             <div
-              className={index < 2 ? "wide-feature" : "small-feature"}
-              key={feature.slug}
+              className={`home-bento-row ${
+                rowIndex === 0 ? "is-60-40" : rowIndex === 1 ? "is-40-60" : "is-thirds"
+              }`}
+              key={row.map((feature) => feature.slug).join("-")}
             >
-              <FeatureCard feature={feature} visual />
+              {row.map((feature) => (
+                <HomeBentoCard feature={feature} key={feature.slug} />
+              ))}
             </div>
           ))}
         </div>

@@ -412,7 +412,7 @@ export default function Home() {
         </div>
       </section>
       <FAQ />
-      <FinalCTA />
+      <FinalCTA variant="launch" />
     </>
   );
 }

@@ -211,74 +211,73 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="section solutions-section container">
-        <SectionHeading
-          eyebrow="DIFFERENT HATS. THE SAME ATTENTION TO DETAIL."
-          title={
-            <>
-              However you work,
-              <br />
-              make it a little smoother.
-            </>
-          }
-          description="From the first line of code to the last release check. A place for your part."
-        />
-        <div className="role-tabs" role="tablist" aria-label="Team workflows">
+      <section className="section solutions-section container" aria-labelledby="solutions-title">
+        <h2 id="solutions-title" className="solutions-title">
+          However you work,
+          <br />
+          make it a little smoother.
+        </h2>
+        <p className="solutions-subtitle">
+          From the first line of code to the last release check. A place for your part.
+        </p>
+        <div className="solutions-pills" role="tablist" aria-label="Team workflows">
           {solutions.map((solution, index) => (
             <button
               key={solution.slug}
               role="tab"
+              type="button"
               aria-selected={role === index}
               aria-controls="role-panel"
               onClick={() => setRole(index)}
-              className={role === index ? "active" : ""}
+              className={role === index ? "is-active" : ""}
             >
-              <solution.icon size={17} />
               {solution.role}
             </button>
           ))}
+          <Link className="solutions-pill-link" to="/solutions">
+            See all teams
+          </Link>
         </div>
-        <div className="role-panel" id="role-panel" role="tabpanel">
-          <div className="role-panel-copy">
-            <span className="eyebrow">{selected.role.toUpperCase()}</span>
-            <h3>{selected.headline.replace("\n", " ")}</h3>
+        <div className="solutions-panel" id="role-panel" role="tabpanel">
+          <div className="solutions-copy">
+            <h3>
+              {selected.headline.split("\n")[0]}
+              <br />
+              <span>{selected.headline.split("\n")[1]}</span>
+            </h3>
             <p>{selected.description}</p>
-            <Link className="text-link" to={`/solutions/${selected.slug}`}>
-              A closer look for {selected.role.toLowerCase()}
-              <ArrowRight size={17} />
+            <div className="solutions-replaces">
+              <span>Replaces</span>
+              <FileText size={16} aria-hidden="true" />
+              <GitBranch size={16} aria-hidden="true" />
+              <CheckCheck size={16} aria-hidden="true" />
+            </div>
+            <ul>
+              {selected.details.map((detail) => (
+                <li key={detail}>
+                  <Check size={16} aria-hidden="true" />
+                  {detail}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="solutions-stack">
+            {selected.items.map((item, index) => (
+              <article key={item}>
+                <img
+                  src={quotes[index % quotes.length].src}
+                  alt=""
+                />
+                <p>{item}</p>
+              </article>
+            ))}
+            <Link className="solutions-cta" to={`/solutions/${selected.slug}`}>
+              Explore solution
+              <ArrowRight size={16} aria-hidden="true" />
             </Link>
           </div>
-          <div className={`role-checklist ${selected.color}`}>
-            <div className="workflow-window">
-              <div className="workflow-heading">
-                <span>
-                  <selected.icon size={18} />
-                  {selected.checklist}
-                </span>
-                <span className="workflow-count">2/4</span>
-              </div>
-              {selected.items.map((item, index) => (
-                <div key={item} className="workflow-item">
-                  <span
-                    className={`mini-checkbox ${index < 2 ? "checked" : ""}`}
-                  >
-                    {index < 2 && <Check size={12} />}
-                  </span>
-                  <span className={index < 2 ? "mini-done" : ""}>{item}</span>
-                  {index === 0 && <em>*</em>}
-                  <span className={`tiny-avatar tone-${index}`}>
-                    {index % 2 ? "AL" : "JD"}
-                  </span>
-                </div>
-              ))}
-              <div className="workflow-footer">
-                <ShieldCheck size={12} />
-                Every step, a little more confidence.
-              </div>
-            </div>
-          </div>
         </div>
-        </section>
+      </section>
       </div>
       <section className="comparison-section section container">
         <SectionHeading

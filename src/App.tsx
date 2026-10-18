@@ -12,7 +12,6 @@ import {
   DocsPage,
   FeatureDetailPage,
   FeaturesPage,
-  LegalPage,
   NotFound,
   PricingPage,
   ResourcesPage,
@@ -20,6 +19,7 @@ import {
   SolutionsPage,
 } from "./Pages";
 import { features, solutions, guides } from "./content";
+import PrivacyPage from "./PrivacyPage";
 import TermsPage from "./TermsPage";
 
 function PageContext() {
@@ -40,7 +40,7 @@ function PageContext() {
       "/resources": "Guides & insights",
       "/docs": "Help center",
       "/changelog": "Product notes",
-      "/privacy": "Privacy for this preview",
+      "/privacy": "Privacy Policy",
       "/terms": "Terms of Service",
     };
     const detail = pathname.startsWith("/features/")
@@ -87,7 +87,7 @@ export default function App() {
           <Route path="/resources/:slug" element={<ArticlePage />} />
           <Route path="/docs" element={<DocsPage />} />
           <Route path="/changelog" element={<ChangelogPage />} />
-          <Route path="/privacy" element={<LegalPage type="privacy" />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/terms" element={<TermsPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

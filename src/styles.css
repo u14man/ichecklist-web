@@ -13123,6 +13123,12 @@
     color: #111827;
   }
 
+  .terms-toc a.is-active,
+  .terms-toc a.is-active:hover {
+    color: var(--violet);
+    font-weight: 600;
+  }
+
   .terms-prose {
     min-width: 0;
     color: #111827;

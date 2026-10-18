@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 
 const sections: { id: string; title: string; body: ReactNode }[] = [
@@ -282,6 +282,39 @@ const sections: { id: string; title: string; body: ReactNode }[] = [
 ];
 
 export default function TermsPage() {
+  const [activeId, setActiveId] = useState(sections[0].id);
+
+  useEffect(() => {
+    const offset = 140;
+
+    const updateActive = () => {
+      const nearBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 8;
+      if (nearBottom) {
+        setActiveId(sections[sections.length - 1].id);
+        return;
+      }
+
+      let current = sections[0].id;
+      for (const section of sections) {
+        const element = document.getElementById(section.id);
+        if (element && element.getBoundingClientRect().top - offset <= 0) {
+          current = section.id;
+        }
+      }
+      setActiveId(current);
+    };
+
+    updateActive();
+    window.addEventListener("scroll", updateActive, { passive: true });
+    window.addEventListener("hashchange", updateActive);
+    return () => {
+      window.removeEventListener("scroll", updateActive);
+      window.removeEventListener("hashchange", updateActive);
+    };
+  }, []);
+
   return (
     <article className="terms-page">
       <div className="terms-page-inner">
@@ -298,7 +331,14 @@ export default function TermsPage() {
             <ul>
               {sections.map((section) => (
                 <li key={section.id}>
-                  <a href={`#${section.id}`}>{section.title}</a>
+                  <a
+                    href={`#${section.id}`}
+                    className={activeId === section.id ? "is-active" : undefined}
+                    aria-current={activeId === section.id ? "location" : undefined}
+                    onClick={() => setActiveId(section.id)}
+                  >
+                    {section.title}
+                  </a>
                 </li>
               ))}
             </ul>

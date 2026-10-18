@@ -20,6 +20,7 @@ import {
   SolutionsPage,
 } from "./Pages";
 import { features, solutions, guides } from "./content";
+import TermsPage from "./TermsPage";
 
 function PageContext() {
   const { pathname } = useLocation();
@@ -40,7 +41,7 @@ function PageContext() {
       "/docs": "Help center",
       "/changelog": "Product notes",
       "/privacy": "Privacy for this preview",
-      "/terms": "Terms for this preview",
+      "/terms": "Terms of Service",
     };
     const detail = pathname.startsWith("/features/")
       ? features.find((item) => pathname.endsWith(`/${item.slug}`))
@@ -87,7 +88,7 @@ export default function App() {
           <Route path="/docs" element={<DocsPage />} />
           <Route path="/changelog" element={<ChangelogPage />} />
           <Route path="/privacy" element={<LegalPage type="privacy" />} />
-          <Route path="/terms" element={<LegalPage type="terms" />} />
+          <Route path="/terms" element={<TermsPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

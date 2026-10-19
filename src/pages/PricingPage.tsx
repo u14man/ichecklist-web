@@ -67,10 +67,10 @@ const usd = (value: number) =>
 const normalizeUsers = (value: number) =>
   Math.min(2500, Math.max(1, Math.round(value)));
 const COMMON_FEATURES = [
-  "有序清单与个人清单",
-  "进度追踪与灵活视图",
-  "Jira 原生使用体验",
-  "完整清单功能，不按人数限制",
+  "Organized and personal checklists",
+  "Progress tracking and flexible views",
+  "A native Jira experience",
+  "Full checklist features at every team size",
 ];
 
 function EditionCard({
@@ -104,39 +104,39 @@ function EditionCard({
       <header className="edition-heading">
         <span className="edition-kicker">{advanced ? "ADVANCED EDITION" : "STANDARD EDITION"}</span>
         <h2 id={`${edition}-title`}>{name}</h2>
-        <p>{advanced ? "另一种版本选择，同样清晰的团队报价。" : "从小团队开始，随团队规模灵活计费。"}</p>
+        <p>{advanced ? "Another edition. The same clear, team-based pricing." : "Start small, with pricing that scales with your team."}</p>
       </header>
       <div className="edition-price-block">
         <div className="edition-price" aria-live="polite" aria-atomic="true">
-          <strong>{price === undefined ? "联系报价" : free ? "免费" : usd(price)}</strong>
-          {price !== undefined && !free && <span>{annual ? "/ 年" : "/ 人 / 月"}</span>}
+          <strong>{price === undefined ? "Contact sales" : free ? "Free" : usd(price)}</strong>
+          {price !== undefined && !free && <span>{annual ? "/ year" : "/ user / month"}</span>}
         </div>
         <p className="edition-price-detail">
           {price === undefined
-            ? "超出公开阶梯范围，请联系我们。"
+            ? "Contact us for pricing beyond the published tiers."
             : free
-              ? "最多 10 人，Standard 免费使用"
+              ? "Standard is free for up to 10 users"
               : annual
-                ? `适用 ${tierMin.toLocaleString()}–${tier[0].toLocaleString()} 人阶梯 · 全年总价`
-                : `${users.toLocaleString()} 人团队 · 每月合计 ${usd(rate * users)}`}
+                ? `${tierMin.toLocaleString("en-US")}–${tier[0].toLocaleString("en-US")} users · Total annual price`
+                : `${users.toLocaleString("en-US")} users · ${usd(rate * users)} total per month`}
         </p>
         <span className="edition-billing-note">
-          {annual ? "按年计费，价格按团队人数阶梯确定" : "按月计费，人均费率按团队规模确定"}
+          {annual ? "Billed annually, based on your team size tier" : "Billed monthly, with a per-user rate based on team size"}
         </span>
       </div>
       <Button to={free ? "/demo" : `/contact?${quoteParams}`} variant={advanced ? "primary" : "outline"}>
-        {free ? "体验免费版" : "咨询此版本"}
+        {free ? "Try it free" : "Contact us about this edition"}
         <ArrowRight size={18} aria-hidden="true" />
       </Button>
       <div className="edition-feature-section">
-        <h3>完整清单体验</h3>
-        <p>两个版本均包含以下能力</p>
+        <h3>The complete checklist experience</h3>
+        <p>Included in both editions</p>
         <ul>
           {COMMON_FEATURES.map((feature) => (
             <li key={feature}><Check size={18} aria-hidden="true" /><span>{feature}</span></li>
           ))}
         </ul>
-        <span className="edition-marketplace">通过 Atlassian Marketplace 计费</span>
+        <span className="edition-marketplace">Billed through the Atlassian Marketplace</span>
       </div>
     </article>
   );
@@ -165,19 +165,19 @@ export function PricingPage() {
         gradient
         eyebrow="SIMPLE PRICING. EVERY FEATURE. NO SURPRISES."
         title={<>Free where it counts.<br /><span>Fair as you grow.</span></>}
-        description="统一选择团队人数，在相同计费条件下对比 Standard 与 Advanced。价格透明，通过 Atlassian Marketplace 计费。"
+        description="Set your team size and compare Standard and Advanced side by side. Transparent pricing, billed through the Atlassian Marketplace."
       />
-      <section className="container pricing-page" aria-label="版本与价格对比">
+      <section className="container pricing-page" aria-label="Compare editions and pricing">
         <div className="edition-toolbar">
           <div className="edition-team-controls">
             <div className="edition-team-input">
-              <label htmlFor="pricing-team-size">团队人数</label>
+              <label htmlFor="pricing-team-size">Team size</label>
               <div className="edition-number-field">
                 <input id="pricing-team-size" type="number" inputMode="numeric" min={1} max={2500} step={1} value={usersInput} onChange={(event) => updateUsers(event.target.value)} onBlur={commitUsers} aria-describedby="pricing-team-help" />
-                <span aria-hidden="true">人</span>
+                <span aria-hidden="true">users</span>
               </div>
             </div>
-            <div className="edition-presets" role="group" aria-label="常用团队人数">
+            <div className="edition-presets" role="group" aria-label="Common team sizes">
               {[10, 25, 100, 500, 1000, 2500].map((preset) => (
                 <button key={preset} type="button" aria-pressed={users === preset} onClick={() => { setUsers(preset); setUsersInput(String(preset)); }}>
                   {preset.toLocaleString()}
@@ -186,23 +186,23 @@ export function PricingPage() {
             </div>
           </div>
           <fieldset className="edition-billing">
-            <legend>计费周期</legend>
+            <legend>Billing period</legend>
             <div className="edition-billing-switch">
               {(["Monthly", "Annual"] as const).map((period) => (
                 <label key={period}>
                   <input type="radio" name="pricing-billing" value={period} checked={billing === period} onChange={() => setBilling(period)} />
-                  <span>{period === "Monthly" ? "月付" : "年付"}</span>
+                  <span>{period}</span>
                 </label>
               ))}
             </div>
           </fieldset>
         </div>
-        <p id="pricing-team-help" className="edition-team-help">支持 1–2,500 人。更大规模？<Link to="/contact?topic=Pricing">联系获取报价 <ArrowRight size={14} aria-hidden="true" /></Link></p>
+        <p id="pricing-team-help" className="edition-team-help">For teams of 1–2,500 users. Need more? <Link to="/contact?topic=Pricing">Contact us for a quote <ArrowRight size={14} aria-hidden="true" /></Link></p>
         <div className="edition-comparison">
           <EditionCard edition="standard" users={users} billing={billing} />
           <EditionCard edition="advanced" users={users} billing={billing} />
         </div>
-        <p className="edition-pricing-footnote">价格均为美元，不含税。月付展示每人月费及团队月总额；年付展示所选人数对应的阶梯全年总价。</p>
+        <p className="edition-pricing-footnote">All prices are in USD, excluding tax. Monthly pricing shows the per-user rate and team total. Annual pricing shows the total annual price for your team size tier.</p>
       </section>
       <section className="section container included-section">
         <SectionHeading
@@ -221,9 +221,9 @@ export function PricingPage() {
         </div>
       </section>
       <FAQ items={[
-        { question: "价格如何计算？", answer: "Standard 月付在 10 人以内免费；11–100 人每人每月 $0.75，101–250 人 $0.55，250 人以上 $0.30。Advanced 月付在 1–10 人时每人每月 $5；11–100 人 $1，101–250 人 $0.80，251–1,000 人 $0.25，1,000 人以上 $0.20。当前计算按团队人数匹配整档人均费率，不做累进分段计算。" },
-        { question: "10 人以内如何收费？", answer: "Standard 在 10 人以内免费。Advanced 在 1–10 人时每人每月 $5，例如 10 人月付共 $50；选择年付时，1–10 人阶梯的全年总价为 $50。月付人均价与年付阶梯总价是不同计费口径。" },
-        { question: "年付如何计算？", answer: "选择人数后，系统分别匹配两个版本的年付阶梯，卡片显示适用人数范围与全年总价，不是每人年费。同一阶梯内人数变化不改变年付总价。2,500 人以上请联系报价，不自动外推价格。" },
+        { question: "How is pricing calculated?", answer: "Standard monthly pricing is free for up to 10 users, then $0.75 per user for 11–100 users, $0.55 for 101–250, and $0.30 above 250. Advanced monthly pricing is $5 per user for 1–10 users, $1 for 11–100, $0.80 for 101–250, $0.25 for 251–1,000, and $0.20 above 1,000. The rate for your team size applies to every user; pricing is not calculated progressively across tiers." },
+        { question: "What does it cost for up to 10 users?", answer: "Standard is free for up to 10 users. Advanced costs $5 per user per month for 1–10 users, so 10 users cost $50 per month. With annual billing, the total annual price for the 1–10 user tier is $50. Monthly per-user pricing and annual tier pricing use different billing models." },
+        { question: "How does annual billing work?", answer: "Each edition matches your team size to its annual pricing tier. The card shows the applicable user range and total annual price, not a per-user annual rate. Changing the number of users within the same tier does not change the annual total. For more than 2,500 users, contact us for a quote." },
         { question: "Can I try the experience before buying?", answer: "Yes. The interactive demo is available without an account. It uses sample Checklist Items and does not connect to your Jira instance." },
       ]} />
       <FinalCTA />

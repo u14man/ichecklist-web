@@ -1,13 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  ArrowRight,
-  Asterisk,
-  Flower,
-  Flower2,
-  Check,
-  User,
-} from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import {
   Button,
   FAQ,
@@ -83,22 +76,35 @@ const annualPrice = (edition: Edition, users: number) => {
 const usd = (value: number) =>
   value.toLocaleString("en-US", { style: "currency", currency: "USD" });
 
+const STANDARD_INCLUDES = [
+  ["organized-checklists", "Organized checklists"],
+  ["personal-checklists", "Personal checklists"],
+  ["progress-tracking", "Progress tracking"],
+  ["flexible-views", "Views & filters"],
+  ["native-experience", "Made for Jira"],
+] as const;
+
+const ADVANCED_EXTRAS = [
+  ["mandatory-items", "Mandatory items"],
+  ["completion-locking", "Completion & locking"],
+  ["bulk-actions", "Bulk actions"],
+  ["dashboards", "Dashboards"],
+] as const;
+
+const TEAM_PRESETS = [10, 25, 100, 250, 500, 1000];
+
 export function PricingPage() {
-  const [edition, setEdition] = useState<Edition>("standard");
   const [billing, setBilling] = useState<"Monthly" | "Annual">("Monthly");
-  const [teamUsers, setTeamUsers] = useState(25);
-  const [orgUsers, setOrgUsers] = useState(500);
+  const [users, setUsers] = useState(10);
   const annual = billing === "Annual";
-  const advanced = edition === "advanced";
-  const teamPrice = annual
-    ? annualPrice(edition, teamUsers)
-    : teamUsers * monthlyRate(edition, teamUsers);
-  const orgPrice = annual
-    ? annualPrice(edition, orgUsers)
-    : orgUsers * monthlyRate(edition, orgUsers);
-  const freePrice = advanced ? (annual ? 50 : 5) : 0;
-  const quote = (team: number) =>
-    `/contact?topic=Pricing&edition=${edition}&team=${team}%20users&billing=${billing}`;
+  const setTeamSize = (value: number) => {
+    if (!Number.isFinite(value)) return;
+    setUsers(Math.min(2500, Math.max(1, Math.round(value))));
+  };
+  const total = (edition: Edition) =>
+    annual ? annualPrice(edition, users) : users * monthlyRate(edition, users);
+  const quote = (edition: Edition) =>
+    `/contact?topic=Pricing&edition=${edition}&team=${users}%20users&billing=${billing}`;
   return (
     <>
       <PageHero
@@ -111,31 +117,48 @@ export function PricingPage() {
             <span>Fair as you grow.</span>
           </>
         }
-        description="Standard is free for up to 10 users. Advanced starts at $5 per user. Both editions include the full checklist and are billed through the Atlassian Marketplace."
+        description="Set your team size once. Standard and Advanced update together, billed through the Atlassian Marketplace."
       />
       <section className="container pricing-page">
-        <div className="pricing-controls">
-          <div className="billing-tabs" role="tablist" aria-label="Edition">
-            <button
-              role="tab"
-              aria-selected={!advanced}
-              className={!advanced ? "active" : ""}
-              onClick={() => setEdition("standard")}
-            >
-              Standard
-            </button>
-            <button
-              role="tab"
-              aria-selected={advanced}
-              className={advanced ? "active" : ""}
-              onClick={() => setEdition("advanced")}
-            >
-              Advanced
-            </button>
+        <div className="pricing-toolbar">
+          <div className="team-size-field">
+            <label htmlFor="team-size">Team size</label>
+            <div className="team-size-input-row">
+              <input
+                id="team-size"
+                type="number"
+                min={1}
+                max={2500}
+                value={users}
+                onChange={(event) => setTeamSize(Number(event.target.value))}
+              />
+              <input
+                type="range"
+                min={1}
+                max={2500}
+                value={users}
+                aria-label="Team size slider"
+                onChange={(event) => setTeamSize(Number(event.target.value))}
+              />
+            </div>
+            <div className="preset-row">
+              {TEAM_PRESETS.map((preset) => (
+                <button
+                  key={preset}
+                  type="button"
+                  className={users === preset ? "active" : ""}
+                  aria-pressed={users === preset}
+                  onClick={() => setTeamSize(preset)}
+                >
+                  {preset.toLocaleString("en-US")}
+                </button>
+              ))}
+            </div>
           </div>
           <div className="billing-tabs" role="tablist" aria-label="Billing period">
             <button
               role="tab"
+              type="button"
               aria-selected={!annual}
               className={!annual ? "active" : ""}
               onClick={() => setBilling("Monthly")}
@@ -144,192 +167,80 @@ export function PricingPage() {
             </button>
             <button
               role="tab"
+              type="button"
               aria-selected={annual}
               className={annual ? "active" : ""}
               onClick={() => setBilling("Annual")}
             >
               Annual
-              {!advanced && <span className="save-tag">SAVE ~17%</span>}
             </button>
           </div>
         </div>
-        <div className="plans-grid">
-          <article className="plan-card">
-            <div className="plan-title-row">
-              <span className="plan-glyph free">
-                <Asterisk size={24} />
-              </span>
-              <h3>Free</h3>
-            </div>
-            <p className="plan-desc">For small teams and startups</p>
-            <div className="plan-price">
-              <strong>{usd(freePrice)}</strong>
-              <span className="price-unit">
-                {advanced && !annual ? "/user/month" : `/${annual ? "year" : "month"}`}
-              </span>
-            </div>
-            <span className="price-sub">Up to 10 users</span>
-            <div className="team-size-row">
-              <span className="size-label">TEAM SIZE</span>
-              <strong>Up to 10 users</strong>
-            </div>
-            <div className="free-avatars" aria-label="Up to 10 users">
-              {Array.from({ length: 10 }).map((_, index) => (
-                <span key={index}>
-                  <User size={13} />
+        <div className="edition-grid">
+          {(["standard", "advanced"] as const).map((edition) => {
+            const price = total(edition);
+            const advanced = edition === "advanced";
+            return (
+              <article
+                key={edition}
+                className={`plan-card edition-card${advanced ? " is-advanced" : ""}`}
+              >
+                <h3>{advanced ? "Advanced" : "Standard"}</h3>
+                <p className="plan-desc">
+                  {advanced
+                    ? "The controls for teams that need more certainty."
+                    : "The checklist a team can start with."}
+                </p>
+                <div className="plan-price">
+                  <strong>{price === 0 ? "Free" : usd(price)}</strong>
+                  {price > 0 && (
+                    <span className="price-unit">/{annual ? "year" : "month"}</span>
+                  )}
+                </div>
+                <span className="price-sub">
+                  {price === 0
+                    ? "Up to 10 users"
+                    : annual
+                      ? `Flat tier for ${users.toLocaleString("en-US")} users`
+                      : `${usd(monthlyRate(edition, users))} per user`}
                 </span>
-              ))}
-            </div>
-            <ul className="plan-features">
-              <li>
-                <Check size={15} />All features included
-              </li>
-              <li>
-                <Check size={15} />No trial expiration
-              </li>
-              <li>
-                <Check size={15} />Billed via Atlassian Marketplace
-              </li>
-            </ul>
-            <Button to="/demo" variant="outline">
-              {advanced ? "Get Started" : "Get Started Free"}
-              <ArrowRight size={16} />
-            </Button>
-          </article>
-          <article className="plan-card plan-featured bg-gradient-black">
-            <div className="plan-title-row">
-              <span className="plan-glyph team">
-                <Flower2 size={24} />
-              </span>
-              <h3>Team</h3>
-              <span className="popular-tag">POPULAR</span>
-            </div>
-            <p className="plan-desc">For growing teams</p>
-            <div className="plan-price">
-              <strong>{usd(teamPrice)}</strong>
-              <span className="price-unit">/{annual ? "year" : "month"}</span>
-            </div>
-            <span className="price-sub">
-              {usd(monthlyRate(edition, teamUsers))}/user/month
-            </span>
-            <div className="team-size-row">
-              <span className="size-label">TEAM SIZE</span>
-              <strong>{teamUsers} users</strong>
-            </div>
-            <input
-              type="range"
-              min={11}
-              max={100}
-              value={teamUsers}
-              aria-label="Team size"
-              onChange={(event) => setTeamUsers(Number(event.target.value))}
-            />
-            <div className="range-bounds">
-              <span>11</span>
-              <span>100</span>
-            </div>
-            <ul className="plan-features">
-              <li>
-                <Check size={15} />All features included
-              </li>
-              <li>
-                <Check size={15} />Same feature set as Free
-              </li>
-              <li>
-                <Check size={15} />Billed via Atlassian Marketplace
-              </li>
-            </ul>
-            <Button
-              to={quote(teamUsers)}
-            >
-              Start Free Trial
-              <ArrowRight size={16} />
-            </Button>
-          </article>
-          <article className="plan-card">
-            <div className="plan-title-row">
-              <span className="plan-glyph org">
-                <Flower size={24} />
-              </span>
-              <h3>Organization</h3>
-            </div>
-            <p className="plan-desc">For scaling teams</p>
-            <div className="plan-price">
-              <strong>{usd(orgPrice)}</strong>
-              <span className="price-unit">/{annual ? "year" : "month"}</span>
-            </div>
-            <span className="price-sub">
-              {usd(monthlyRate(edition, orgUsers))}/user/month
-            </span>
-            <div className="team-size-row">
-              <span className="size-label">TEAM SIZE</span>
-              <strong>{orgUsers.toLocaleString("en-US")} users</strong>
-            </div>
-            <div className="preset-row">
-              {[
-                [250, "250"],
-                [500, "500"],
-                [1000, "1K"],
-                [2500, "2.5K"],
-              ].map(([value, label]) => (
-                <button
-                  key={label}
-                  className={orgUsers === value ? "active" : ""}
-                  aria-pressed={orgUsers === value}
-                  onClick={() => setOrgUsers(value as number)}
+                <Button
+                  to={price === 0 ? "/demo" : quote(edition)}
+                  variant={advanced ? "primary" : "outline"}
                 >
-                  {label}
-                </button>
-              ))}
-            </div>
-            <input
-              type="range"
-              min={101}
-              max={2500}
-              value={orgUsers}
-              aria-label="Organization size"
-              onChange={(event) => setOrgUsers(Number(event.target.value))}
-            />
-            <div className="range-bounds">
-              <span>101</span>
-              <span>2,500</span>
-            </div>
-            <ul className="plan-features">
-              <li>
-                <Check size={15} />
-                Volume discounts applied
-              </li>
-              <li>
-                <Check size={15} />
-                All features included
-              </li>
-              <li>
-                <Check size={15} />
-                {advanced
-                  ? "From $0.20/user/month above 1,000 users"
-                  : "From $0.30/user/month above 250 users"}
-              </li>
-            </ul>
-            <Button
-              to={quote(orgUsers)}
-              variant="outline"
-            >
-              Talk to Sales
-              <ArrowRight size={16} />
-            </Button>
-          </article>
+                  {price === 0 ? "Get started free" : "Get started"}
+                  <ArrowRight size={16} />
+                </Button>
+                <div className="edition-features">
+                  <h4>
+                    {advanced ? "Everything from Standard, plus" : "Includes"}
+                  </h4>
+                  <ul className="plan-features">
+                    {(advanced ? ADVANCED_EXTRAS : STANDARD_INCLUDES).map(
+                      ([slug, title]) => (
+                        <li key={slug}>
+                          <Check size={15} />
+                          <Link to={`/features/${slug}`}>{title}</Link>
+                        </li>
+                      ),
+                    )}
+                  </ul>
+                </div>
+              </article>
+            );
+          })}
         </div>
         <p className="pricing-footnote">
-          {advanced
-            ? "Advanced annual prices are flat tiers by team size. All plans are billed through the Atlassian Marketplace. Prices in USD, excluding tax."
-            : "All plans are billed through the Atlassian Marketplace. Annual billing saves ~17% (10-month pricing). Prices in USD, excluding tax."}
+          Monthly prices are per user. Annual prices are a flat tier for the
+          selected team size. Standard annual billing is about 10 months of the
+          monthly rate. Prices in USD, excluding tax.
         </p>
       </section>
       <section className="section container included-section">
         <SectionHeading
-          eyebrow="TWO EDITIONS. NO FEATURE GATING."
-          title="Everything Included"
-          description="Standard and Advanced both include the full checklist. Team size changes the price, not the features."
+          eyebrow="STANDARD STARTS THE WORK."
+          title="Advanced adds the controls"
+          description="Standard covers the day-to-day checklist. Advanced adds mandatory items, completion locking, bulk actions, and dashboards."
         />
         <div className="included-grid">
           {features.map((feature) => (
@@ -362,7 +273,7 @@ export function PricingPage() {
           {
             question: "What does the Free tier include?",
             answer:
-              "On Standard, up to 10 users get the full checklist free. On Advanced, the same 1–10 user plan is USD 5 per user each month, or USD 50 per year. Neither edition gates features by team size.",
+              "Standard is free for up to 10 users and includes organized checklists, personal checklists, progress tracking, views, and the native Jira experience. Advanced is USD 5 per user each month for 1–10 users, or USD 50 per year, and adds mandatory items, locking, bulk actions, and dashboards.",
           },
           {
             question: "How does annual billing work?",

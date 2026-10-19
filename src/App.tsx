@@ -3,22 +3,20 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { Header, Footer } from "./components";
 import Home from "./Home";
 import DashboardsPage from "./Dashboards";
-import {
-  AboutPage,
-  ArticlePage,
-  ChangelogPage,
-  ContactPage,
-  DemoPage,
-  DocsPage,
-  FeatureDetailPage,
-  FeaturesPage,
-  NotFound,
-  PricingPage,
-  ResourcesPage,
-  SolutionDetailPage,
-  SolutionsPage,
-} from "./Pages";
 import { features, solutions, guides } from "./content";
+import { AboutPage } from "./pages/AboutPage";
+import { ArticlePage } from "./pages/ArticlePage";
+import { ChangelogPage } from "./pages/ChangelogPage";
+import { ContactPage } from "./pages/ContactPage";
+import { DemoPage } from "./pages/DemoPage";
+import { DocsPage } from "./pages/DocsPage";
+import { FeatureDetailPage } from "./pages/FeatureDetailPage";
+import { FeaturesPage } from "./pages/FeaturesPage";
+import { NotFound } from "./pages/NotFound";
+import { PricingPage } from "./pages/PricingPage";
+import { ResourcesPage } from "./pages/ResourcesPage";
+import { SolutionDetailPage } from "./pages/SolutionDetailPage";
+import { SolutionsPage } from "./pages/SolutionsPage";
 import PrivacyPage from "./PrivacyPage";
 import TermsPage from "./TermsPage";
 

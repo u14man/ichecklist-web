@@ -17,9 +17,9 @@ import {
 } from "../components";
 import { features } from "../content";
 
-const MONTHLY_RATE = (users: number) =>
-  users <= 10 ? 0 : users <= 100 ? 0.75 : users <= 250 ? 0.55 : 0.3;
-const ANNUAL_TIERS: Array<[number, number]> = [
+type Edition = "standard" | "advanced";
+
+const STANDARD_ANNUAL: Array<[number, number]> = [
   [10, 0],
   [15, 112.5],
   [25, 187.5],
@@ -40,18 +40,65 @@ const ANNUAL_TIERS: Array<[number, number]> = [
   [2250, 5075],
   [2500, 5325],
 ];
-const ANNUAL_PRICE = (users: number) =>
-  ANNUAL_TIERS.find(([max]) => users <= max)![1];
+const ADVANCED_ANNUAL: Array<[number, number]> = [
+  [10, 50],
+  [15, 150],
+  [25, 250],
+  [50, 500],
+  [100, 1000],
+  [200, 1800],
+  [300, 2325],
+  [400, 2575],
+  [500, 2325],
+  [600, 2625],
+  [800, 3575],
+  [1000, 4075],
+  [1200, 4475],
+  [1400, 4875],
+  [1600, 5275],
+  [1800, 5675],
+  [2000, 6075],
+  [2250, 6575],
+  [2500, 7075],
+];
+const monthlyRate = (edition: Edition, users: number) => {
+  if (edition === "advanced") {
+    if (users <= 10) return 5;
+    if (users <= 100) return 1;
+    if (users <= 250) return 0.8;
+    if (users <= 1000) return 0.25;
+    return 0.2;
+  }
+  if (users <= 10) return 0;
+  if (users <= 100) return 0.75;
+  if (users <= 250) return 0.55;
+  return 0.3;
+};
+const annualPrice = (edition: Edition, users: number) => {
+  const tiers = edition === "advanced" ? ADVANCED_ANNUAL : STANDARD_ANNUAL;
+  return (
+    tiers.find(([max]) => users <= max)?.[1] ?? tiers[tiers.length - 1][1]
+  );
+};
 const usd = (value: number) =>
   value.toLocaleString("en-US", { style: "currency", currency: "USD" });
 
 export function PricingPage() {
+  const [edition, setEdition] = useState<Edition>("standard");
   const [billing, setBilling] = useState<"Monthly" | "Annual">("Monthly");
   const [teamUsers, setTeamUsers] = useState(25);
   const [orgUsers, setOrgUsers] = useState(500);
   const annual = billing === "Annual";
-  const teamPrice = annual ? ANNUAL_PRICE(teamUsers) : teamUsers * MONTHLY_RATE(teamUsers);
-  const orgPrice = annual ? ANNUAL_PRICE(orgUsers) : orgUsers * MONTHLY_RATE(orgUsers);
+  const advanced = edition === "advanced";
+  const teamPrice = annual
+    ? annualPrice(edition, teamUsers)
+    : teamUsers * monthlyRate(edition, teamUsers);
+  const orgPrice = annual
+    ? annualPrice(edition, orgUsers)
+    : orgUsers * monthlyRate(edition, orgUsers);
+  const freePrice = advanced ? (annual ? 50 : 5) : 0;
+  const quote = (team: number) =>
+    `/contact?topic=Pricing&edition=${edition}&team=${team}%20users&billing=${billing}`;
   return (
     <>
       <PageHero
@@ -64,27 +111,47 @@ export function PricingPage() {
             <span>Fair as you grow.</span>
           </>
         }
-        description="Every plan includes the full checklist experience. Free for up to 10 users, and priced by team size as you scale — billed through the Atlassian Marketplace."
+        description="Standard is free for up to 10 users. Advanced starts at $5 per user. Both editions include the full checklist and are billed through the Atlassian Marketplace."
       />
       <section className="container pricing-page">
-        <div className="billing-tabs" role="tablist" aria-label="Billing period">
-          <button
-            role="tab"
-            aria-selected={!annual}
-            className={!annual ? "active" : ""}
-            onClick={() => setBilling("Monthly")}
-          >
-            Monthly
-          </button>
-          <button
-            role="tab"
-            aria-selected={annual}
-            className={annual ? "active" : ""}
-            onClick={() => setBilling("Annual")}
-          >
-            Annual
-            <span className="save-tag">SAVE ~17%</span>
-          </button>
+        <div className="pricing-controls">
+          <div className="billing-tabs" role="tablist" aria-label="Edition">
+            <button
+              role="tab"
+              aria-selected={!advanced}
+              className={!advanced ? "active" : ""}
+              onClick={() => setEdition("standard")}
+            >
+              Standard
+            </button>
+            <button
+              role="tab"
+              aria-selected={advanced}
+              className={advanced ? "active" : ""}
+              onClick={() => setEdition("advanced")}
+            >
+              Advanced
+            </button>
+          </div>
+          <div className="billing-tabs" role="tablist" aria-label="Billing period">
+            <button
+              role="tab"
+              aria-selected={!annual}
+              className={!annual ? "active" : ""}
+              onClick={() => setBilling("Monthly")}
+            >
+              Monthly
+            </button>
+            <button
+              role="tab"
+              aria-selected={annual}
+              className={annual ? "active" : ""}
+              onClick={() => setBilling("Annual")}
+            >
+              Annual
+              {!advanced && <span className="save-tag">SAVE ~17%</span>}
+            </button>
+          </div>
         </div>
         <div className="plans-grid">
           <article className="plan-card">
@@ -96,8 +163,10 @@ export function PricingPage() {
             </div>
             <p className="plan-desc">For small teams and startups</p>
             <div className="plan-price">
-              <strong>$0</strong>
-              <span className="price-unit">/{annual ? "year" : "month"}</span>
+              <strong>{usd(freePrice)}</strong>
+              <span className="price-unit">
+                {advanced && !annual ? "/user/month" : `/${annual ? "year" : "month"}`}
+              </span>
             </div>
             <span className="price-sub">Up to 10 users</span>
             <div className="team-size-row">
@@ -123,7 +192,7 @@ export function PricingPage() {
               </li>
             </ul>
             <Button to="/demo" variant="outline">
-              Get Started Free
+              {advanced ? "Get Started" : "Get Started Free"}
               <ArrowRight size={16} />
             </Button>
           </article>
@@ -141,7 +210,7 @@ export function PricingPage() {
               <span className="price-unit">/{annual ? "year" : "month"}</span>
             </div>
             <span className="price-sub">
-              {usd(MONTHLY_RATE(teamUsers))}/user/month
+              {usd(monthlyRate(edition, teamUsers))}/user/month
             </span>
             <div className="team-size-row">
               <span className="size-label">TEAM SIZE</span>
@@ -171,7 +240,7 @@ export function PricingPage() {
               </li>
             </ul>
             <Button
-              to={`/contact?topic=Pricing&team=${teamUsers}%20users&billing=${billing}`}
+              to={quote(teamUsers)}
             >
               Start Free Trial
               <ArrowRight size={16} />
@@ -190,7 +259,7 @@ export function PricingPage() {
               <span className="price-unit">/{annual ? "year" : "month"}</span>
             </div>
             <span className="price-sub">
-              {usd(MONTHLY_RATE(orgUsers))}/user/month
+              {usd(monthlyRate(edition, orgUsers))}/user/month
             </span>
             <div className="team-size-row">
               <span className="size-label">TEAM SIZE</span>
@@ -236,11 +305,13 @@ export function PricingPage() {
               </li>
               <li>
                 <Check size={15} />
-                From $0.30/user/month above 250 users
+                {advanced
+                  ? "From $0.20/user/month above 1,000 users"
+                  : "From $0.30/user/month above 250 users"}
               </li>
             </ul>
             <Button
-              to={`/contact?topic=Pricing&team=${orgUsers}%20users&billing=${billing}`}
+              to={quote(orgUsers)}
               variant="outline"
             >
               Talk to Sales
@@ -249,15 +320,16 @@ export function PricingPage() {
           </article>
         </div>
         <p className="pricing-footnote">
-          All plans are billed through the Atlassian Marketplace. Annual
-          billing saves ~17% (10-month pricing). Prices in USD, excluding tax.
+          {advanced
+            ? "Advanced annual prices are flat tiers by team size. All plans are billed through the Atlassian Marketplace. Prices in USD, excluding tax."
+            : "All plans are billed through the Atlassian Marketplace. Annual billing saves ~17% (10-month pricing). Prices in USD, excluding tax."}
         </p>
       </section>
       <section className="section container included-section">
         <SectionHeading
-          eyebrow="NO PREMIUM TIERS. NO FEATURE GATING."
+          eyebrow="TWO EDITIONS. NO FEATURE GATING."
           title="Everything Included"
-          description="Every team gets the full Jira Checklist experience — on every plan, at every size."
+          description="Standard and Advanced both include the full checklist. Team size changes the price, not the features."
         />
         <div className="included-grid">
           {features.map((feature) => (
@@ -285,17 +357,17 @@ export function PricingPage() {
           {
             question: "How is the price calculated?",
             answer:
-              "Monthly billing uses per-user tiers: USD 0.75 per user/month for 11–100 users, USD 0.55 for 101–250, and USD 0.30 above 250. Up to 10 users is completely free. Annual billing uses flat tiers per team size, which saves about 17% (10-month pricing).",
+              "Standard monthly is free for up to 10 users, then USD 0.75 per user/month for 11–100, USD 0.55 for 101–250, and USD 0.30 above 250. Advanced monthly is USD 5 per user for 1–10, USD 1 for 11–100, USD 0.80 for 101–250, USD 0.25 for 251–1,000, and USD 0.20 above 1,000. Annual billing uses a flat tier for each edition and team size.",
           },
           {
             question: "What does the Free tier include?",
             answer:
-              "Everything. Up to 10 users get the full checklist experience free — no trial expiration, no feature gates, nothing held back. It is the standard Atlassian Marketplace model for small teams.",
+              "On Standard, up to 10 users get the full checklist free. On Advanced, the same 1–10 user plan is USD 5 per user each month, or USD 50 per year. Neither edition gates features by team size.",
           },
           {
             question: "How does annual billing work?",
             answer:
-              "You pick the tier that matches your team size and pay one flat annual price for everyone in it. If your team grows within the same tier, the price does not change until you cross into the next one.",
+              "You pick Standard or Advanced, then the tier that matches your team size, and pay one flat annual price. If your team grows within the same tier, the price does not change until you cross into the next one.",
           },
           {
             question: "Can I try the experience before buying?",

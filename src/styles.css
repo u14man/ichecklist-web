@@ -10390,6 +10390,18 @@
   }
   /* Pricing calculator page */
   
+  .pricing-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+  }
+
+  .pricing-controls .billing-tabs {
+    margin-bottom: 0;
+  }
+
   .billing-tabs {
     display: flex;
     justify-content: center;

@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Check, Ghost } from "lucide-react";
+import { ArrowRight, Asterisk, Check, Diamond, Ghost } from "lucide-react";
 import { Button, FAQ, FinalCTA, PageHero, SectionHeading } from "../components";
 
 
@@ -281,8 +281,18 @@ export function PricingPage() {
             <thead>
               <tr>
                 <th scope="col">Plans</th>
-                <th scope="col">Standard</th>
-                <th scope="col">Advanced</th>
+                <th scope="col">
+                  <span className="compare-plan">
+                    <Asterisk size={18} aria-hidden="true" />
+                    Standard
+                  </span>
+                </th>
+                <th scope="col">
+                  <span className="compare-plan is-advanced">
+                    <Diamond size={16} aria-hidden="true" />
+                    Advanced
+                  </span>
+                </th>
               </tr>
             </thead>
             <tbody>

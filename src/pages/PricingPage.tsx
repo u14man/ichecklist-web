@@ -270,6 +270,11 @@ export function PricingPage() {
         />
         <div className="compare-table-wrap">
           <table aria-label="Compare plans and features">
+            <colgroup>
+              <col className="feature-col" />
+              <col className="plan-col" />
+              <col className="plan-col" />
+            </colgroup>
             <thead>
               <tr>
                 <th scope="col">Plans</th>

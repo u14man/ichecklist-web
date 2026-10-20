@@ -3,8 +3,12 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { Header, Footer } from "./components";
 import Home from "./Home";
 import DashboardsPage from "./Dashboards";
+import { blogCategories, blogPosts } from "./blog";
 import { features, solutions, guides } from "./content";
 import { AboutPage } from "./pages/AboutPage";
+import { BlogArticlePage } from "./pages/BlogArticlePage";
+import { BlogCategoryPage } from "./pages/BlogCategoryPage";
+import { BlogPage } from "./pages/BlogPage";
 import { ArticlePage } from "./pages/ArticlePage";
 import { ChangelogPage } from "./pages/ChangelogPage";
 import { ContactPage } from "./pages/ContactPage";
@@ -36,6 +40,7 @@ function PageContext() {
       "/contact": "Let’s get into the details",
       "/demo": "Try the interactive demo",
       "/resources": "Guides & insights",
+      "/blog": "Blog",
       "/docs": "Help center",
       "/changelog": "Product notes",
       "/privacy": "Privacy Policy",
@@ -47,13 +52,17 @@ function PageContext() {
         ? solutions.find((item) => pathname.endsWith(`/${item.slug}`))
         : pathname.startsWith("/resources/")
           ? guides.find((item) => pathname.endsWith(`/${item.slug}`))
-          : null;
+          : pathname.startsWith("/blog/category/")
+            ? blogCategories.find((item) => pathname.endsWith(`/${item.slug}`))
+            : pathname.startsWith("/blog/")
+              ? blogPosts.find((item) => pathname.endsWith(`/${item.slug}`))
+              : null;
     document.title = `${pageTitles[pathname] || detail?.title || "Page not found"} — Jira Checklist`;
     document
       .querySelector('meta[name="description"]')
       ?.setAttribute(
         "content",
-        detail?.description ||
+        (detail && "description" in detail ? detail.description : detail && "excerpt" in detail ? detail.excerpt : "") ||
           "Structured, accountable execution inside every Jira issue. Organize checklists, track progress, and make every detail count — without the sub-task clutter.",
       );
   }, [pathname]);
@@ -82,6 +91,9 @@ export default function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/demo" element={<DemoPage />} />
           <Route path="/resources" element={<ResourcesPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/category/:slug" element={<BlogCategoryPage />} />
+          <Route path="/blog/:slug" element={<BlogArticlePage />} />
           <Route path="/resources/:slug" element={<ArticlePage />} />
           <Route path="/docs" element={<DocsPage />} />
           <Route path="/changelog" element={<ChangelogPage />} />

@@ -229,6 +229,13 @@ export function Header() {
                   <div className="mega-list">
                     {[
                       {
+                        title: "Blog",
+                        text: "Notes on the work inside the issue.",
+                        href: "/blog",
+                        icon: FileText,
+                        color: "peach",
+                      },
+                      {
                         title: "Guides & insights",
                         text: "Make the little things work better.",
                         href: "/resources",
@@ -271,6 +278,9 @@ export function Header() {
                 </div>
               )}
             </div>
+            <NavLink className="nav-link" to="/blog">
+              Blog
+            </NavLink>
             <NavLink className="nav-link" to="/demo">
               Demo
             </NavLink>
@@ -350,6 +360,7 @@ const footerColumns = [
   {
     title: "Resources",
     links: [
+      ["Blog", "/blog"],
       ["Guides & Insights", "/resources"],
       ["Help Center", "/docs"],
       ["Contact Us", "/contact"],

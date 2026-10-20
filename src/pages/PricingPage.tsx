@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, Ghost } from "lucide-react";
 import { Button, FAQ, FinalCTA, PageHero, SectionHeading } from "../components";
 import { features } from "../content";
 
@@ -66,12 +66,17 @@ const usd = (value: number) =>
   value.toLocaleString("en-US", { style: "currency", currency: "USD" });
 const normalizeUsers = (value: number) =>
   Math.min(2500, Math.max(1, Math.round(value)));
-const COMMON_FEATURES = [
-  "Organized and personal checklists",
-  "Progress tracking and flexible views",
-  "A native Jira experience",
-  "Full checklist features at every team size",
-];
+const EDITION_FEATURES = [
+  { slug: "organized-checklists", title: "Organized checklists", advancedOnly: false },
+  { slug: "personal-checklists", title: "Personal checklists", advancedOnly: false },
+  { slug: "progress-tracking", title: "Progress tracking", advancedOnly: false },
+  { slug: "flexible-views", title: "Views & filters", advancedOnly: false },
+  { slug: "native-experience", title: "Made for Jira", advancedOnly: false },
+  { slug: "mandatory-items", title: "Mandatory items", advancedOnly: true },
+  { slug: "completion-locking", title: "Completion & locking", advancedOnly: true },
+  { slug: "bulk-actions", title: "Bulk actions", advancedOnly: true },
+  { slug: "dashboards", title: "Dashboards", advancedOnly: true },
+] as const;
 
 function EditionCard({
   edition,
@@ -104,7 +109,7 @@ function EditionCard({
       <header className="edition-heading">
         <span className="edition-kicker">{advanced ? "ADVANCED EDITION" : "STANDARD EDITION"}</span>
         <h2 id={`${edition}-title`}>{name}</h2>
-        <p>{advanced ? "Another edition. The same clear, team-based pricing." : "Start small, with pricing that scales with your team."}</p>
+        <p>{advanced ? "Adds the controls for teams that need more certainty." : "The day-to-day checklist a team can start with."}</p>
       </header>
       <div className="edition-price-block">
         <div className="edition-price" aria-live="polite" aria-atomic="true">
@@ -129,12 +134,23 @@ function EditionCard({
         <ArrowRight size={18} aria-hidden="true" />
       </Button>
       <div className="edition-feature-section">
-        <h3>The complete checklist experience</h3>
-        <p>Included in both editions</p>
+        <h3>{advanced ? "Everything in Standard, plus" : "Features included"}</h3>
         <ul>
-          {COMMON_FEATURES.map((feature) => (
-            <li key={feature}><Check size={18} aria-hidden="true" /><span>{feature}</span></li>
-          ))}
+          {EDITION_FEATURES.map((feature) => {
+            const included = advanced || !feature.advancedOnly;
+            return (
+              <li
+                key={feature.slug}
+                className={included ? undefined : "is-unavailable"}
+                aria-label={`${feature.title}, ${included ? "included" : "not included"}`}
+              >
+                <span className="feature-mark" aria-hidden="true">
+                  {included ? <Check size={14} /> : <Ghost size={15} />}
+                </span>
+                <Link to={`/features/${feature.slug}`}>{feature.title}</Link>
+              </li>
+            );
+          })}
         </ul>
         <span className="edition-marketplace">Billed through the Atlassian Marketplace</span>
       </div>
@@ -206,15 +222,15 @@ export function PricingPage() {
       </section>
       <section className="section container included-section">
         <SectionHeading
-          eyebrow="TWO EDITIONS. NO FEATURE GATING."
-          title="Everything Included"
-          description="Standard and Advanced both include the full checklist. Team size changes the price, not the features."
+          eyebrow="COMPARE THE EDITIONS"
+          title="See what changes"
+          description="Standard covers the day-to-day checklist. Advanced adds mandatory items, completion locking, bulk actions, and dashboards."
         />
         <div className="included-grid">
           {features.map((feature) => (
             <div className="included-item" key={feature.slug}>
               <Check size={17} />
-              <span><strong><Link to={`/features/${feature.slug}`}>{feature.title}</Link></strong><small>{feature.short}</small></span>
+              <span><strong><Link to={`/features/${feature.slug}`}>{feature.title}</Link></strong><small>{EDITION_FEATURES.find((item) => item.slug === feature.slug)?.advancedOnly ? "Advanced" : "Standard"} · {feature.short}</small></span>
             </div>
           ))}
           <div className="included-item"><Check size={17} /><span><strong>1-click Setup</strong><small>Enable on any Jira project in under a minute</small></span></div>

@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Check, Ghost } from "lucide-react";
 import { Button, FAQ, FinalCTA, PageHero, SectionHeading } from "../components";
-import { features } from "../content";
+
 
 type Edition = "standard" | "advanced";
 type Billing = "Monthly" | "Annual";
@@ -77,6 +77,48 @@ const EDITION_FEATURES = [
   { slug: "bulk-actions", title: "Bulk actions", advancedOnly: true },
   { slug: "dashboards", title: "Dashboards", advancedOnly: true },
 ] as const;
+
+const COMPARE_GROUPS = [
+  {
+    title: "Checklists",
+    rows: [
+      { slug: "organized-checklists", title: "Organized checklists", standard: true, advanced: true },
+      { slug: "personal-checklists", title: "Personal checklists", standard: true, advanced: true },
+      { slug: "flexible-views", title: "Views & filters", standard: true, advanced: true },
+      { slug: "native-experience", title: "Made for Jira", standard: true, advanced: true },
+    ],
+  },
+  {
+    title: "Controls",
+    rows: [
+      { slug: "mandatory-items", title: "Mandatory items", standard: false, advanced: true },
+      { slug: "completion-locking", title: "Completion & locking", standard: false, advanced: true },
+      { slug: "bulk-actions", title: "Bulk actions", standard: false, advanced: true },
+    ],
+  },
+  {
+    title: "Visibility",
+    rows: [
+      { slug: "progress-tracking", title: "Progress tracking", standard: true, advanced: true },
+      { slug: "dashboards", title: "Dashboards", standard: false, advanced: true },
+    ],
+  },
+  {
+    title: "Billing",
+    rows: [
+      { title: "Atlassian Marketplace billing", standard: true, advanced: true },
+      { title: "Free for up to 10 users", standard: true, advanced: false },
+    ],
+  },
+] as const;
+
+function CompareMark({ included }: { included: boolean }) {
+  return (
+    <span className={`compare-mark${included ? " is-included" : ""}`} aria-label={included ? "Included" : "Not included"}>
+      {included ? <Check size={15} aria-hidden="true" /> : <span aria-hidden="true">—</span>}
+    </span>
+  );
+}
 
 function EditionCard({
   edition,
@@ -220,20 +262,40 @@ export function PricingPage() {
         </div>
         <p className="edition-pricing-footnote">All prices are in USD, excluding tax. Monthly pricing shows the per-user rate and team total. Annual pricing shows the total annual price for your team size tier.</p>
       </section>
-      <section className="section container included-section">
+      <section className="section container compare-plans">
         <SectionHeading
-          eyebrow="COMPARE THE EDITIONS"
-          title="See what changes"
-          description="Standard covers the day-to-day checklist. Advanced adds mandatory items, completion locking, bulk actions, and dashboards."
+          eyebrow="COMPARE PLANS"
+          title="Compare plans & features"
+          description="The same checklist features, shown side by side. Advanced adds the controls and dashboard."
         />
-        <div className="included-grid">
-          {features.map((feature) => (
-            <div className="included-item" key={feature.slug}>
-              <Check size={17} />
-              <span><strong><Link to={`/features/${feature.slug}`}>{feature.title}</Link></strong><small>{EDITION_FEATURES.find((item) => item.slug === feature.slug)?.advancedOnly ? "Advanced" : "Standard"} · {feature.short}</small></span>
-            </div>
-          ))}
-          <div className="included-item"><Check size={17} /><span><strong>1-click Setup</strong><small>Enable on any Jira project in under a minute</small></span></div>
+        <div className="compare-table-wrap">
+          <table aria-label="Compare plans and features">
+            <thead>
+              <tr>
+                <th scope="col">Plans</th>
+                <th scope="col">Standard</th>
+                <th scope="col">Advanced</th>
+              </tr>
+            </thead>
+            <tbody>
+              {COMPARE_GROUPS.map((group) => (
+                <Fragment key={group.title}>
+                  <tr className="compare-group">
+                    <th scope="colgroup" colSpan={3}>{group.title}</th>
+                  </tr>
+                  {group.rows.map((row) => (
+                    <tr key={row.title}>
+                      <th scope="row">
+                        {"slug" in row ? <Link to={`/features/${row.slug}`}>{row.title}</Link> : row.title}
+                      </th>
+                      <td><CompareMark included={row.standard} /></td>
+                      <td><CompareMark included={row.advanced} /></td>
+                    </tr>
+                  ))}
+                </Fragment>
+              ))}
+            </tbody>
+          </table>
         </div>
       </section>
       <FAQ items={[

@@ -249,7 +249,10 @@ export function PricingPage() {
               {(["Monthly", "Annual"] as const).map((period) => (
                 <label key={period}>
                   <input type="radio" name="pricing-billing" value={period} checked={billing === period} onChange={() => setBilling(period)} />
-                  <span>{period}</span>
+                  <span className={period === "Annual" ? "billing-option has-save" : "billing-option"}>
+                    {period}
+                    {period === "Annual" && <span className="save-tag">SAVE ~17%</span>}
+                  </span>
                 </label>
               ))}
             </div>

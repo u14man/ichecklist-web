@@ -312,10 +312,15 @@ export function FeaturesPage() {
             Structure, accountability, and a finish line your team can trust.
             All inside the Jira issue you are already working in.
           </p>
-          <Button to="/demo" variant="dark">
-            See it in action
-            <ArrowUpRight size={17} aria-hidden="true" />
-          </Button>
+          <div className="button-row">
+            <Button to="/demo" variant="dark">
+              See it in action
+              <ArrowUpRight size={17} aria-hidden="true" />
+            </Button>
+            <Button to="/pricing" variant="outline">
+              See pricing
+            </Button>
+          </div>
           <p className="feat-hero-note">
             <Check size={15} aria-hidden="true" />
             Interactive demo. No Jira site connection.
@@ -343,27 +348,29 @@ export function FeaturesPage() {
         </div>
       </section>
 
-      {featureModules.map((module) => (
-        <section
-          className="feat-module container"
-          id={module.slug}
-          key={module.slug}
-          aria-labelledby={`${module.slug}-title`}
-        >
-          <header className="feat-module-copy">
-            <span className="feat-eyebrow">{module.eyebrow}</span>
-            <h2 id={`${module.slug}-title`}>{module.title}</h2>
-            <p>{module.description}</p>
-          </header>
-          <div className="feat-stage">
-            <FeaturePreview kind={module.kind} />
-            <Button to={`/features/${module.slug}`} variant="dark">
+      <section className="feat-modules container" aria-label="Feature highlights">
+        {featureModules.map((module) => (
+          <article
+            className="feat-module"
+            id={module.slug}
+            key={module.slug}
+            aria-labelledby={`${module.slug}-title`}
+          >
+            <header className="feat-module-copy">
+              <span className="feat-eyebrow">{module.eyebrow}</span>
+              <h2 id={`${module.slug}-title`}>{module.title}</h2>
+              <p>{module.description}</p>
+            </header>
+            <div className="feat-stage">
+              <FeaturePreview kind={module.kind} />
+            </div>
+            <Link className="feat-highlight-link" to={`/features/${module.slug}`}>
               {module.cta}
               <ArrowUpRight size={16} aria-hidden="true" />
-            </Button>
-          </div>
-        </section>
-      ))}
+            </Link>
+          </article>
+        ))}
+      </section>
 
       <section
         className="feat-catalog-section container"

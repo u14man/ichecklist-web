@@ -4046,11 +4046,9 @@
   }
   
   .feat-collage {
-    display: grid;
-    width: 100%;
-    grid-template-columns: minmax(0, 1.45fr) minmax(220px, 0.7fr);
-    gap: 18px;
-    align-items: center;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr;
   }
   
   .feat-window,

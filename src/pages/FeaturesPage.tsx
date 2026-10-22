@@ -224,10 +224,6 @@ function FeaturePreview({ kind }: { kind: (typeof featureModules)[number]["kind"
             ]}
           />
         </div>
-        <aside className="feat-float">
-          <strong>3</strong>
-          <span>named checklists in this issue</span>
-        </aside>
       </div>
     );
   }
@@ -245,10 +241,6 @@ function FeaturePreview({ kind }: { kind: (typeof featureModules)[number]["kind"
             ]}
           />
         </div>
-        <aside className="feat-notice">
-          <Asterisk size={16} aria-hidden="true" />
-          <span>2 mandatory items still open</span>
-        </aside>
       </div>
     );
   }
@@ -268,10 +260,6 @@ function FeaturePreview({ kind }: { kind: (typeof featureModules)[number]["kind"
           ]}
         />
       </div>
-      <aside className="feat-float">
-        <strong>100%</strong>
-        <span>shared items resolved</span>
-      </aside>
     </div>
   );
 }

@@ -56,6 +56,12 @@ export function BlogArticlePage() {
             <section key={section.id} id={section.id}>
               <h2>{section.title}</h2>
               {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              {section.image && (
+                <figure className="blog-inline-figure">
+                  <img src={section.image} alt={section.imageAlt ?? ""} loading="lazy" />
+                  {section.imageCaption && <figcaption>{section.imageCaption}</figcaption>}
+                </figure>
+              )}
             </section>
           ))}
           {post.sources && post.sources.length > 0 && (

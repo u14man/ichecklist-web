@@ -13559,6 +13559,9 @@
   .blog-prose section { scroll-margin-top: 110px; }
   .blog-prose h2 { margin: 36px 0 12px; font-size: 30px; }
   .blog-prose p + p { margin-top: 12px; }
+  .blog-inline-figure { margin: 24px 0 0; }
+  .blog-inline-figure img { width: 100%; border-radius: 16px; border: 1px solid var(--border); }
+  .blog-inline-figure figcaption { margin-top: 10px; color: var(--muted); font-size: 14px; text-align: center; }
   .blog-sources { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); }
   .blog-sources h2 { margin-top: 0; font-size: 22px; }
   .blog-sources ul { display: flex; flex-direction: column; gap: 10px; padding-left: 20px; }

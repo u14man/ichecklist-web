@@ -2,6 +2,9 @@ export type BlogSection = {
   id: string;
   title: string;
   paragraphs: string[];
+  image?: string;
+  imageAlt?: string;
+  imageCaption?: string;
 };
 
 export type BlogSource = {
@@ -74,6 +77,9 @@ export const blogPosts: BlogPost[] = [
           "Look for transitions where context changes or a missed step becomes costly: before a handoff, before a deployment, or before an issue is marked complete. Those moments are stronger anchors than arbitrary sections such as “miscellaneous.”",
           "For each checkpoint, ask what someone needs to know or confirm at that moment. If a check does not change a decision, prevent an omission, or help the next person continue, it may belong in documentation instead.",
         ],
+        image: "/blog/content/workflow-checkpoints.png",
+        imageAlt: "A workflow timeline with checklist checkpoints placed at four key decision points",
+        imageCaption: "Place checks at real decision points in the workflow, not evenly across arbitrary sections.",
       },
       {
         id: "test-in-the-real-context",
@@ -105,6 +111,9 @@ export const blogPosts: BlogPost[] = [
           "“Check the release” sounds like an action but leaves the important work unstated. Does the person review the notes, verify the build, confirm the rollback, or inspect a dashboard?",
           "Use a verb and a concrete object: “Run the smoke tests on the staging build” or “Attach the support handoff notes.” Specific wording helps two teammates reach the same interpretation without a follow-up conversation.",
         ],
+        image: "/blog/content/vague-vs-specific-item.png",
+        imageAlt: "A vague checklist item next to a specific, verifiable checklist item",
+        imageCaption: "A vague item invites interpretation. A specific one invites verification.",
       },
       {
         id: "define-done",
@@ -144,6 +153,9 @@ export const blogPosts: BlogPost[] = [
           "A checkbox can show that someone marked a step complete. It cannot always show whether the next person understood the result or knows what to do with it.",
           "When work crosses roles, write the checkpoint so the receiving person can respond: confirm the decision, acknowledge the handoff, or record a blocker. That small interaction helps expose a mismatch before it travels downstream.",
         ],
+        image: "/blog/content/handoff-checkpoint.png",
+        imageAlt: "Two team members passing a checklist between them at a handoff moment",
+        imageCaption: "A handoff checkpoint works best when the receiving person can respond, not just acknowledge.",
       },
       {
         id: "use-checkpoints-not-constant-interruption",
@@ -183,6 +195,9 @@ export const blogPosts: BlogPost[] = [
           "Teams often build a detailed pre-deploy checklist and stop there. But release work also includes communicating the change, watching the rollout, supporting users, and learning from what happened.",
           "Atlassian’s product release guide describes a lifecycle that includes planning, development and testing, deployment, and post-release follow-up. Use those phases as a starting point, then tailor each one to your release size and risk.",
         ],
+        image: "/blog/content/release-lifecycle.png",
+        imageAlt: "A circular release lifecycle diagram with plan, build, deploy, support, and review stages",
+        imageCaption: "Release work is a loop, not a single step—plan through to post-release review.",
       },
       {
         id: "make-readiness-specific",
@@ -222,6 +237,9 @@ export const blogPosts: BlogPost[] = [
           "Different tests answer different questions. Unit checks focus on small pieces, integration checks exercise connections, and end-to-end checks follow a complete user journey.",
           "Atlassian’s overview of software testing also describes acceptance, performance, smoke, and exploratory testing. A checklist should name the purpose of each check so “tested” does not conceal important gaps.",
         ],
+        image: "/blog/content/testing-pyramid.png",
+        imageAlt: "A testing pyramid with a wide base of unit tests, a middle band of integration tests, and a small top of end-to-end tests",
+        imageCaption: "Balance fast, repeatable checks at the base with focused end-to-end checks at the top.",
       },
       {
         id: "automate-the-repeatable",
@@ -261,6 +279,9 @@ export const blogPosts: BlogPost[] = [
           "A draft checklist looks complete to the person who wrote it because that person already knows the missing context. A small pilot puts it in front of people who approach the work differently.",
           "Choose a representative workflow and a few intended users. Ask them to use the draft during real work, not just review it in a meeting. Notice where they pause, skip a line, or ask what an item means.",
         ],
+        image: "/blog/content/pilot-feedback-loop.png",
+        imageAlt: "A small group reviewing a checklist together during a pilot test",
+        imageCaption: "A short pilot with real users surfaces friction a solo review will miss.",
       },
       {
         id: "collect-friction-not-opinions-only",

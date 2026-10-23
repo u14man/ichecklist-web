@@ -13550,7 +13550,7 @@
   .blog-byline { margin: 24px 0 32px; }
   .blog-byline strong, .blog-byline small { display: block; text-align: left; }
   .blog-byline small { color: var(--muted); }
-  .blog-article-hero img { width: min(100%, 920px); height: 420px; object-fit: cover; border-radius: 24px; }
+  .blog-article-hero img { width: min(100%, 1150px); height: 420px; object-fit: cover; border-radius: 24px; }
   .blog-article-layout { display: grid; grid-template-columns: 220px minmax(0, 720px); justify-content: center; gap: 48px; margin-top: 48px; }
   .blog-toc { position: sticky; top: 96px; display: flex; flex-direction: column; gap: 12px; align-self: start; }
   .blog-toc strong { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }

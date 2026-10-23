@@ -97,6 +97,7 @@ export const blogPosts: BlogPost[] = [
     author: "Samir Adeyemi",
     role: "Customer education",
     date: "September 24, 2026",
+    featured: true,
     readTime: "5 min read",
     image: "/blog/checklists.png",
     sections: [
@@ -143,6 +144,7 @@ export const blogPosts: BlogPost[] = [
     author: "Priya Nair",
     role: "Implementation",
     date: "September 11, 2026",
+    featured: true,
     readTime: "6 min read",
     image: "/blog/jira-workflows.png",
     sections: [

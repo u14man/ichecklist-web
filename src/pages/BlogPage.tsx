@@ -1,27 +1,19 @@
 import { Link } from "react-router-dom";
 import { blogCategories, blogPosts, postsInCategory, type BlogPost } from "../blog";
 
-function PostMeta({ post }: { post: BlogPost }) {
-  return (
-    <span className="blog-meta">
-      <span className="blog-avatar" aria-hidden="true">{post.author.slice(0, 1)}</span>
-      {post.author}
-      <span aria-hidden="true">·</span>
-      {post.date}
-    </span>
-  );
-}
-
 export function BlogCard({ post }: { post: BlogPost }) {
   return (
     <article className="blog-card">
       <Link to={`/blog/${post.slug}`}>
         <img src={post.image} alt="" />
         <div>
-          <span className="blog-pill">{post.category}</span>
+          <span className="blog-kicker">
+            <span className="blog-pill">{post.category}</span>
+            <span className="blog-kicker-line" aria-hidden="true" />
+            <time>{post.date}</time>
+          </span>
           <h3>{post.title}</h3>
           <p>{post.excerpt}</p>
-          <PostMeta post={post} />
         </div>
       </Link>
     </article>
@@ -31,55 +23,64 @@ export function BlogCard({ post }: { post: BlogPost }) {
 export function BlogIndex({ categorySlug }: { categorySlug?: string }) {
   const category = blogCategories.find((item) => item.slug === categorySlug);
   const posts = postsInCategory(categorySlug);
-  const featured = posts.find((post) => post.featured) ?? posts[0];
-  const rest = posts.filter((post) => post.slug !== featured?.slug);
+  const featured = blogPosts.filter((post) => post.featured);
+  const recent = blogPosts.filter((post) => !post.featured);
+
+  if (category) {
+    return (
+      <div className="blog-page">
+        <header className="blog-hero container">
+          <p className="blog-eyebrow">Category</p>
+          <h1>{category.title}</h1>
+          <p>{category.description}</p>
+        </header>
+        {posts.length > 0 ? (
+          <section className="container blog-block" aria-labelledby="category-posts-title">
+            <h2 id="category-posts-title" className="blog-section-title">Recent posts</h2>
+            <div className="blog-grid">
+              {posts.map((post) => <BlogCard key={post.slug} post={post} />)}
+            </div>
+          </section>
+        ) : (
+          <p className="container blog-empty">No articles in this category yet. <Link to="/blog">Back to the blog</Link></p>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div className="blog-page">
-      <header className="blog-hero container">
-        <h1>{category?.title ?? "Blog"}</h1>
-        <p>{category?.description ?? "Notes on checklists, Jira workflows, and the details that decide whether work is actually done."}</p>
-      </header>
-
-      {!category && (
-        <section className="container blog-categories" aria-label="Blog categories">
-          {blogCategories.map((item) => (
-            <Link key={item.slug} to={`/blog/category/${item.slug}`}>
-              <img src={item.image} alt="" />
-              <span>
-                <strong>{item.title}</strong>
-                <small>{item.description}</small>
-              </span>
-            </Link>
-          ))}
+      <div className="blog-hero-band">
+        <header className="blog-hero container">
+          <p className="blog-eyebrow">Blogs</p>
+          <h1>Notes on checklists, workflows, and release readiness</h1>
+        </header>
+        <section className="container blog-block" aria-labelledby="read-by-category">
+          <h2 id="read-by-category" className="blog-section-title">Read by Category</h2>
+          <div className="blog-categories">
+            {blogCategories.map((item) => (
+              <Link key={item.slug} to={`/blog/category/${item.slug}`}>
+                <img src={item.image} alt="" />
+                <span>{item.title}</span>
+              </Link>
+            ))}
+          </div>
         </section>
-      )}
+      </div>
 
-      {featured && (
-        <section className="container">
-          <article className="blog-featured">
-            <Link to={`/blog/${featured.slug}`}>
-              <img src={featured.image} alt="" />
-              <div>
-                <span className="blog-pill">{featured.category}</span>
-                <h2>{featured.title}</h2>
-                <p>{featured.excerpt}</p>
-                <PostMeta post={featured} />
-              </div>
-            </Link>
-          </article>
-        </section>
-      )}
+      <section className="container blog-block" aria-labelledby="featured-blogs">
+        <h2 id="featured-blogs" className="blog-section-title">Featured blogs</h2>
+        <div className="blog-grid">
+          {featured.map((post) => <BlogCard key={post.slug} post={post} />)}
+        </div>
+      </section>
 
-      {rest.length > 0 && (
-        <section className="container blog-grid" aria-label="More articles">
-          {rest.map((post) => <BlogCard key={post.slug} post={post} />)}
-        </section>
-      )}
-
-      {posts.length === 0 && (
-        <p className="container blog-empty">No articles in this category yet. <Link to="/blog">Back to the blog</Link></p>
-      )}
+      <section className="container blog-block" aria-labelledby="recent-posts">
+        <h2 id="recent-posts" className="blog-section-title">Recent posts</h2>
+        <div className="blog-grid">
+          {recent.map((post) => <BlogCard key={post.slug} post={post} />)}
+        </div>
+      </section>
     </div>
   );
 }

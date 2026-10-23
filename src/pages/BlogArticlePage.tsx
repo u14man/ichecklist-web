@@ -58,6 +58,18 @@ export function BlogArticlePage() {
               {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             </section>
           ))}
+          {post.sources && post.sources.length > 0 && (
+            <section className="blog-sources" aria-labelledby="blog-sources-title">
+              <h2 id="blog-sources-title">Sources & further reading</h2>
+              <ul>
+                {post.sources.map((source) => (
+                  <li key={source.url}>
+                    <a href={source.url} target="_blank" rel="noreferrer">{source.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
         </div>
       </div>
       {related.length > 0 && (

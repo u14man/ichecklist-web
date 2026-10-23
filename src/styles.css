@@ -13559,6 +13559,10 @@
   .blog-prose section { scroll-margin-top: 110px; }
   .blog-prose h2 { margin: 36px 0 12px; font-size: 30px; }
   .blog-prose p + p { margin-top: 12px; }
+  .blog-sources { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); }
+  .blog-sources h2 { margin-top: 0; font-size: 22px; }
+  .blog-sources ul { display: flex; flex-direction: column; gap: 10px; padding-left: 20px; }
+  .blog-sources a { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
   .blog-related { margin-top: 72px; }
   .blog-related > h2 { margin-bottom: 8px; }
   @media (max-width: 900px) {

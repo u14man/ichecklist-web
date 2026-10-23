@@ -4,6 +4,11 @@ export type BlogSection = {
   paragraphs: string[];
 };
 
+export type BlogSource = {
+  label: string;
+  url: string;
+};
+
 export type BlogPost = {
   slug: string;
   title: string;
@@ -17,6 +22,7 @@ export type BlogPost = {
   image: string;
   featured?: boolean;
   sections: BlogSection[];
+  sources?: BlogSource[];
 };
 
 export const blogCategories = [
@@ -41,6 +47,240 @@ export const blogCategories = [
 ] as const;
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "build-checklists-around-real-workflows",
+    title: "Build a checklist around the work, not the template",
+    excerpt: "A useful checklist fits the moment and the people doing the work. Start with the workflow, then write only the checks that help it move safely.",
+    category: "Checklists",
+    categorySlug: "checklists",
+    author: "Lena Ortiz",
+    role: "Product",
+    date: "October 22, 2026",
+    readTime: "6 min read",
+    image: "/blog/checklists.png",
+    sections: [
+      {
+        id: "start-with-the-work",
+        title: "Start with the work",
+        paragraphs: [
+          "Templates are convenient, but they are not a substitute for understanding how a task actually happens. Watch the handoffs, tools, and decisions in the workflow before deciding what belongs on the list.",
+          "The World Health Organization’s surgical safety checklist is a specialized clinical example: it is organized around key moments in an operating-room workflow, rather than presented as a generic collection of reminders. The transferable lesson is to place checks where the work can use them—not to reuse clinical steps in other settings.",
+        ],
+      },
+      {
+        id: "find-the-decision-points",
+        title: "Find the decision points",
+        paragraphs: [
+          "Look for transitions where context changes or a missed step becomes costly: before a handoff, before a deployment, or before an issue is marked complete. Those moments are stronger anchors than arbitrary sections such as “miscellaneous.”",
+          "For each checkpoint, ask what someone needs to know or confirm at that moment. If a check does not change a decision, prevent an omission, or help the next person continue, it may belong in documentation instead.",
+        ],
+      },
+      {
+        id: "test-in-the-real-context",
+        title: "Test it in the real context",
+        paragraphs: [
+          "A checklist that reads clearly at a desk may be awkward on a busy shift or inside a crowded issue. Try it with the people who will use it, in the order they will use it, and notice where they stop to interpret a line.",
+          "Revise based on observed friction. A small pilot catches missing owners, duplicated checks, and bad timing before a template becomes a permanent part of everyone’s day.",
+        ],
+      },
+    ],
+    sources: [{ label: "WHO Surgical Safety Checklist Implementation Manual", url: "https://iris.who.int/handle/10665/44186" }],
+  },
+  {
+    slug: "write-checklist-items-that-can-be-verified",
+    title: "Write checklist items someone can actually verify",
+    excerpt: "Replace vague reminders with actions that have a clear owner, a visible outcome, and an unambiguous finish.",
+    category: "Checklists",
+    categorySlug: "checklists",
+    author: "Samir Adeyemi",
+    role: "Customer education",
+    date: "October 20, 2026",
+    readTime: "5 min read",
+    image: "/blog/checklists.png",
+    sections: [
+      {
+        id: "replace-vague-language",
+        title: "Replace vague language",
+        paragraphs: [
+          "“Check the release” sounds like an action but leaves the important work unstated. Does the person review the notes, verify the build, confirm the rollback, or inspect a dashboard?",
+          "Use a verb and a concrete object: “Run the smoke tests on the staging build” or “Attach the support handoff notes.” Specific wording helps two teammates reach the same interpretation without a follow-up conversation.",
+        ],
+      },
+      {
+        id: "define-done",
+        title: "Define what done looks like",
+        paragraphs: [
+          "A check is easier to complete when the expected evidence is visible. “Confirm keyboard navigation” can be strengthened with a scope: “Verify tab order and focus visibility on the signup flow.”",
+          "Not every item needs a document attached. Sometimes the outcome is a decision or a clear acknowledgment. The key is to make the completion condition explicit enough that the next person can trust it.",
+        ],
+      },
+      {
+        id: "keep-one-action-per-item",
+        title: "Keep one action per item",
+        paragraphs: [
+          "A line that asks someone to review copy, test permissions, update documentation, and notify support is four tasks disguised as one. It is hard to assign, hard to estimate, and easy to partially complete.",
+          "Split bundled work when different people or outcomes are involved. Keep related checks together only when they are performed as one deliberate step and share the same owner.",
+        ],
+      },
+    ],
+    sources: [{ label: "WHO Surgical Safety Checklist Implementation Manual", url: "https://iris.who.int/handle/10665/44186" }],
+  },
+  {
+    slug: "checklists-as-team-conversations",
+    title: "A checklist can be a team conversation, not a form",
+    excerpt: "For work with handoffs, the value of a checklist is often in making people align at the right moment—not in collecting more ticks.",
+    category: "Jira workflows",
+    categorySlug: "jira-workflows",
+    author: "Priya Nair",
+    role: "Implementation",
+    date: "October 18, 2026",
+    readTime: "6 min read",
+    image: "/blog/jira-workflows.png",
+    sections: [
+      {
+        id: "make-the-handoff-visible",
+        title: "Make the handoff visible",
+        paragraphs: [
+          "A checkbox can show that someone marked a step complete. It cannot always show whether the next person understood the result or knows what to do with it.",
+          "When work crosses roles, write the checkpoint so the receiving person can respond: confirm the decision, acknowledge the handoff, or record a blocker. That small interaction helps expose a mismatch before it travels downstream.",
+        ],
+      },
+      {
+        id: "use-checkpoints-not-constant-interruption",
+        title: "Use checkpoints, not constant interruption",
+        paragraphs: [
+          "Not every task needs a meeting. A team checkpoint is most useful at a real transition—before a risky change, after a review, or when responsibility moves to another role.",
+          "The WHO checklist manual describes a clinical protocol built around team communication at defined phases. For software and operations teams, treat that as an example of timing and coordination, not as a process to copy literally.",
+        ],
+      },
+      {
+        id: "leave-a-readable-record",
+        title: "Leave a readable record",
+        paragraphs: [
+          "After a conversation, capture the outcome where the work lives: what was confirmed, who owns the next action, and what remains blocked. That keeps the checklist useful to teammates who were not present.",
+          "A list should support communication, not pretend to replace it. If the team repeatedly needs context that cannot fit in the item, link the relevant decision or note beside the check.",
+        ],
+      },
+    ],
+    sources: [{ label: "WHO Surgical Safety Checklist Implementation Manual", url: "https://iris.who.int/handle/10665/44186" }],
+  },
+  {
+    slug: "release-checklist-after-deployment",
+    title: "Your release checklist should continue after deployment",
+    excerpt: "A release is not finished when code ships. Planning, readiness, rollout, support, and follow-up belong in the same view of the work.",
+    category: "Release readiness",
+    categorySlug: "release-readiness",
+    author: "Lena Ortiz",
+    role: "Product",
+    date: "October 15, 2026",
+    readTime: "6 min read",
+    image: "/blog/release-readiness.png",
+    sections: [
+      {
+        id: "plan-the-full-release",
+        title: "Plan the full release",
+        paragraphs: [
+          "Teams often build a detailed pre-deploy checklist and stop there. But release work also includes communicating the change, watching the rollout, supporting users, and learning from what happened.",
+          "Atlassian’s product release guide describes a lifecycle that includes planning, development and testing, deployment, and post-release follow-up. Use those phases as a starting point, then tailor each one to your release size and risk.",
+        ],
+      },
+      {
+        id: "make-readiness-specific",
+        title: "Make readiness specific",
+        paragraphs: [
+          "“Ready to ship” is not a useful item unless the team agrees what readiness means. Name the observable checks: build validated, change owner identified, support notes available, and rollback path understood where applicable.",
+          "Keep the list proportional. A small internal change may need only a few checks; a customer-facing migration may need explicit dependencies, communication, and recovery steps.",
+        ],
+      },
+      {
+        id: "add-aftercare",
+        title: "Add aftercare to the plan",
+        paragraphs: [
+          "Give someone ownership of the first post-release review. Decide which signals to watch, where user feedback goes, and what condition would pause or reverse the rollout.",
+          "Closing those items turns the release into a learning loop. The next checklist can reflect real incidents and recurring questions instead of growing from speculation alone.",
+        ],
+      },
+    ],
+    sources: [{ label: "Atlassian Product release guide", url: "https://www.atlassian.com/agile/product-management/product-release" }],
+  },
+  {
+    slug: "testing-checklist-across-test-levels",
+    title: "Build a testing checklist across the right test levels",
+    excerpt: "A strong test checklist balances fast automated checks with focused end-to-end and exploratory testing for high-risk user journeys.",
+    category: "Release readiness",
+    categorySlug: "release-readiness",
+    author: "Priya Nair",
+    role: "Implementation",
+    date: "October 12, 2026",
+    readTime: "7 min read",
+    image: "/blog/release-readiness.png",
+    sections: [
+      {
+        id: "choose-tests-by-purpose",
+        title: "Choose tests by purpose",
+        paragraphs: [
+          "Different tests answer different questions. Unit checks focus on small pieces, integration checks exercise connections, and end-to-end checks follow a complete user journey.",
+          "Atlassian’s overview of software testing also describes acceptance, performance, smoke, and exploratory testing. A checklist should name the purpose of each check so “tested” does not conceal important gaps.",
+        ],
+      },
+      {
+        id: "automate-the-repeatable",
+        title: "Automate the repeatable",
+        paragraphs: [
+          "Automated tests are useful for checks teams need to repeat frequently, especially when code changes. They provide fast feedback when their scope is clear and the expected outcome is stable.",
+          "Manual exploratory sessions still matter for questions that are harder to script: confusing behavior, unexpected combinations, and usability details. Give those sessions a focused area and a time box rather than a vague instruction to “click around.”",
+        ],
+      },
+      {
+        id: "prioritize-by-risk",
+        title: "Prioritize by risk and impact",
+        paragraphs: [
+          "A checklist cannot prove that every possible bug is absent. It can help a team spend attention where failure would matter most: critical paths, recently changed behavior, integrations, and recovery flows.",
+          "After a defect is found, add a regression check when it can prevent the same failure from returning. Keep the suite readable and remove checks that no longer protect a meaningful behavior.",
+        ],
+      },
+    ],
+    sources: [{ label: "Atlassian: The different types of software testing", url: "https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing" }],
+  },
+  {
+    slug: "pilot-a-checklist-before-scaling",
+    title: "Pilot a checklist before you roll it out to everyone",
+    excerpt: "A short trial can reveal missing context, awkward timing, and unclear ownership before a checklist becomes another ignored template.",
+    category: "Checklists",
+    categorySlug: "checklists",
+    author: "Samir Adeyemi",
+    role: "Customer education",
+    date: "October 9, 2026",
+    readTime: "5 min read",
+    image: "/blog/checklists.png",
+    sections: [
+      {
+        id: "start-with-a-small-group",
+        title: "Start with a small group",
+        paragraphs: [
+          "A draft checklist looks complete to the person who wrote it because that person already knows the missing context. A small pilot puts it in front of people who approach the work differently.",
+          "Choose a representative workflow and a few intended users. Ask them to use the draft during real work, not just review it in a meeting. Notice where they pause, skip a line, or ask what an item means.",
+        ],
+      },
+      {
+        id: "collect-friction-not-opinions-only",
+        title: "Collect friction, not opinions only",
+        paragraphs: [
+          "“Looks good” is a weak success signal. Track practical evidence: which items were misunderstood, which checks duplicated another control, and whether the checklist appeared at the right point in the workflow.",
+          "WHO’s implementation manual recommends adapting its clinical checklist to local settings and building support with the people who use it. That principle applies broadly, while the medical content itself must remain within qualified clinical guidance.",
+        ],
+      },
+      {
+        id: "revise-and-review-again",
+        title: "Revise, then review again",
+        paragraphs: [
+          "Remove low-value items, clarify ambiguous verbs, and add only the missing checks the pilot exposed. If the list becomes long, split it by phase or role instead of shrinking the type until it is hard to use.",
+          "After rollout, set a point to revisit the checklist. Work changes, tools change, and old checks can become noise. A lightweight review keeps the list aligned with how the team actually operates.",
+        ],
+      },
+    ],
+    sources: [{ label: "WHO Surgical Safety Checklist Implementation Manual", url: "https://iris.who.int/handle/10665/44186" }],
+  },
   {
     slug: "checklist-that-stays-in-the-issue",
     title: "A checklist that stays inside the issue",

@@ -187,11 +187,11 @@
   
   .eyebrow {
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 16px;
     letter-spacing: 0.08em;
     font-weight: 500;
     line-height: 1.6;
-    color: var(--muted);
+    color: var(--violet);
     display: block;
     margin-bottom: 17px;
     text-transform: uppercase;
@@ -11006,9 +11006,9 @@
   
   .ichecklist-hero-container>.ichecklist-kicker {
     margin: 16px 0 0;
-  color: var(--muted);
+  color: var(--violet);
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 500;
   letter-spacing: 0.08em;
     line-height: 21px;
@@ -13493,20 +13493,19 @@
 
   .blog-page { padding: 0 0 96px; }
   .blog-hero-band {
-    padding: 72px 0 64px;
-    background: linear-gradient(180deg, #d9e7ff 0%, #efe4ff 46%, #ffe6f1 78%, #fff 100%);
+    padding: 88px 0 64px;
   }
-  .blog-hero { text-align: center; margin-bottom: 56px; }
-  .blog-eyebrow { margin: 0; color: var(--violet); font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+  .blog-hero { text-align: center; margin-bottom: 90px; max-width: 660px; }
+  .blog-eyebrow { margin: 0; color: var(--violet); font-size: 16px; font-family: var(--font-mono); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
   .blog-hero h1 {
     max-width: 860px;
     margin: 14px auto 0;
-    font-size: clamp(44px, 6vw, 72px);
+    font-size: clamp(44px, 6vw, 56px);
     line-height: 1.05;
     letter-spacing: -0.045em;
     color: var(--ink);
   }
-  .blog-hero p { max-width: 620px; margin: 18px auto 0; font-size: 18px; }
+  .blog-hero p { max-width: 620px; margin: 18px auto 0; font-size: 16px; }
   .blog-block { margin-top: 8px; }
   .blog-block + .blog-block { margin-top: 72px; }
   .blog-section-title {

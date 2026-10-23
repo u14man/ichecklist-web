@@ -50,7 +50,7 @@ export function BlogIndex({ categorySlug }: { categorySlug?: string }) {
 
   return (
     <div className="blog-page">
-      <div className="blog-hero-band">
+      <div className="blog-hero-band bg-gradient-primary-light">
         <header className="blog-hero container">
           <p className="blog-eyebrow">Blogs</p>
           <h1>Notes on checklists, workflows, and release readiness</h1>

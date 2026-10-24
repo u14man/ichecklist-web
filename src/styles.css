@@ -13566,7 +13566,11 @@
   .blog-sources h2 { margin-top: 0; font-size: 22px; }
   .blog-sources ul { display: flex; flex-direction: column; gap: 10px; padding-left: 20px; }
   .blog-sources a { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
-  .blog-related { margin-top: 72px; }
+  .blog-related {
+    margin-top: 64px;
+    padding-top: 64px;
+    border-top: 1px solid var(--border);
+  }
   .blog-related > h2 { margin-bottom: 8px; }
   @media (max-width: 900px) {
     .blog-categories, .blog-grid, .blog-article-layout { grid-template-columns: 1fr; }

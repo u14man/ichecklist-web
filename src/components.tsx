@@ -11,6 +11,7 @@ import {
   ChevronRight,
   CircleCheck,
   CircleHelp,
+  CreditCard,
   FileText,
   Instagram,
   Linkedin,
@@ -600,6 +601,7 @@ export function FinalCTA({ variant = "default" }: { variant?: "default" | "launc
           </div>
           <p className="cta-banner-note">
             <span className="cta-banner-note-item">
+              <CreditCard size={16} aria-hidden="true" />
               No credit card required
             </span>
             <span className="cta-banner-note-separator" aria-hidden="true">•</span>

@@ -13654,7 +13654,7 @@
     object-fit: cover;
     border-radius: 20px;
   }
-  .blog-article-layout { display: grid; grid-template-columns: 360px minmax(0, 930px); justify-content: center; gap: 48px; margin-top: 48px; }
+  .blog-article-layout { display: grid; grid-template-columns: minmax(0, 990px) 220px; justify-content: center; gap: 48px; margin-top: 48px; }
   .blog-toc { position: sticky; top: 96px; display: flex; flex-direction: column; gap: 12px; align-self: start; order: 2; }
   .blog-prose { order: 1; }
   .blog-toc strong { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { CheckCircle2 } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { blogPosts } from "../blog";
 import { BlogCard } from "./BlogPage";
@@ -91,6 +92,15 @@ export function BlogArticlePage() {
               {section.title}
             </a>
           ))}
+          <aside className="blog-toc-cta" aria-label="Get started with iChecklist">
+            <h2>Start using iChecklist today</h2>
+            <ul>
+              <li><CheckCircle2 size={17} aria-hidden="true" />Manage all your checklists in one place</li>
+              <li><CheckCircle2 size={17} aria-hidden="true" />Collaborate with your team</li>
+              <li><CheckCircle2 size={17} aria-hidden="true" />Use iChecklist for free—no credit card required</li>
+            </ul>
+            <Link className="blog-toc-cta-button" to="/demo">Get started</Link>
+          </aside>
         </nav>
         <div className="blog-prose">
           {post.sections.map((section) => (

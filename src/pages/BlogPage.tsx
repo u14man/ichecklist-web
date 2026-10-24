@@ -27,20 +27,38 @@ export function BlogIndex({ categorySlug }: { categorySlug?: string }) {
   const recent = blogPosts.filter((post) => !post.featured);
 
   if (category) {
+    const [lead, ...rest] = posts;
     return (
       <div className="blog-page">
-        <header className="blog-hero container">
-          <p className="blog-eyebrow">Category</p>
-          <h1>{category.title}</h1>
-          <p>{category.description}</p>
-        </header>
-        {posts.length > 0 ? (
-          <section className="container blog-block" aria-labelledby="category-posts-title">
-            <h2 id="category-posts-title" className="blog-section-title">Recent posts</h2>
-            <div className="blog-grid">
-              {posts.map((post) => <BlogCard key={post.slug} post={post} />)}
-            </div>
-          </section>
+        <div className="blog-hero-band bg-gradient-primary-light">
+          <header className="blog-hero blog-category-hero container">
+            <span className="blog-category-pill">Category</span>
+            <h1>{category.title}</h1>
+            <p>{category.description}</p>
+          </header>
+        </div>
+        {lead ? (
+          <div className="container blog-category-posts">
+            <article className="blog-category-lead">
+              <Link to={`/blog/${lead.slug}`}>
+                <img src={lead.image} alt="" />
+                <div>
+                  <span className="blog-kicker">
+                    <span className="blog-pill">{lead.category}</span>
+                    <span className="blog-kicker-line" aria-hidden="true" />
+                    <time>{lead.date}</time>
+                  </span>
+                  <h2>{lead.title}</h2>
+                  <p>{lead.excerpt}</p>
+                </div>
+              </Link>
+            </article>
+            {rest.length > 0 && (
+              <div className="blog-grid">
+                {rest.map((post) => <BlogCard key={post.slug} post={post} />)}
+              </div>
+            )}
+          </div>
         ) : (
           <p className="container blog-empty">No articles in this category yet. <Link to="/blog">Back to the blog</Link></p>
         )}

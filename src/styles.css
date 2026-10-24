@@ -13556,6 +13556,37 @@
   .blog-card h3 { font-size: 24px; line-height: 1.25; letter-spacing: -0.03em; }
   .blog-byline { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 14px; }
   .blog-avatar { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--ink); color: #fff; font-size: 13px; font-weight: 700; }
+  .blog-category-hero { max-width: 760px; margin-bottom: 0; }
+  .blog-category-pill {
+    display: inline-flex;
+    margin: 0 auto 20px;
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: #fff;
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+  .blog-category-hero h1 { font-size: clamp(48px, 6vw, 72px); }
+  .blog-category-hero p { color: var(--muted); font-size: 18px; line-height: 1.6; }
+  .blog-category-posts { display: flex; flex-direction: column; gap: 56px; padding-top: 8px; }
+  .blog-category-lead a {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 40px;
+    align-items: center;
+    color: var(--ink);
+  }
+  .blog-category-lead img { width: 100%; height: 360px; object-fit: cover; border-radius: 20px; }
+  .blog-category-lead h2 {
+    margin-top: 16px;
+    font-size: clamp(32px, 4vw, 44px);
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+  }
+  .blog-category-lead p { margin-top: 14px; color: var(--muted); font-size: 16px; line-height: 1.6; }
   .blog-back { padding-top: 28px; font-size: 14px; font-weight: 600; }
   .blog-back a { color: var(--violet); }
   .blog-empty { padding: 40px 0 80px; }
@@ -13627,8 +13658,8 @@
   }
   .blog-related > h2 { margin-bottom: 8px; }
   @media (max-width: 900px) {
-    .blog-categories, .blog-grid, .blog-article-layout { grid-template-columns: 1fr; }
-    .blog-card img, .blog-article-hero img { height: 220px; min-height: 0; }
+    .blog-categories, .blog-grid, .blog-article-layout, .blog-category-lead a { grid-template-columns: 1fr; }
+    .blog-card img, .blog-article-hero img, .blog-category-lead img { height: 220px; min-height: 0; }
     .blog-toc { position: static; }
   }
   

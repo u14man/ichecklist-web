@@ -7,6 +7,7 @@ import {
   Check,
   CheckCheck,
   ChevronDown,
+  Clock3,
   ChevronRight,
   CircleCheck,
   CircleHelp,
@@ -514,18 +515,6 @@ export function PageHero({
   );
 }
 
-function CtaSparkle() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
-      <path
-        fill="currentColor"
-        d="M12 1.6 13.55 8.9 20.8 10.45 13.55 12 12 19.3 10.45 12 3.2 10.45 10.45 8.9Z"
-      />
-      <circle cx="18.6" cy="5.2" r="1.35" fill="currentColor" opacity="0.45" />
-    </svg>
-  );
-}
-
 export function FinalCTA({ variant = "default" }: { variant?: "default" | "launch" } = {}) {
   if (variant === "launch") {
     return (
@@ -602,7 +591,7 @@ export function FinalCTA({ variant = "default" }: { variant?: "default" | "launc
         <div className="cta-banner-actions">
           <div className="cta-banner-buttons">
             <Link className="cta-banner-btn cta-banner-btn-solid" to="/demo">
-              <CtaSparkle />
+              <Sparkles />
               Give it a try
             </Link>
             <Link className="cta-banner-btn cta-banner-btn-outline" to="/contact">
@@ -610,8 +599,14 @@ export function FinalCTA({ variant = "default" }: { variant?: "default" | "launc
             </Link>
           </div>
           <p className="cta-banner-note">
-            <Check size={16} />
-            Interactive demo. No account needed.
+            <span className="cta-banner-note-item">
+              No credit card required
+            </span>
+            <span className="cta-banner-note-separator" aria-hidden="true">•</span>
+            <span className="cta-banner-note-item">
+              <Clock3 size={16} aria-hidden="true" />
+              30-day free trial
+            </span>
           </p>
         </div>
       </div>

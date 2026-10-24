@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { blogPosts } from "../blog";
 import { BlogCard } from "./BlogPage";
@@ -8,23 +8,49 @@ export function BlogArticlePage() {
   const { slug = "" } = useParams();
   const post = blogPosts.find((item) => item.slug === slug);
   const [active, setActive] = useState(post?.sections[0]?.id ?? "");
+  const lockedId = useRef<string | null>(null);
 
   useEffect(() => {
     if (!post) return;
-    const sections = post.sections
-      .map((section) => document.getElementById(section.id))
-      .filter((section): section is HTMLElement => Boolean(section));
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible?.target.id) setActive(visible.target.id);
-      },
-      { rootMargin: "-20% 0px -65% 0px", threshold: [0.2, 0.6] },
-    );
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
+    const offset = 150;
+    let settleTimer = 0;
+
+    const updateActive = () => {
+      if (lockedId.current) {
+        setActive(lockedId.current);
+        window.clearTimeout(settleTimer);
+        settleTimer = window.setTimeout(() => {
+          lockedId.current = null;
+          updateActive();
+        }, 150);
+        return;
+      }
+
+      const nearBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 8;
+      if (nearBottom) {
+        setActive(post.sections[post.sections.length - 1]?.id ?? "");
+        return;
+      }
+
+      let current = post.sections[0]?.id ?? "";
+      for (const section of post.sections) {
+        const element = document.getElementById(section.id);
+        if (element && element.getBoundingClientRect().top - offset <= 0) {
+          current = section.id;
+        }
+      }
+      setActive(current);
+    };
+
+    updateActive();
+    window.addEventListener("scroll", updateActive, { passive: true });
+    window.addEventListener("hashchange", updateActive);
+    return () => {
+      window.clearTimeout(settleTimer);
+      window.removeEventListener("scroll", updateActive);
+      window.removeEventListener("hashchange", updateActive);
+    };
   }, [post]);
 
   if (!post) return <NotFound />;
@@ -45,7 +71,7 @@ export function BlogArticlePage() {
             </span>
           </div>
         </div>
-        <div className="container">
+        <div className="container blog-article-banner">
           <img src={post.image} alt="" />
         </div>
       </header>
@@ -53,7 +79,17 @@ export function BlogArticlePage() {
         <nav className="blog-toc" aria-label="On this page">
           <strong>On this page</strong>
           {post.sections.map((section) => (
-            <a key={section.id} href={`#${section.id}`} aria-current={active === section.id ? "true" : undefined}>{section.title}</a>
+            <a
+              key={section.id}
+              href={`#${section.id}`}
+              aria-current={active === section.id ? "true" : undefined}
+              onClick={() => {
+                lockedId.current = section.id;
+                setActive(section.id);
+              }}
+            >
+              {section.title}
+            </a>
           ))}
         </nav>
         <div className="blog-prose">

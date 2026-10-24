@@ -32,17 +32,22 @@ export function BlogArticlePage() {
 
   return (
     <article className="blog-article">
-      <header className="container blog-article-hero">
-        <Link className="blog-pill" to={`/blog/category/${post.categorySlug}`}>{post.category}</Link>
-        <h1>{post.title}</h1>
-        <p>{post.excerpt}</p>
-        <div className="blog-byline">
-          <span className="blog-avatar" aria-hidden="true">{post.author.slice(0, 1)}</span>
-          <span><strong>{post.author}</strong><small>{post.role}</small></span>
-          <span>{post.date}</span>
-          <span>{post.readTime}</span>
+      <header className="blog-article-hero">
+        <div className="container blog-article-intro">
+          <Link className="blog-article-category" to={`/blog/category/${post.categorySlug}`}>{post.category}</Link>
+          <h1>{post.title}</h1>
+          <p>{post.excerpt}</p>
+          <div className="blog-article-author">
+            <span className="blog-avatar" aria-hidden="true">{post.author.slice(0, 1)}</span>
+            <span>
+              <strong>{post.author}</strong>
+              <small>Updated on {post.date}</small>
+            </span>
+          </div>
         </div>
-        <img src={post.image} alt="" />
+        <div className="container">
+          <img src={post.image} alt="" />
+        </div>
       </header>
       <div className="container blog-article-layout">
         <nav className="blog-toc" aria-label="On this page">

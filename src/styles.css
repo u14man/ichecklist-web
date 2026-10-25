@@ -10458,67 +10458,96 @@
   }
 
   .pricing-page .edition-toolbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 24px;
-    padding: 22px 24px;
-    border: 1px solid var(--pricing-line);
-    border-radius: 20px;
-    background: var(--pricing-surface);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    align-items: stretch;
+    gap: 16px;
     color: var(--ink);
   }
 
-  .pricing-page .edition-team-controls,
-  .pricing-page .edition-team-input,
-  .pricing-page .edition-presets {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+  .pricing-page .edition-team-panel,
+  .pricing-page .edition-billing {
+    min-width: 0;
+    padding: 24px;
+    border: 1px solid var(--pricing-line);
+    border-radius: 20px;
+    background: var(--pricing-surface);
   }
 
-  .pricing-page .edition-team-controls { flex-wrap: wrap; gap: 20px; }
-  .pricing-page .edition-team-input label,
-  .pricing-page .edition-billing legend { font-size: 14px; font-weight: 600; }
+  .pricing-page .edition-team-panel { display: flex; flex-direction: column; gap: 18px; }
+  .pricing-page .edition-team-copy { display: flex; flex-direction: column; gap: 4px; }
+  .pricing-page .edition-team-copy label,
+  .pricing-page .edition-billing legend { font-size: 15px; font-weight: 700; color: var(--ink); }
+  .pricing-page .edition-team-copy p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+  .pricing-page .edition-stepper { display: flex; align-items: center; gap: 10px; }
+  .pricing-page .edition-step {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 auto;
+    border: 1px solid var(--pricing-line);
+    border-radius: 12px;
+    background: var(--pricing-surface);
+    color: var(--ink);
+  }
+  .pricing-page .edition-step:hover:not(:disabled) { border-color: color-mix(in srgb, var(--violet) 45%, var(--pricing-line)); color: var(--violet); }
   .pricing-page .edition-number-field {
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 10px 12px;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+    height: 52px;
+    padding: 0 16px;
     border: 1px solid var(--pricing-line);
-    border-radius: 10px;
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--ink) 2%, #fff);
     color: var(--muted);
-    font-size: 14px;
   }
   .pricing-page .edition-number-field input {
-    width: 64px;
+    width: 100%;
     min-width: 0;
     border: 0;
     background: transparent;
     color: var(--ink);
     font: inherit;
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+    appearance: textfield;
   }
+  .pricing-page .edition-number-field input::-webkit-outer-spin-button,
+  .pricing-page .edition-number-field input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  .pricing-page .edition-number-field span { flex: 0 0 auto; font-size: 14px; font-weight: 650; }
   .pricing-page .edition-number-field:focus-within { outline: 2px solid var(--violet); outline-offset: 3px; }
   .pricing-page .edition-number-field input:focus { outline: none; }
-  .pricing-page .edition-presets { flex-wrap: wrap; gap: 6px; }
+  .pricing-page .edition-presets {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 4px;
+    width: 100%;
+    padding: 4px;
+    border: 1px solid var(--pricing-line);
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--ink) 3%, #fff);
+  }
   .pricing-page .edition-presets button {
-    padding: 7px 9px;
-    border: 1px solid transparent;
-    border-radius: 8px;
+    min-height: 40px;
+    padding: 8px 4px;
+    border: 0;
+    border-radius: 10px;
     background: transparent;
     color: var(--muted);
     font-size: 14px;
+    font-weight: 650;
     font-variant-numeric: tabular-nums;
   }
-  .pricing-page .edition-presets button[aria-pressed="true"] {
-    background: var(--pricing-soft);
-    color: var(--violet);
-    border-color: color-mix(in srgb, var(--violet) 25%, transparent);
-  }
-  .pricing-page .edition-billing { border: 0; padding: 0; min-width: 0; }
-  .pricing-page .edition-billing legend { color: var(--muted); margin-bottom: 8px; }
+  .pricing-page .edition-presets button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+  .pricing-page .edition-billing { display: flex; flex-direction: column; justify-content: center; gap: 12px; margin: 0; }
+  .pricing-page .edition-billing legend { margin-bottom: 0; }
   .pricing-page .edition-billing-switch {
     display: flex;
     padding: 4px;
@@ -10535,6 +10564,7 @@
   .pricing-page .edition-billing-switch input:checked + .billing-option { background: var(--ink); color: var(--pricing-surface); }
   .pricing-page .edition-billing-switch input:focus-visible + .billing-option,
   .pricing-page .edition-presets button:focus-visible,
+  .pricing-page .edition-step:focus-visible,
   .pricing-page .edition-card .button:focus-visible { outline: 2px solid var(--violet); outline-offset: 3px; }
   .pricing-page .edition-team-help { color: var(--muted); font-size: 14px; line-height: 1.6; margin: 12px 0 30px; }
   .pricing-page .edition-team-help a { display: inline-flex; align-items: center; gap: 4px; color: var(--violet); }
@@ -10596,13 +10626,14 @@
   .compare-mark.is-included { width: 22px; height: 22px; border-radius: 6px; background: #e7f8ee; color: #16a34a; font-size: inherit; }
 
   @media (max-width: 900px) {
-    .pricing-page .edition-toolbar { flex-direction: column; align-items: stretch; }
+    .pricing-page .edition-toolbar { grid-template-columns: 1fr; }
     .pricing-page .edition-billing { display: flex; }
     .pricing-page .edition-card { padding: 26px; }
   }
   @media (max-width: 640px) {
-    .pricing-page .edition-toolbar { padding: 20px; }
-    .pricing-page .edition-team-controls { flex-direction: column; align-items: flex-start; }
+    .pricing-page .edition-team-panel,
+    .pricing-page .edition-billing { padding: 20px; }
+    .pricing-page .edition-presets { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .pricing-page .edition-comparison { flex-direction: column; }
     .pricing-page .edition-card { padding: 24px; }
     .pricing-page .edition-heading p { min-height: 0; }

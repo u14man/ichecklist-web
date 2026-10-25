@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Asterisk, Check, Diamond, Ghost } from "lucide-react";
+import { ArrowRight, Asterisk, Check, Diamond, Ghost, Minus, Plus } from "lucide-react";
 import { Button, FAQ, FinalCTA, PageHero, SectionHeading } from "../components";
 
 
@@ -216,6 +216,12 @@ export function PricingPage() {
     setUsers(next);
     setUsersInput(String(next));
   };
+  const stepUsers = (delta: number) => {
+    const base = usersInput.trim() === "" || !Number.isFinite(Number(usersInput)) ? users : Number(usersInput);
+    const next = normalizeUsers(base + delta);
+    setUsers(next);
+    setUsersInput(String(next));
+  };
 
   return (
     <>
@@ -227,13 +233,22 @@ export function PricingPage() {
       />
       <section className="container pricing-page" aria-label="Compare editions and pricing">
         <div className="edition-toolbar">
-          <div className="edition-team-controls">
-            <div className="edition-team-input">
+          <div className="edition-team-panel">
+            <div className="edition-team-copy">
               <label htmlFor="pricing-team-size">Team size</label>
+              <p>Pick a common size, or enter an exact number from 1 to 2,500.</p>
+            </div>
+            <div className="edition-stepper">
+              <button type="button" className="edition-step" aria-label="Decrease team size" disabled={users <= 1} onClick={() => stepUsers(-1)}>
+                <Minus size={16} aria-hidden="true" />
+              </button>
               <div className="edition-number-field">
                 <input id="pricing-team-size" type="number" inputMode="numeric" min={1} max={2500} step={1} value={usersInput} onChange={(event) => updateUsers(event.target.value)} onBlur={commitUsers} aria-describedby="pricing-team-help" />
                 <span aria-hidden="true">users</span>
               </div>
+              <button type="button" className="edition-step" aria-label="Increase team size" disabled={users >= 2500} onClick={() => stepUsers(1)}>
+                <Plus size={16} aria-hidden="true" />
+              </button>
             </div>
             <div className="edition-presets" role="group" aria-label="Common team sizes">
               {[10, 25, 100, 500, 1000, 2500].map((preset) => (

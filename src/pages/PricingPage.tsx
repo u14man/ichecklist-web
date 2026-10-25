@@ -133,12 +133,10 @@ function EditionCard({
   const advanced = edition === "advanced";
   const name = advanced ? "Advanced" : "Standard";
   const tiers = advanced ? ADVANCED_ANNUAL : STANDARD_ANNUAL;
-  const tierIndex = tiers.findIndex(([max]) => users <= max);
-  const tier = tiers[tierIndex];
+  const tier = tiers.find(([max]) => users <= max);
   const rate = monthlyRate(edition, users);
   const price = annual ? tier?.[1] : rate;
   const free = price === 0;
-  const tierMin = tierIndex <= 0 ? 1 : tiers[tierIndex - 1][0] + 1;
   const quoteParams = new URLSearchParams({
     topic: "Pricing",
     edition,
@@ -150,7 +148,7 @@ function EditionCard({
     <article className={`edition-card${advanced ? " edition-card-advanced" : ""}`} aria-labelledby={`${edition}-title`}>
       <header className="edition-heading">
         <span className="edition-mark" aria-hidden="true">
-          {advanced ? <Diamond size={22} /> : <Asterisk size={22} />}
+          {advanced ? <Diamond size={18} /> : <Asterisk size={18} />}
         </span>
         <h2 id={`${edition}-title`}>{name}</h2>
         {advanced && <span className="edition-badge">Popular</span>}
@@ -158,16 +156,10 @@ function EditionCard({
       <div className="edition-price-block">
         <div className="edition-price" aria-live="polite" aria-atomic="true">
           <strong>{price === undefined ? "Contact sales" : free ? "Free" : usd(price)}</strong>
-          {price !== undefined && !free && <span>{annual ? "/ year" : "/ user / month"}</span>}
+          {price !== undefined && !free && <span>/ {annual ? "year" : "user / month"}</span>}
         </div>
         <p className="edition-price-detail">
-          {price === undefined
-            ? "Contact us for pricing beyond the published tiers."
-            : free
-              ? "Free for up to 10 users"
-              : annual
-                ? `Billed yearly · ${tierMin.toLocaleString("en-US")}–${tier[0].toLocaleString("en-US")} users`
-                : `Billed monthly · ${usd(rate * users)} total`}
+          {price === undefined ? "Contact us for a quote" : free ? "Free for up to 10 users" : annual ? "billed yearly" : "billed monthly"}
         </p>
       </div>
       <div className="edition-feature-section">
@@ -182,7 +174,7 @@ function EditionCard({
                 aria-label={`${feature.title}, ${included ? "included" : "not included"}`}
               >
                 <span className="feature-mark" aria-hidden="true">
-                  {included ? <Check size={14} /> : <Ghost size={15} />}
+                  {included ? <Check size={12} strokeWidth={2.5} /> : <Ghost size={14} />}
                 </span>
                 <Link to={`/features/${feature.slug}`}>{feature.title}</Link>
               </li>

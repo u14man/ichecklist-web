@@ -10539,57 +10539,58 @@
   .pricing-page .edition-card .button:focus-visible { outline: 2px solid var(--violet); outline-offset: 3px; }
   .pricing-page .edition-team-help { color: var(--muted); font-size: 14px; line-height: 1.6; margin: 12px 0 30px; }
   .pricing-page .edition-team-help a { display: inline-flex; align-items: center; gap: 4px; color: var(--violet); }
-  .pricing-page .edition-comparison { display: flex; gap: 20px; align-items: stretch; }
+  .pricing-page .edition-comparison { display: flex; gap: 16px; align-items: stretch; }
   .pricing-page .edition-card {
     display: flex;
     flex-direction: column;
+    gap: 24px;
     flex: 1;
     min-width: 0;
-    padding: 28px 28px 24px;
-    border: 1px solid #e6e8f0;
-    border-radius: 28px;
+    padding: 32px 24px;
+    border: 1px solid #e6e8ee;
+    border-radius: 24px;
     background: #fff;
-    color: var(--ink);
+    color: #111827;
   }
   .pricing-page .edition-card-advanced {
     border-color: transparent;
-    background: #101828;
+    background: linear-gradient(180deg, #1a2236 0%, #101828 100%);
     color: #fff;
-    box-shadow: 0 18px 42px rgba(16, 24, 40, 0.16);
+    box-shadow: 0 0 0 4px #e7e9ee;
   }
   .pricing-page .edition-heading { display: flex; align-items: center; gap: 10px; }
-  .pricing-page .edition-mark { display: inline-flex; color: #ff4fa3; }
-  .pricing-page .edition-card-advanced .edition-mark { color: #f5c542; }
-  .pricing-page .edition-heading h2 { margin: 0; font-family: var(--font-display); font-size: 28px; font-weight: 700; letter-spacing: -0.04em; line-height: 1.15; }
-  .pricing-page .edition-badge { margin-left: auto; padding: 6px 10px; border-radius: 8px; background: #ff4fa3; color: #fff; font-size: 11px; font-weight: 800; letter-spacing: 0.06em; line-height: 1; text-transform: uppercase; }
-  .pricing-page .edition-price-block { display: flex; flex-direction: column; gap: 6px; padding: 28px 0 8px; }
-  .pricing-page .edition-price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
-  .pricing-page .edition-price strong { font-family: var(--font-display); font-size: clamp(48px, 5vw, 64px); letter-spacing: -0.05em; font-weight: 750; line-height: 0.95; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+  .pricing-page .edition-mark { display: inline-flex; color: #ed3fb2; }
+  .pricing-page .edition-card-advanced .edition-mark { color: #f5b942; }
+  .pricing-page .edition-heading h2 { margin: 0; font-family: var(--font-display); font-size: 22px; font-weight: 650; letter-spacing: -0.02em; line-height: 1.3; }
+  .pricing-page .edition-badge { margin-left: auto; padding: 4px 8px; border-radius: 6px; background: #ed3fb2; color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 0.04em; line-height: 1.5; text-transform: uppercase; }
+  .pricing-page .edition-price-block { display: flex; flex-direction: column; gap: 2px; }
+  .pricing-page .edition-price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; }
+  .pricing-page .edition-price strong { font-family: var(--font-display); font-size: 40px; letter-spacing: -0.04em; font-weight: 650; line-height: 1; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
   .pricing-page .edition-price > span,
   .pricing-page .edition-price-detail,
   .pricing-page .edition-feature-section h3,
   .pricing-page .edition-marketplace { color: #8b93a7; }
-  .pricing-page .edition-price > span { font-size: 18px; font-weight: 500; }
-  .pricing-page .edition-price-detail { margin: 0; min-height: 24px; font-size: 16px; line-height: 1.5; font-weight: 500; }
-  .pricing-page .edition-feature-section { display: flex; flex-direction: column; gap: 16px; margin-top: 28px; flex: 1; }
-  .pricing-page .edition-feature-section h3 { margin: 0; font-size: 16px; font-weight: 500; line-height: 1.4; }
-  .pricing-page .edition-feature-section ul { display: flex; flex-direction: column; gap: 16px; list-style: none; margin: 0; padding: 4px 0 0; }
-  .pricing-page .edition-feature-section li { display: flex; align-items: center; gap: 12px; min-height: 28px; font-size: 16px; line-height: 1.35; }
+  .pricing-page .edition-price > span { font-size: 15px; font-weight: 500; }
+  .pricing-page .edition-price-detail { margin: 0; font-size: 14px; line-height: 1.5; font-weight: 500; }
+  .pricing-page .edition-feature-section { display: flex; flex-direction: column; gap: 14px; flex: 1; }
+  .pricing-page .edition-feature-section h3 { margin: 0; font-size: 14px; font-weight: 500; line-height: 1.4; }
+  .pricing-page .edition-feature-section ul { display: flex; flex-direction: column; gap: 12px; list-style: none; margin: 0; padding: 0; }
+  .pricing-page .edition-feature-section li { display: flex; align-items: center; gap: 10px; font-size: 14px; line-height: 1.35; }
   .pricing-page .edition-feature-section a { color: inherit; text-decoration: none; }
   .pricing-page .edition-feature-section li:not(.is-unavailable) a:hover { color: var(--violet); }
-  .pricing-page .feature-mark { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; flex-shrink: 0; border-radius: 7px; background: #e8f8ee; color: #16a34a; }
-  .pricing-page .edition-feature-section li.is-unavailable { color: #a8b0c0; }
+  .pricing-page .feature-mark { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; flex-shrink: 0; border-radius: 5px; background: #e7f8ee; color: #16a34a; }
+  .pricing-page .edition-feature-section li.is-unavailable { color: #b0b7c3; }
   .pricing-page .edition-feature-section li.is-unavailable .feature-mark { background: transparent; color: #c5cbd6; }
   .pricing-page .edition-card-advanced .edition-price > span,
   .pricing-page .edition-card-advanced .edition-price-detail,
   .pricing-page .edition-card-advanced .edition-feature-section h3,
-  .pricing-page .edition-card-advanced .edition-marketplace { color: rgba(255, 255, 255, 0.62); }
+  .pricing-page .edition-card-advanced .edition-marketplace { color: rgba(255, 255, 255, 0.55); }
   .pricing-page .edition-card-advanced .feature-mark { background: #163328; color: #3dce7a; }
   .pricing-page .edition-card-advanced .edition-feature-section li.is-unavailable { color: rgba(255, 255, 255, 0.38); }
   .pricing-page .edition-card-advanced .edition-feature-section li.is-unavailable .feature-mark { background: transparent; color: rgba(255, 255, 255, 0.34); }
   .pricing-page .edition-card-advanced .edition-feature-section li:not(.is-unavailable) a:hover { color: #fff; }
-  .pricing-page .edition-marketplace { margin-top: auto; padding-top: 20px; font-size: 14px; line-height: 1.5; }
-  .pricing-page .edition-card > .button { width: 100%; min-height: 56px; margin-top: 22px; border-radius: 16px; font-size: 16px; font-weight: 700; white-space: normal; }
+  .pricing-page .edition-marketplace { margin-top: auto; font-size: 13px; line-height: 1.4; }
+  .pricing-page .edition-card > .button { width: 100%; min-height: 48px; margin: 0; border-radius: 12px; font-size: 15px; font-weight: 650; }
   .pricing-page .edition-pricing-footnote { margin: 24px 0 0; text-align: center; font-size: 14px; color: var(--muted); line-height: 1.6; }
   .compare-plans { padding-top: 24px; }
   .compare-table-wrap { overflow-x: auto; }

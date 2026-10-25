@@ -301,12 +301,14 @@ export function PricingPage() {
           </table>
         </div>
       </section>
-      <FAQ items={[
-        { question: "How is pricing calculated?", answer: "Standard monthly pricing is free for up to 10 users, then $0.75 per user for 11–100 users, $0.55 for 101–250, and $0.30 above 250. Advanced monthly pricing is $5 per user for 1–10 users, $1 for 11–100, $0.80 for 101–250, $0.25 for 251–1,000, and $0.20 above 1,000. The rate for your team size applies to every user; pricing is not calculated progressively across tiers." },
-        { question: "What does it cost for up to 10 users?", answer: "Standard is free for up to 10 users. Advanced costs $5 per user per month for 1–10 users, so 10 users cost $50 per month. With annual billing, the total annual price for the 1–10 user tier is $50. Monthly per-user pricing and annual tier pricing use different billing models." },
-        { question: "How does annual billing work?", answer: "Each edition matches your team size to its annual pricing tier. The card shows the applicable user range and total annual price, not a per-user annual rate. Changing the number of users within the same tier does not change the annual total. For more than 2,500 users, contact us for a quote." },
-        { question: "Can I try the experience before buying?", answer: "Yes. The interactive demo is available without an account. It uses sample Checklist Items and does not connect to your Jira instance." },
-      ]} />
+      <div className="pricing-faq">
+        <FAQ items={[
+          { question: "How is pricing calculated?", answer: "Standard monthly pricing is free for up to 10 users, then $0.75 per user for 11–100 users, $0.55 for 101–250, and $0.30 above 250. Advanced monthly pricing is $5 per user for 1–10 users, $1 for 11–100, $0.80 for 101–250, $0.25 for 251–1,000, and $0.20 above 1,000. The rate for your team size applies to every user; pricing is not calculated progressively across tiers." },
+          { question: "What does it cost for up to 10 users?", answer: "Standard is free for up to 10 users. Advanced costs $5 per user per month for 1–10 users, so 10 users cost $50 per month. With annual billing, the total annual price for the 1–10 user tier is $50. Monthly per-user pricing and annual tier pricing use different billing models." },
+          { question: "How does annual billing work?", answer: "Each edition matches your team size to its annual pricing tier. The card shows the applicable user range and total annual price, not a per-user annual rate. Changing the number of users within the same tier does not change the annual total. For more than 2,500 users, contact us for a quote." },
+          { question: "Can I try the experience before buying?", answer: "Yes. The interactive demo is available without an account. It uses sample Checklist Items and does not connect to your Jira instance." },
+        ]} />
+      </div>
       <FinalCTA />
     </>
   );

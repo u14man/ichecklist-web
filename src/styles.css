@@ -10457,6 +10457,81 @@
     --pricing-line: color-mix(in srgb, var(--ink) 12%, var(--pricing-surface));
   }
 
+  .pricing-faq .faq-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 34px;
+    padding-top: 68px;
+    padding-bottom: 88px;
+  }
+
+  .pricing-faq .faq-section > div:first-child {
+    width: 100%;
+    text-align: center;
+  }
+
+  .pricing-faq .faq-section > div:first-child > .eyebrow { display: none; }
+  .pricing-faq .faq-section h2 {
+    margin: 0;
+    font-size: clamp(36px, 4vw, 48px);
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    line-height: 1.12;
+  }
+  .pricing-faq .faq-section > div:first-child > p {
+    margin: 16px 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #626874;
+  }
+  .pricing-faq .faq-section > div:first-child > .text-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 20px;
+    border-radius: 10px;
+    background: #17191f;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .pricing-faq .faq-section > div:first-child > .text-link:hover { background: #30333b; }
+  .pricing-faq .faq-list { width: min(100%, 850px); }
+  .pricing-faq .faq-item { border-bottom: 1px solid #e5e7eb; }
+  .pricing-faq .faq-item:first-child { border-top: 1px solid #e5e7eb; }
+  .pricing-faq .faq-item h3 { margin: 0; font-size: 16px; font-weight: 400; letter-spacing: 0; }
+  .pricing-faq .faq-item button {
+    padding: 15px 0;
+    color: #22252b;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  .pricing-faq .faq-item.open button { color: #22252b; }
+  .pricing-faq .faq-item button svg { width: 16px; height: 16px; flex: 0 0 auto; color: #22252b; }
+  .pricing-faq .faq-item > div > p {
+    padding: 0 28px 16px 0;
+    color: #6b707a;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+  .pricing-faq .faq-item button:focus-visible,
+  .pricing-faq .faq-section > div:first-child > .text-link:focus-visible {
+    outline: 2px solid var(--violet);
+    outline-offset: 3px;
+  }
+  @media (max-width: 640px) {
+    .pricing-faq .faq-section { gap: 26px; padding-top: 44px; padding-bottom: 60px; }
+    .pricing-faq .faq-section h2 { font-size: 34px; }
+    .pricing-faq .faq-section > div:first-child > p { font-size: 15px; }
+    .pricing-faq .faq-item h3,
+    .pricing-faq .faq-item button { font-size: 15px; }
+  }
+
   .pricing-page .edition-toolbar {
     display: flex;
     justify-content: space-between;

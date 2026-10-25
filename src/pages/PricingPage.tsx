@@ -258,7 +258,6 @@ export function PricingPage() {
             </div>
           </fieldset>
         </div>
-        <p id="pricing-team-help" className="edition-team-help">For teams of 1–2,500 users. Need more? <Link to="/contact?topic=Pricing">Contact us for a quote <ArrowRight size={14} aria-hidden="true" /></Link></p>
         <div className="edition-comparison">
           <EditionCard edition="standard" users={users} billing={billing} />
           <EditionCard edition="advanced" users={users} billing={billing} />

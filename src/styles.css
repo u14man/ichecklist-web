@@ -10467,6 +10467,7 @@
     border-radius: 20px;
     background: var(--pricing-surface);
     color: var(--ink);
+    margin-bottom: 30px;
   }
 
   .pricing-page .edition-team-controls,

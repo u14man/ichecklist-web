@@ -10460,14 +10460,13 @@
   .pricing-page .edition-toolbar {
     display: flex;
     justify-content: space-between;
-    align-items: stretch;
-    gap: 32px;
-    padding: 28px 32px;
+    align-items: center;
+    gap: 24px;
+    padding: 22px 24px;
     border: 1px solid var(--pricing-line);
-    border-radius: 24px;
+    border-radius: 20px;
     background: var(--pricing-surface);
     color: var(--ink);
-    box-shadow: 0 12px 40px color-mix(in srgb, var(--ink) 5%, transparent);
   }
 
   .pricing-page .edition-team-controls,
@@ -10478,21 +10477,18 @@
     gap: 12px;
   }
 
-  .pricing-page .edition-team-controls { flex-wrap: wrap; gap: 18px; flex: 1; min-width: 0; }
-  .pricing-page .edition-team-input { gap: 14px; }
+  .pricing-page .edition-team-controls { flex-wrap: wrap; gap: 20px; }
   .pricing-page .edition-team-input label,
-  .pricing-page .edition-billing legend { font-size: 16px; font-weight: 700; letter-spacing: -0.01em; }
+  .pricing-page .edition-billing legend { font-size: 14px; font-weight: 600; }
   .pricing-page .edition-number-field {
     display: flex;
     align-items: center;
-    gap: 8px;
-    min-width: 184px;
-    padding: 13px 16px;
+    gap: 6px;
+    padding: 10px 12px;
     border: 1px solid var(--pricing-line);
-    border-radius: 14px;
-    background: var(--pricing-surface);
+    border-radius: 10px;
     color: var(--muted);
-    font-size: 16px;
+    font-size: 14px;
   }
   .pricing-page .edition-number-field input {
     width: 64px;
@@ -10506,29 +10502,26 @@
   }
   .pricing-page .edition-number-field:focus-within { outline: 2px solid var(--violet); outline-offset: 3px; }
   .pricing-page .edition-number-field input:focus { outline: none; }
-  .pricing-page .edition-presets { flex-wrap: wrap; gap: 8px; }
+  .pricing-page .edition-presets { flex-wrap: wrap; gap: 6px; }
   .pricing-page .edition-presets button {
-    min-width: 48px;
-    padding: 9px 11px;
+    padding: 7px 9px;
     border: 1px solid transparent;
-    border-radius: 10px;
+    border-radius: 8px;
     background: transparent;
     color: var(--muted);
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 14px;
     font-variant-numeric: tabular-nums;
   }
-  .pricing-page .edition-presets button:hover { border-color: var(--pricing-line); color: var(--ink); }
   .pricing-page .edition-presets button[aria-pressed="true"] {
     background: var(--pricing-soft);
     color: var(--violet);
     border-color: color-mix(in srgb, var(--violet) 25%, transparent);
   }
   .pricing-page .edition-billing { border: 0; padding: 0; min-width: 0; }
-  .pricing-page .edition-billing legend { color: var(--muted); margin-bottom: 10px; }
+  .pricing-page .edition-billing legend { color: var(--muted); margin-bottom: 8px; }
   .pricing-page .edition-billing-switch {
     display: flex;
-    padding: 5px;
+    padding: 4px;
     border: 1px solid var(--pricing-line);
     border-radius: 999px;
     background: var(--pricing-surface);
@@ -10536,7 +10529,7 @@
   }
   .pricing-page .edition-billing-switch label { position: relative; cursor: pointer; }
   .pricing-page .edition-billing-switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }
-  .pricing-page .edition-billing-switch .billing-option { display: inline-flex; align-items: center; gap: 10px; padding: 11px 24px; border-radius: 999px; font-size: 15px; font-weight: 700; white-space: nowrap; }
+  .pricing-page .edition-billing-switch .billing-option { display: inline-flex; align-items: center; gap: 10px; padding: 9px 22px; border-radius: 999px; font-size: 14px; font-weight: 600; white-space: nowrap; }
   .pricing-page .edition-billing-switch .billing-option.has-save { padding: 6px 6px 6px 18px; }
   .pricing-page .edition-billing-switch .save-tag { padding: 6px 10px; border-radius: 999px; background: #20a852; color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; line-height: 1; }
   .pricing-page .edition-billing-switch input:checked + .billing-option { background: var(--ink); color: var(--pricing-surface); }

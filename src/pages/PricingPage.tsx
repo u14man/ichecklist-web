@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Asterisk, Check, Diamond, Ghost } from "lucide-react";
+import { Asterisk, Check, Diamond, Ghost } from "lucide-react";
 import { Button, FAQ, FinalCTA, PageHero, SectionHeading } from "../components";
 
 
@@ -149,9 +149,11 @@ function EditionCard({
   return (
     <article className={`edition-card${advanced ? " edition-card-advanced" : ""}`} aria-labelledby={`${edition}-title`}>
       <header className="edition-heading">
-        <span className="edition-kicker">{advanced ? "ADVANCED EDITION" : "STANDARD EDITION"}</span>
+        <span className="edition-mark" aria-hidden="true">
+          {advanced ? <Diamond size={22} /> : <Asterisk size={22} />}
+        </span>
         <h2 id={`${edition}-title`}>{name}</h2>
-        <p>{advanced ? "Adds the controls for teams that need more certainty." : "The day-to-day checklist a team can start with."}</p>
+        {advanced && <span className="edition-badge">Popular</span>}
       </header>
       <div className="edition-price-block">
         <div className="edition-price" aria-live="polite" aria-atomic="true">
@@ -162,21 +164,14 @@ function EditionCard({
           {price === undefined
             ? "Contact us for pricing beyond the published tiers."
             : free
-              ? "Standard is free for up to 10 users"
+              ? "Free for up to 10 users"
               : annual
-                ? `${tierMin.toLocaleString("en-US")}–${tier[0].toLocaleString("en-US")} users · Total annual price`
-                : `${users.toLocaleString("en-US")} users · ${usd(rate * users)} total per month`}
+                ? `Billed yearly · ${tierMin.toLocaleString("en-US")}–${tier[0].toLocaleString("en-US")} users`
+                : `Billed monthly · ${usd(rate * users)} total`}
         </p>
-        <span className="edition-billing-note">
-          {annual ? "Billed annually, based on your team size tier" : "Billed monthly, with a per-user rate based on team size"}
-        </span>
       </div>
-      <Button to={free ? "/demo" : `/contact?${quoteParams}`} variant={advanced ? "primary" : "outline"}>
-        {free ? "Try it free" : "Contact us about this edition"}
-        <ArrowRight size={18} aria-hidden="true" />
-      </Button>
       <div className="edition-feature-section">
-        <h3>{advanced ? "Everything in Standard, plus" : "Features included"}</h3>
+        <h3>{advanced ? "Everything in Standard, plus:" : "Features included:"}</h3>
         <ul>
           {EDITION_FEATURES.map((feature) => {
             const included = advanced || !feature.advancedOnly;
@@ -194,8 +189,11 @@ function EditionCard({
             );
           })}
         </ul>
-        <span className="edition-marketplace">Billed through the Atlassian Marketplace</span>
       </div>
+      <span className="edition-marketplace">Billed through the Atlassian Marketplace</span>
+      <Button to={free ? "/demo" : `/contact?${quoteParams}`} variant={advanced ? "white" : "dark"}>
+        {free ? "Try it free" : "Contact us about this edition"}
+      </Button>
     </article>
   );
 }

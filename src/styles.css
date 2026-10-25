@@ -10592,7 +10592,7 @@
   .pricing-page .edition-marketplace { margin-top: auto; font-size: 13px; line-height: 1.4; }
   .pricing-page .edition-card > .button { width: 100%; min-height: 48px; margin: 0; border-radius: 12px; font-size: 15px; font-weight: 650; }
   .pricing-page .edition-pricing-footnote { margin: 24px 0 0; text-align: center; font-size: 14px; color: var(--muted); line-height: 1.6; }
-  .compare-plans { padding-top: 36px; }
+  .compare-plans { padding-top: 60px; }
   .compare-title { margin: 0 0 36px; padding: 0 0 24px; border-bottom: 1px solid #dfe2e8; color: var(--ink); text-align: left; font-size: 32px; font-weight: 700; letter-spacing: -0.04em; line-height: 1.2; }
   .compare-table-wrap { overflow-x: auto; }
   .compare-plans table { width: 100%; min-width: 640px; border-collapse: collapse; table-layout: fixed; color: var(--ink); }

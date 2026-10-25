@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
-import { Asterisk, Check, Diamond, Ghost } from "lucide-react";
-import { Button, FAQ, FinalCTA, PageHero, SectionHeading } from "../components";
+import { Sparkle, Check, Gem, Ghost } from "lucide-react";
+import { Button, FAQ, FinalCTA, PageHero } from "../components";
 
 
 type Edition = "standard" | "advanced";
@@ -148,7 +148,7 @@ function EditionCard({
     <article className={`edition-card${advanced ? " edition-card-advanced" : ""}`} aria-labelledby={`${edition}-title`}>
       <header className="edition-heading">
         <span className="edition-mark" aria-hidden="true">
-          {advanced ? <Diamond size={18} /> : <Asterisk size={18} />}
+          {advanced ? <Gem size={24} /> : <Sparkle size={24} />}
         </span>
         <h2 id={`${edition}-title`}>{name}</h2>
         {advanced && <span className="edition-badge">Popular</span>}
@@ -174,7 +174,7 @@ function EditionCard({
                 aria-label={`${feature.title}, ${included ? "included" : "not included"}`}
               >
                 <span className="feature-mark" aria-hidden="true">
-                  {included ? <Check size={12} strokeWidth={2.5} /> : <Ghost size={14} />}
+                  {included ? <Check size={12} strokeWidth={2.5} /> : <Ghost size={20} />}
                 </span>
                 <Link to={`/features/${feature.slug}`}>{feature.title}</Link>
               </li>
@@ -255,11 +255,7 @@ export function PricingPage() {
         <p className="edition-pricing-footnote">All prices are in USD, excluding tax. Monthly pricing shows the per-user rate and team total. Annual pricing shows the total annual price for your team size tier.</p>
       </section>
       <section className="section container compare-plans">
-        <SectionHeading
-          eyebrow="COMPARE PLANS"
-          title="Compare plans & features"
-          description="The same checklist features, shown side by side. Advanced adds the controls and dashboard."
-        />
+        <h2 className="compare-title">Compare plans &amp; features</h2>
         <div className="compare-table-wrap">
           <table aria-label="Compare plans and features">
             <colgroup>
@@ -272,13 +268,13 @@ export function PricingPage() {
                 <th scope="col">Plans</th>
                 <th scope="col">
                   <span className="compare-plan">
-                    <Asterisk size={18} aria-hidden="true" />
+                    <Sparkle size={24} aria-hidden="true" />
                     Standard
                   </span>
                 </th>
                 <th scope="col">
                   <span className="compare-plan is-advanced">
-                    <Diamond size={16} aria-hidden="true" />
+                    <Gem size={24} aria-hidden="true" />
                     Advanced
                   </span>
                 </th>

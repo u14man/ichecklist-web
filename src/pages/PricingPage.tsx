@@ -159,9 +159,8 @@ function EditionCard({
           {price !== undefined && <span>/ {free ? "month" : annual ? "year" : "user / month"}</span>}
         </div>
         <p className="edition-price-detail">
-          {price === undefined ? "Contact us for a quote" : annual ? "billed yearly" : "billed monthly"}
+          {price === undefined ? "Contact us for a quote" : free ? (annual ? "billed yearly" : "Free for up to 10 users") : annual ? "billed yearly" : "billed monthly"}
         </p>
-        {free && <p className="edition-free-note">Free for up to 10 users</p>}
       </div>
       <div className="edition-feature-section">
         <h3>{advanced ? "Everything in Standard, plus:" : "Features included:"}</h3>

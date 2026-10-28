@@ -10643,10 +10643,13 @@
   .pricing-page .edition-price strong { font-family: var(--font-display); font-size: 40px; letter-spacing: -0.04em; font-weight: 650; line-height: 1; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
   .pricing-page .edition-price > span,
   .pricing-page .edition-price-detail,
+  .pricing-page .edition-free-note,
   .pricing-page .edition-feature-section h3,
   .pricing-page .edition-marketplace { color: #8b93a7; }
   .pricing-page .edition-price > span { font-size: 15px; font-weight: 500; }
-  .pricing-page .edition-price-detail { margin: 0; font-size: 14px; line-height: 1.5; font-weight: 500; }
+  .pricing-page .edition-price-detail,
+  .pricing-page .edition-free-note { margin: 0; font-size: 14px; line-height: 1.5; font-weight: 500; }
+  .pricing-page .edition-free-note { margin-top: 4px; }
   .pricing-page .edition-feature-section { display: flex; flex-direction: column; gap: 14px; flex: 1; }
   .pricing-page .edition-feature-section h3 { margin: 0; font-size: 14px; font-weight: 500; line-height: 1.4; }
   .pricing-page .edition-feature-section ul { display: flex; flex-direction: column; gap: 12px; list-style: none; margin: 0; padding: 0; }

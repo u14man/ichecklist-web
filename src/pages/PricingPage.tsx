@@ -150,17 +150,18 @@ function EditionCard({
         <span className="edition-mark" aria-hidden="true">
           {advanced ? <Gem size={24} /> : <Sparkle size={24} />}
         </span>
-        <h2 id={`${edition}-title`}>{name}</h2>
+        <h2 id={`${edition}-title`}>{free ? "Free" : name}</h2>
         {advanced && <span className="edition-badge">Popular</span>}
       </header>
       <div className="edition-price-block">
         <div className="edition-price" aria-live="polite" aria-atomic="true">
-          <strong>{price === undefined ? "Contact sales" : free ? "Free" : usd(price)}</strong>
-          {price !== undefined && !free && <span>/ {annual ? "year" : "user / month"}</span>}
+          <strong>{price === undefined ? "Contact sales" : free ? "$0" : usd(price)}</strong>
+          {price !== undefined && <span>/ {free ? "month" : annual ? "year" : "user / month"}</span>}
         </div>
         <p className="edition-price-detail">
-          {price === undefined ? "Contact us for a quote" : free ? "Free for up to 10 users" : annual ? "billed yearly" : "billed monthly"}
+          {price === undefined ? "Contact us for a quote" : annual ? "billed yearly" : "billed monthly"}
         </p>
+        {free && <p className="edition-free-note">Free for up to 10 users</p>}
       </div>
       <div className="edition-feature-section">
         <h3>{advanced ? "Everything in Standard, plus:" : "Features included:"}</h3>

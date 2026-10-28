@@ -10653,14 +10653,14 @@
   .pricing-page .edition-feature-section li { display: flex; align-items: center; gap: 10px; font-size: 14px; line-height: 1.35; }
   .pricing-page .edition-feature-section a { color: inherit; text-decoration: none; }
   .pricing-page .edition-feature-section li:not(.is-unavailable) a:hover { color: var(--violet); }
-  .pricing-page .feature-mark { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; flex-shrink: 0; border-radius: 5px; background: #e7f8ee; color: #16a34a; }
+  .pricing-page .feature-mark { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; flex-shrink: 0; border-radius: 5px; background: #eef6ef; color: #20a852; }
   .pricing-page .edition-feature-section li.is-unavailable { color: #b0b7c3; }
   .pricing-page .edition-feature-section li.is-unavailable .feature-mark { background: transparent; color: #c5cbd6; }
   .pricing-page .edition-card-advanced .edition-price > span,
   .pricing-page .edition-card-advanced .edition-price-detail,
   .pricing-page .edition-card-advanced .edition-feature-section h3,
   .pricing-page .edition-card-advanced .edition-marketplace { color: rgba(255, 255, 255, 0.55); }
-  .pricing-page .edition-card-advanced .feature-mark { background: #163328; color: #3dce7a; }
+  .pricing-page .edition-card-advanced .feature-mark { background: #242f41; color: #92e9b2; }
   .pricing-page .edition-card-advanced .edition-feature-section li.is-unavailable { color: rgba(255, 255, 255, 0.38); }
   .pricing-page .edition-card-advanced .edition-feature-section li.is-unavailable .feature-mark { background: transparent; color: rgba(255, 255, 255, 0.34); }
   .pricing-page .edition-card-advanced .edition-feature-section li:not(.is-unavailable) a:hover { color: #fff; }

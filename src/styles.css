@@ -10685,7 +10685,7 @@
   .compare-plans tbody th a:hover { color: var(--violet); }
   .compare-group th { padding: 26px 10px 10px; border-bottom: 1px solid #dfe2e8; font-size: 16px; font-weight: 700; letter-spacing: 0; text-align: left; text-transform: none; }
   .compare-mark { display: inline-flex; align-items: center; justify-content: center; color: #b7bdc8; font-size: 16px; line-height: 1; }
-  .compare-mark.is-included { width: 20px; height: 20px; border-radius: 5px; background: #e7f8ee; color: #16a34a; font-size: inherit; }
+  .compare-mark.is-included { width: 20px; height: 20px; border-radius: 5px; background:#eef6ef; color: #20a852; font-size: inherit; }
   @media (max-width: 640px) {
     .compare-plans { padding-top: 20px; }
     .compare-title { margin-bottom: 24px; font-size: 28px; }
